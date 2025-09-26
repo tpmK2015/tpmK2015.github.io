@@ -527,13 +527,17 @@ function handleRSVPSubmission(mailData) {
       } else if (header.includes('email')) {
         updateData[i] = email || currentValue;
       } else if (header.includes('số người') || header.includes('extras')) {
-        updateData[i] = extras || currentValue;
+        // Nếu không tham dự thì số người đi cùng = 0
+        var extrasValue = (attendanceStatus === 'attending') ? (extras || 0) : 0;
+        updateData[i] = extrasValue;
       } else if (header.includes('trạng thái') || header.includes('status') || header.includes('rsvp') || header.includes('đã rsvp')) {
         // Convert attendanceStatus to Yes/No
         var rsvpValue = (attendanceStatus === 'attending') ? 'Yes' : 'No';
         updateData[i] = rsvpValue;
       } else if (header.includes('xe') || header.includes('transport')) {
-        updateData[i] = transportSeats || currentValue;
+        // Nếu không tham dự thì số ghế xe = 0
+        var transportValue = (attendanceStatus === 'attending') ? (transportSeats || 0) : 0;
+        updateData[i] = transportValue;
       } else if (header.includes('sđt') || header.includes('phone')) {
         updateData[i] = transportPhone || currentValue;
       } else if (header.includes('lời chúc') || header.includes('message')) {
