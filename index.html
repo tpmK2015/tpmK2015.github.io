@@ -1597,20 +1597,51 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
         // Show loading state
         messagesContainer.innerHTML = '<div style="text-align: center; padding: 20px; color: #999;">Đang tải lời chúc...</div>';
         
+        // Try to load from localStorage first (for testing)
+        var savedMessages = localStorage.getItem('guestbook_messages');
+        if (savedMessages) {
+            try {
+                var messages = JSON.parse(savedMessages);
+                console.log('Loaded messages from localStorage:', messages);
+                displayMessages(messages);
+                return;
+            } catch (e) {
+                console.error('Error parsing localStorage messages:', e);
+            }
+        }
+        
         // Fetch messages from Google Apps Script
+        console.log('Fetching guestbook messages from Google Apps Script...');
         fetch('https://script.google.com/macros/s/AKfycbxbT20wJlX3fgzm1A384zn44zp3D22WNYzlei03MhE4g5i6Qit3m8eOgUDp6Dmhuir9Tg/exec?action=get_messages')
-            .then(response => response.json())
-            .then(data => {
-                if (data.result === 'success' && data.messages) {
-                    displayMessages(data.messages);
-                } else {
-                    // Show sample message if no data
+            .then(response => {
+                console.log('Response status:', response.status);
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+                return response.text();
+            })
+            .then(text => {
+                console.log('Raw response:', text);
+                try {
+                    var data = JSON.parse(text);
+                    console.log('Parsed data:', data);
+                    if (data.result === 'success' && data.messages && data.messages.length > 0) {
+                        displayMessages(data.messages);
+                        // Save to localStorage for offline access
+                        localStorage.setItem('guestbook_messages', JSON.stringify(data.messages));
+                    } else {
+                        console.log('No messages found, showing sample');
+                        displaySampleMessage();
+                    }
+                } catch (e) {
+                    console.error('JSON parse error:', e);
+                    console.log('Showing sample message due to parse error');
                     displaySampleMessage();
                 }
             })
             .catch(error => {
-                console.error('Error loading messages:', error);
-                // Show sample message on error
+                console.error('Fetch error:', error);
+                console.log('Showing sample message due to fetch error');
                 displaySampleMessage();
             });
     }
@@ -1821,6 +1852,35 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
                 </div>
             `;
             messagesContainer.insertAdjacentHTML('afterbegin', messageHtml);
+            
+            // Lưu message mới vào localStorage
+            var newMessage = {
+                name: name,
+                message: message,
+                timestamp: timeString
+            };
+            
+            // Lấy messages hiện tại từ localStorage
+            var existingMessages = [];
+            try {
+                var saved = localStorage.getItem('guestbook_messages');
+                if (saved) {
+                    existingMessages = JSON.parse(saved);
+                }
+            } catch (e) {
+                console.error('Error loading existing messages:', e);
+            }
+            
+            // Thêm message mới vào đầu danh sách
+            existingMessages.unshift(newMessage);
+            
+            // Giới hạn 20 messages gần nhất
+            if (existingMessages.length > 20) {
+                existingMessages = existingMessages.slice(0, 20);
+            }
+            
+            // Lưu lại vào localStorage
+            localStorage.setItem('guestbook_messages', JSON.stringify(existingMessages));
             
             // Sau 5 phút, cập nhật thành thời gian thực tế
             setTimeout(function() {
