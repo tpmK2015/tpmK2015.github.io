@@ -1907,6 +1907,51 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
         }
     }
     
+    // Initialize background music
+    function initBackgroundMusic() {
+        console.log('🎵 Initializing background music...');
+        
+        const audio = new Audio('musicOffical.mp3');
+        audio.loop = true;
+        audio.volume = 1; // Set volume to 100%
+        
+        // Debug audio events
+        audio.addEventListener('loadstart', () => console.log('🎵 Audio load started'));
+        audio.addEventListener('canplay', () => console.log('🎵 Audio can play'));
+        audio.addEventListener('playing', () => console.log('🎵 Audio is playing'));
+        audio.addEventListener('error', (e) => console.error('🎵 Audio error:', e));
+        
+        // Try to play music when user interacts with page
+        const playMusic = () => {
+            console.log('🎵 User interaction detected, trying to play music...');
+            audio.play().then(() => {
+                console.log('🎵 Music started successfully!');
+            }).catch(e => {
+                console.error('🎵 Auto-play prevented:', e);
+            });
+        };
+        
+        // Play on first user interaction
+        document.addEventListener('click', playMusic, { once: true });
+        document.addEventListener('touchstart', playMusic, { once: true });
+        document.addEventListener('keydown', playMusic, { once: true });
+        document.addEventListener('scroll', playMusic, { once: true });
+        
+        // Also try to play immediately (may be blocked by browser)
+        setTimeout(() => {
+            console.log('🎵 Trying to auto-play music...');
+            audio.play().then(() => {
+                console.log('🎵 Auto-play successful!');
+            }).catch(e => {
+                console.log('🎵 Auto-play blocked by browser policy:', e.message);
+                console.log('🎵 Music will play on first user interaction');
+            });
+        }, 1000);
+        
+        // Store audio globally for debugging
+        window.weddingAudio = audio;
+    }
+    
     // Initialize when page loads
     document.addEventListener('DOMContentLoaded', function() {
         initRSVPButton();
@@ -1914,6 +1959,7 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
         initGuestbookForm();
         initScrollToBottom();
         loadGuestbookMessages();
+        initBackgroundMusic();
     });
 </script>
 
