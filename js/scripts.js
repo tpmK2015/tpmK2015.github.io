@@ -260,18 +260,21 @@ function App() {
         attendanceForm: function () {
             $('#attendance_status').on('change', function() {
                 var status = $(this).val();
+                console.log('Attendance status changed to:', status); // Debug log
+                
                 if (status === 'attending') {
                     $('#attending-fields').show();
                     $('#declining-fields').hide();
-                    $('#qr-decline-section').hide();
+                    $('#qr-section').hide();
                 } else if (status === 'declining') {
                     $('#attending-fields').hide();
                     $('#declining-fields').show();
-                    $('#qr-decline-section').show();
+                    $('#qr-section').show();
+                    console.log('Showing QR section'); // Debug log
                 } else {
                     $('#attending-fields').hide();
                     $('#declining-fields').hide();
-                    $('#qr-decline-section').hide();
+                    $('#qr-section').hide();
                 }
             });
         },
