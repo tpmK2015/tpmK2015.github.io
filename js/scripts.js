@@ -109,7 +109,19 @@ function App() {
                     $('html, body').animate({
                         scrollTop: $(target).offset().top
                     }, 750, 'swing');
+                    
+                    // Close mobile menu after navigation
+                    $('.header-nav').removeClass('mobile-open');
+                    $('.mobile-menu-toggle i').removeClass('fa-times').addClass('fa-bars');
                 }
+            });
+            
+            // Handle scroll to bottom button
+            $('#scroll-to-bottom').on('click', function (e) {
+                e.preventDefault();
+                $('html, body').animate({
+                    scrollTop: $(document).height()
+                }, 1000, 'swing');
             });
         },
 

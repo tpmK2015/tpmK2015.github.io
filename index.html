@@ -77,24 +77,22 @@
         <header>
             <div class="header-content">
                 <div class="logo"><a href="#"><img src="Assest/SubLogo.png" alt="Trung & Thư Logo" style="background: white; padding: 8px; border-radius: 8px; width: 60px; height: auto;"></a></div>
+                <div class="mobile-menu-toggle" style="display: none; background: none; border: none; font-size: 24px; color: #e8ca6f; cursor: pointer; padding: 10px; z-index: 1000;">
+                    <i class="fa fa-bars"></i>
+                </div>
                 <div class="header-nav">
                     <nav>
-                        <ul class="primary-nav" style="background: rgba(255,255,255,0.95); border-radius: 25px; padding: 10px 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
-                            <li><a href="#story" style="color: #e8ca6f; font-weight: 600; text-shadow: none;">Câu chuyện</a></li>
-                            <li><a href="#events" style="color: #e8ca6f; font-weight: 600; text-shadow: none;">Sự kiện cưới</a></li>
-                            <li><a href="#instagram" style="color: #e8ca6f; font-weight: 600; text-shadow: none;">Khoảnh khắc</a></li>
-                            <li><a href="#eng-pics" style="color: #e8ca6f; font-weight: 600; text-shadow: none;">Lễ đính hôn</a></li>
-                            <li><a href="#guestbook" style="color: #e8ca6f; font-weight: 600; text-shadow: none;">Lời chúc</a></li>
-                            <li><a href="#hashtag" style="color: #e8ca6f; font-weight: 600; text-shadow: none;">Chia sẻ</a></li>
-                        </ul>
-                        <ul class="member-actions" style="background: rgba(255,255,255,0.95); border-radius: 25px; padding: 10px 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); margin-left: 20px;">
-                            <li><a href="#venue-locations" class="login" style="color: #333; font-weight: 600;">Địa điểm</a></li>
-                            <li><a href="#rsvp" class="btn-white btn-small" style="background: #e8ca6f; color: white; border: 2px solid #e8ca6f;">Xác nhận tham dự</a></li>
+                        <ul class="primary-nav" style="background: rgba(255,255,255,0.95); border-radius: 20px; padding: 6px 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); display: flex; align-items: center; gap: 8px; margin: 0; list-style: none;">
+                            <li><a href="#story" style="color: #e8ca6f; font-weight: 500; text-shadow: none; padding: 6px 12px; display: inline-block; line-height: 1.2; text-decoration: none; font-size: 13px;">Câu chuyện</a></li>
+                            <li><a href="#events" style="color: #e8ca6f; font-weight: 500; text-shadow: none; padding: 6px 12px; display: inline-block; line-height: 1.2; text-decoration: none; font-size: 13px;">Sự kiện cưới</a></li>
+                            <li><a href="#instagram" style="color: #e8ca6f; font-weight: 500; text-shadow: none; padding: 6px 12px; display: inline-block; line-height: 1.2; text-decoration: none; font-size: 13px;">Khoảnh khắc</a></li>
+                            <li><a href="#eng-pics" style="color: #e8ca6f; font-weight: 500; text-shadow: none; padding: 6px 12px; display: inline-block; line-height: 1.2; text-decoration: none; font-size: 13px;">Lễ đính hôn</a></li>
+                            <li><a href="#guestbook" style="color: #e8ca6f; font-weight: 500; text-shadow: none; padding: 6px 12px; display: inline-block; line-height: 1.2; text-decoration: none; font-size: 13px;">Lời chúc</a></li>
+                            <li><a href="#hashtag" style="color: #e8ca6f; font-weight: 500; text-shadow: none; padding: 6px 12px; display: inline-block; line-height: 1.2; text-decoration: none; font-size: 13px;">Chia sẻ</a></li>
+                            <li><a href="#venue-locations" class="login" style="color: #e8ca6f; font-weight: 500; text-shadow: none; padding: 6px 12px; display: inline-block; line-height: 1.2; text-decoration: none; font-size: 13px;">Địa điểm</a></li>
+                            <li><a href="#rsvp" class="btn-white btn-small" style="background: #e8ca6f; color: white; border: 2px solid #e8ca6f; padding: 6px 15px; border-radius: 15px; font-size: 12px; text-transform: uppercase; display: inline-block; line-height: 1.2; text-decoration: none; font-weight: 600;">Xác nhận tham dự</a></li>
                         </ul>
                     </nav>
-                </div>
-                <div class="navicon">
-                    <a class="nav-toggle" href="#"><span></span></a>
                 </div>
             </div>
         </header>
@@ -114,7 +112,7 @@
         </div>
     </div>
     
-    <div class="down-arrow floating-arrow" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);"><a href="#invitation"><i class="fa fa-angle-down"></i></a></div>
+    <div class="down-arrow floating-arrow" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);"><a href="#" id="scroll-to-bottom"><i class="fa fa-angle-down"></i></a></div>
 </section>
 
 <section id="invitation" class="section-padding" style="padding-top: 40px; padding-bottom: 40px;">
@@ -641,19 +639,35 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
                             </h4>
                             <p style="color: #666; margin-bottom: 20px;">
                                 Chúng mình sẽ tổ chức xe đưa đón từ Đà Nẵng đến địa điểm cưới. 
-                                Vui lòng cho chúng mình biết bạn có cần xe đưa đón không?
+                                Bạn có cần xe đưa đón không?
                             </p>
-                        </div>
-                        <div class="col-md-6 col-sm-6">
-                            <div class="form-input-group" style="position: relative; width: 100%; height: 55px; margin: 0 auto 10px; border-radius: 5px; border: solid 1px #ddd; text-align: left;">
-                                <i class="fa fa-users" style="font-size: 14px; position: absolute; top: 50%; transform: translateY(-50%); margin-left: 20px; color: #e8ca6f;"></i>
-                                <input type="number" name="transport_seats" class="" min="0" max="4" placeholder="Số ghế cần đặt" style="padding-left: 68px; width: 100%; height: 100%; border-radius: 6px; border: none; background: white; color: #333; font-size: 14px; box-sizing: border-box; outline: none;">
+                            
+                            <!-- Transport Option -->
+                            <div class="col-md-12" style="margin-bottom: 20px;">
+                                <div class="form-input-group" style="position: relative; width: 100%; height: 55px; margin: 0 auto 10px; border-radius: 5px; border: solid 1px #ddd; text-align: left;">
+                                    <i class="fa fa-question-circle" style="font-size: 14px; position: absolute; top: 50%; transform: translateY(-50%); margin-left: 20px; color: #e8ca6f;"></i>
+                                    <select name="need_transport" id="need_transport" onchange="handleTransportChange(this.value)" style="padding-left: 68px; width: 100%; height: 100%; border-radius: 6px; border: none; background: white; color: #333; font-size: 14px; box-sizing: border-box; outline: none; appearance: none; -webkit-appearance: none; -moz-appearance: none; cursor: pointer;">
+                                        <option value="">Chọn có cần xe đưa đón không</option>
+                                        <option value="yes">Có, tôi cần xe đưa đón</option>
+                                        <option value="no">Không, tôi tự đi</option>
+                                    </select>
+                                </div>
                             </div>
-                        </div>
-                        <div class="col-md-6 col-sm-6">
-                            <div class="form-input-group" style="position: relative; width: 100%; height: 55px; margin: 0 auto 10px; border-radius: 5px; border: solid 1px #ddd; text-align: left;">
-                                <i class="fa fa-phone" style="font-size: 14px; position: absolute; top: 50%; transform: translateY(-50%); margin-left: 20px; color: #e8ca6f;"></i>
-                                <input type="tel" name="transport_phone" class="" placeholder="Số điện thoại" style="padding-left: 68px; width: 100%; height: 100%; border-radius: 6px; border: none; background: white; color: #333; font-size: 14px; box-sizing: border-box; outline: none;">
+                            
+                            <!-- Transport Details (hidden by default) -->
+                            <div id="transport-details" style="display: none;">
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-input-group" style="position: relative; width: 100%; height: 55px; margin: 0 auto 10px; border-radius: 5px; border: solid 1px #ddd; text-align: left;">
+                                        <i class="fa fa-users" style="font-size: 14px; position: absolute; top: 50%; transform: translateY(-50%); margin-left: 20px; color: #e8ca6f;"></i>
+                                        <input type="number" name="transport_seats" id="transport_seats" min="1" max="4" placeholder="Số ghế cần đặt" style="padding-left: 68px; width: 100%; height: 100%; border-radius: 6px; border: none; background: white; color: #333; font-size: 14px; box-sizing: border-box; outline: none;">
+                                    </div>
+                                </div>
+                                <div class="col-md-6 col-sm-6">
+                                    <div class="form-input-group" style="position: relative; width: 100%; height: 55px; margin: 0 auto 10px; border-radius: 5px; border: solid 1px #ddd; text-align: left;">
+                                        <i class="fa fa-phone" style="font-size: 14px; position: absolute; top: 50%; transform: translateY(-50%); margin-left: 20px; color: #e8ca6f;"></i>
+                                        <input type="tel" name="transport_phone" id="transport_phone" placeholder="Số điện thoại" style="padding-left: 68px; width: 100%; height: 100%; border-radius: 6px; border: none; background: white; color: #333; font-size: 14px; box-sizing: border-box; outline: none;">
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -844,7 +858,7 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
                             </div>
                         </div>
                         <div class="text-center">
-                            <button type="submit" class="btn btn-primary btn-lg" 
+                            <button type="submit" class="btn btn-primary btn-lg" id="guestbook-submit-btn"
                            style="background: linear-gradient(135deg, #e8ca6f 0%, #d4af37 100%); border: none; padding: 15px 40px; border-radius: 30px; font-size: 16px; font-weight: 600; color: white; box-shadow: 0 5px 15px rgba(232, 202, 111, 0.4); transition: all 0.3s ease; text-transform: uppercase; letter-spacing: 1px;">
                        💌 Gửi lời chúc
                             </button>
@@ -1032,10 +1046,229 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
         box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important;
     }
     
-    .message-item {
-        cursor: pointer;
-    }
-</style>
+           .message-item {
+               cursor: pointer;
+           }
+           
+           /* Desktop Navigation Styles */
+           @media (min-width: 769px) {
+               .mobile-menu-toggle {
+                   display: none !important;
+               }
+               
+               .header-nav .primary-nav {
+                   display: flex !important;
+               }
+               
+               .header-nav .primary-nav li {
+                   display: inline-block !important;
+               }
+               
+               /* Ensure consistent styling for desktop navigation */
+               .header-nav .primary-nav a {
+                   color: #e8ca6f !important;
+                   font-weight: 500 !important;
+                   text-shadow: none !important;
+                   transition: all 0.3s ease;
+                   padding: 6px 12px !important;
+                   margin: 0 !important;
+                   display: inline-block !important;
+                   line-height: 1.2 !important;
+                   font-size: 13px !important;
+               }
+               
+               .header-nav .primary-nav a:hover {
+                   color: #d3b56a !important;
+                   transform: translateY(-1px);
+               }
+               
+               .header-nav .primary-nav a.btn-white {
+                   background: #e8ca6f !important;
+                   color: white !important;
+                   border: 2px solid #e8ca6f !important;
+                   padding: 6px 15px !important;
+                   border-radius: 15px !important;
+                   font-size: 12px !important;
+                   text-transform: uppercase !important;
+                   display: inline-block !important;
+                   line-height: 1.2 !important;
+                   font-weight: 600 !important;
+               }
+               
+               .header-nav .primary-nav a.btn-white:hover {
+                   background: #d3b56a !important;
+                   border-color: #d3b56a !important;
+                   transform: translateY(-1px);
+               }
+               
+               /* Ensure proper alignment */
+               .header-content {
+                   display: flex;
+                   align-items: center;
+                   justify-content: center;
+                   width: 100%;
+                   position: relative;
+               }
+               
+               .logo {
+                   position: absolute;
+                   left: 0;
+                   display: flex;
+                   align-items: center;
+               }
+               
+               .header-nav {
+                   display: flex;
+                   align-items: center;
+                   justify-content: center;
+               }
+               
+               .header-nav nav {
+                   display: flex;
+                   align-items: center;
+               }
+               
+               .header-nav .primary-nav {
+                   display: flex;
+                   align-items: center;
+                   gap: 8px;
+               }
+           }
+           
+           /* Mobile Menu Styles */
+           @media (max-width: 768px) {
+               .mobile-menu-toggle {
+                   display: block !important;
+               }
+               
+               .header-content {
+                   display: flex;
+                   align-items: center;
+                   justify-content: center;
+                   width: 100%;
+                   position: relative;
+               }
+               
+               .logo {
+                   position: absolute;
+                   left: 0;
+                   display: flex;
+                   align-items: center;
+               }
+               
+               .mobile-menu-toggle {
+                   position: absolute;
+                   right: 0;
+               }
+               
+               .header-nav {
+                   position: fixed;
+                   top: 0;
+                   left: 0;
+                   right: 0;
+                   background: rgba(0,0,0,0.95);
+                   backdrop-filter: blur(10px);
+                   transform: translateY(-100%);
+                   opacity: 0;
+                   visibility: hidden;
+                   transition: all 0.3s ease;
+                   z-index: 9999;
+                   padding: 20px 0;
+                   max-height: 80vh;
+                   overflow-y: auto;
+               }
+               
+               .header-nav.mobile-open {
+                   transform: translateY(0);
+                   opacity: 1;
+                   visibility: visible;
+               }
+               
+               .header-nav nav {
+                   display: flex;
+                   flex-direction: column;
+                   align-items: center;
+                   padding: 0 20px;
+               }
+               
+               .header-nav .primary-nav {
+                   margin: 10px 0;
+                   width: 100%;
+                   max-width: 300px;
+                   background: transparent !important;
+                   border-radius: 0 !important;
+                   padding: 0 !important;
+                   box-shadow: none !important;
+                   display: flex;
+                   flex-direction: column;
+                   gap: 8px;
+               }
+               
+               .header-nav li {
+                   margin: 0;
+                   display: block !important;
+               }
+               
+               .header-nav .primary-nav a {
+                   display: block;
+                   padding: 12px 20px;
+                   text-align: center;
+                   color: #fff !important;
+                   font-size: 16px;
+                   font-weight: 500;
+                   text-transform: none;
+                   letter-spacing: 0.5px;
+                   border-radius: 20px;
+                   transition: all 0.3s ease;
+                   background: rgba(255,255,255,0.1);
+                   margin: 5px 0;
+               }
+               
+               .header-nav .primary-nav a:hover {
+                   background: rgba(232, 202, 111, 0.3);
+                   color: #e8ca6f !important;
+                   transform: translateY(-2px);
+               }
+               
+               .header-nav .primary-nav a.btn-white {
+                   background: #e8ca6f !important;
+                   color: white !important;
+                   border: 2px solid #e8ca6f !important;
+                   font-weight: 600;
+               }
+               
+               .header-nav .primary-nav a.btn-white:hover {
+                   background: rgba(232, 202, 111, 0.8) !important;
+                   transform: translateY(-2px);
+               }
+               
+               /* Hide desktop navigation on mobile by default */
+               .header-nav .primary-nav {
+                   display: none !important;
+               }
+               
+               .header-nav.mobile-open .primary-nav {
+                   display: flex !important;
+               }
+               
+               /* Hide desktop nav styles on mobile */
+               .header-nav .primary-nav li {
+                   display: block !important;
+               }
+               
+               .header-nav .primary-nav li a {
+                   display: block !important;
+                   width: 100% !important;
+               }
+           }
+           
+           /* Fix down arrow on mobile */
+           @media (max-width: 480px) {
+               .down-arrow {
+                   display: block !important;
+               }
+           }
+       </style>
 
 <!-- Inline JavaScript for QR Code functionality -->
 <script>
@@ -1065,6 +1298,31 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
             if (decliningFields) decliningFields.style.display = 'none';
             if (qrSection) qrSection.style.display = 'none';
             if (transportSection) transportSection.style.display = 'none';
+        }
+    }
+    
+    function handleTransportChange(value) {
+        console.log('Transport changed to:', value);
+        
+        var transportDetails = document.getElementById('transport-details');
+        var transportSeats = document.getElementById('transport_seats');
+        var transportPhone = document.getElementById('transport_phone');
+        
+        if (value === 'yes') {
+            // Show transport details
+            if (transportDetails) transportDetails.style.display = 'block';
+            // Set default value for seats
+            if (transportSeats) transportSeats.value = '1';
+        } else if (value === 'no') {
+            // Hide transport details and clear values
+            if (transportDetails) transportDetails.style.display = 'none';
+            if (transportSeats) transportSeats.value = '0';
+            if (transportPhone) transportPhone.value = '';
+        } else {
+            // Default: hide and clear
+            if (transportDetails) transportDetails.style.display = 'none';
+            if (transportSeats) transportSeats.value = '0';
+            if (transportPhone) transportPhone.value = '';
         }
     }
     
@@ -1138,14 +1396,30 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
                     var attendanceStatusEl = document.getElementById('attendance_status');
                     var nameEl = document.querySelector('input[name="name"]');
                     var extrasEl = document.querySelector('input[name="extras"]');
-                    var transportSeatsEl = document.querySelector('input[name="transport_seats"]');
-                    var transportPhoneEl = document.querySelector('input[name="transport_phone"]');
+                    var needTransportEl = document.getElementById('need_transport');
+                    var transportSeatsEl = document.getElementById('transport_seats');
+                    var transportPhoneEl = document.getElementById('transport_phone');
                     
                     var attendanceStatus = attendanceStatusEl ? attendanceStatusEl.value : '';
                     var name = nameEl ? nameEl.value : '';
                     var extras = extrasEl ? extrasEl.value : 0;
-                    var transportSeats = transportSeatsEl ? transportSeatsEl.value : 0;
-                    var transportPhone = transportPhoneEl ? transportPhoneEl.value : '';
+                    var needTransport = needTransportEl ? needTransportEl.value : '';
+                    
+                    // Handle transport logic
+                    var transportSeats = 0;
+                    var transportPhone = '';
+                    
+                    if (needTransport === 'yes') {
+                        transportSeats = transportSeatsEl ? transportSeatsEl.value : 1;
+                        transportPhone = transportPhoneEl ? transportPhoneEl.value : '';
+                    } else if (needTransport === 'no') {
+                        transportSeats = 0;
+                        transportPhone = '';
+                    } else {
+                        // Default: no transport
+                        transportSeats = 0;
+                        transportPhone = '';
+                    }
                     
                     var inviteCode = '';
                     if (attendanceStatus === 'attending') {
@@ -1176,6 +1450,13 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
                     // Show loading
                     showStatus('Đang gửi xác nhận...', 'info');
                     
+                    // Get guest message if available
+                    var guestMessage = '';
+                    var guestMessageEl = document.getElementById('guest-message');
+                    if (guestMessageEl) {
+                        guestMessage = guestMessageEl.value;
+                    }
+                    
                     // Submit to Google Apps Script
                     submitForm({
                         name: name,
@@ -1184,9 +1465,384 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
                         extras: extras,
                         invite_code: inviteCode,
                         transport_seats: transportSeats,
-                        transport_phone: transportPhone
+                        transport_phone: transportPhone,
+                        guest_message: guestMessage
                     });
                 }
+            });
+        }
+    }
+    
+    // Mobile menu functionality
+    function initMobileMenu() {
+        var mobileToggle = document.querySelector('.mobile-menu-toggle');
+        var headerNav = document.querySelector('.header-nav');
+        
+        if (mobileToggle && headerNav) {
+            mobileToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                headerNav.classList.toggle('mobile-open');
+                var icon = mobileToggle.querySelector('i');
+                if (headerNav.classList.contains('mobile-open')) {
+                    icon.className = 'fa fa-times';
+                    // Don't prevent scroll for this compact menu
+                } else {
+                    icon.className = 'fa fa-bars';
+                }
+            });
+            
+            // Close menu when clicking on nav links
+            var navLinks = headerNav.querySelectorAll('a');
+            navLinks.forEach(function(link) {
+                link.addEventListener('click', function() {
+                    headerNav.classList.remove('mobile-open');
+                    mobileToggle.querySelector('i').className = 'fa fa-bars';
+                });
+            });
+            
+            // Close menu when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!headerNav.contains(e.target) && !mobileToggle.contains(e.target)) {
+                    headerNav.classList.remove('mobile-open');
+                    mobileToggle.querySelector('i').className = 'fa fa-bars';
+                }
+            });
+            
+            // Close menu on escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && headerNav.classList.contains('mobile-open')) {
+                    headerNav.classList.remove('mobile-open');
+                    mobileToggle.querySelector('i').className = 'fa fa-bars';
+                }
+            });
+        }
+    }
+    
+    // Guestbook form handler (separate from RSVP)
+    function initGuestbookForm() {
+        var guestbookForm = document.getElementById('guestbook-form');
+        if (guestbookForm) {
+            guestbookForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                var guestName = document.getElementById('guest-name').value;
+                var guestEmail = document.getElementById('guest-email').value;
+                var guestMessage = document.getElementById('guest-message').value;
+                
+                if (!guestName || !guestMessage) {
+                    alert('Vui lòng điền đầy đủ tên và lời chúc');
+                    return;
+                }
+                
+                // Show loading
+                var submitBtn = document.getElementById('guestbook-submit-btn');
+                var originalText = submitBtn.textContent;
+                submitBtn.textContent = 'Đang gửi...';
+                submitBtn.disabled = true;
+                
+                // Submit to Google Apps Script with explicit guestbook parameters
+                var formData = new FormData();
+                formData.append('guest_name', guestName);
+                formData.append('guest_email', guestEmail);
+                formData.append('guest_message', guestMessage);
+                formData.append('action', 'guestbook'); // Flag to identify guestbook submission
+                formData.append('name', guestName); // Also send as name for compatibility
+                formData.append('email', guestEmail); // Also send as email for compatibility
+                formData.append('form_type', 'guestbook'); // Additional flag
+                formData.append('source', 'guestbook_form'); // Source identifier
+                
+                console.log('Sending guestbook data:', {
+                    guest_name: guestName,
+                    guest_email: guestEmail,
+                    guest_message: guestMessage,
+                    action: 'guestbook',
+                    form_type: 'guestbook',
+                    source: 'guestbook_form'
+                });
+                
+                fetch('https://script.google.com/macros/s/AKfycbxbT20wJlX3fgzm1A384zn44zp3D22WNYzlei03MhE4g5i6Qit3m8eOgUDp6Dmhuir9Tg/exec', {
+                    method: 'POST',
+                    body: formData
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.result === 'success') {
+                        alert('Cảm ơn bạn đã gửi lời chúc! Chúng mình rất cảm động 💕');
+                        guestbookForm.reset();
+                        
+                        // Add message to display immediately
+                        addMessageToDisplay(guestName, guestMessage);
+                    } else {
+                        alert(data.message || 'Có lỗi xảy ra. Vui lòng thử lại sau.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    alert('Có lỗi xảy ra. Vui lòng thử lại sau.');
+                })
+                .finally(() => {
+                    submitBtn.textContent = originalText;
+                    submitBtn.disabled = false;
+                });
+            });
+        }
+    }
+    
+    // Load existing guestbook messages from Google Sheets
+    function loadGuestbookMessages() {
+        var messagesContainer = document.getElementById('guestbook-messages');
+        if (!messagesContainer) return;
+        
+        // Show loading state
+        messagesContainer.innerHTML = '<div style="text-align: center; padding: 20px; color: #999;">Đang tải lời chúc...</div>';
+        
+        // Fetch messages from Google Apps Script
+        fetch('https://script.google.com/macros/s/AKfycbxbT20wJlX3fgzm1A384zn44zp3D22WNYzlei03MhE4g5i6Qit3m8eOgUDp6Dmhuir9Tg/exec?action=get_messages')
+            .then(response => response.json())
+            .then(data => {
+                if (data.result === 'success' && data.messages) {
+                    displayMessages(data.messages);
+                } else {
+                    // Show sample message if no data
+                    displaySampleMessage();
+                }
+            })
+            .catch(error => {
+                console.error('Error loading messages:', error);
+                // Show sample message on error
+                displaySampleMessage();
+            });
+    }
+    
+    // Display messages from data
+    function displayMessages(messages) {
+        var messagesContainer = document.getElementById('guestbook-messages');
+        if (!messagesContainer) return;
+        
+        if (messages.length === 0) {
+            displaySampleMessage();
+            return;
+        }
+        
+        var html = '';
+        messages.forEach(function(msg, index) {
+            var timeDisplay = getTimeDisplay(msg.timestamp);
+            html += `
+                <div class="message-item" style="background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%); margin-bottom: 25px; padding: 30px; border-radius: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); border-left: 5px solid #e8ca6f; position: relative; transition: all 0.3s ease;">
+                    <div class="message-content">
+                        <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                            <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #e8ca6f 0%, #d4af37 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; box-shadow: 0 4px 15px rgba(232, 202, 111, 0.3);">
+                                <i class="fa fa-heart" style="color: white; font-size: 20px;"></i>
+                            </div>
+                            <div>
+                                <h4 style="color: #333; margin: 0; font-family: 'Playfair Display', serif; font-size: 18px;">Lời chúc từ ${msg.name}</h4>
+                                <div style="display: flex; align-items: center; margin-top: 5px;">
+                                    <span style="color: #e8ca6f; font-weight: 600; margin-right: 10px;">${msg.name}</span>
+                                    <span style="color: #999; font-size: 12px; background: #f0f0f0; padding: 2px 8px; border-radius: 10px;">${timeDisplay}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="color: #555; line-height: 1.6; margin: 0; font-size: 15px; font-style: italic;">
+                            "${msg.message}"
+                        </p>
+                    </div>
+                </div>
+            `;
+        });
+        
+        messagesContainer.innerHTML = html;
+    }
+    
+    // Get smart time display
+    function getTimeDisplay(timestamp) {
+        if (!timestamp) return "Không rõ thời gian";
+        
+        // Xử lý timestamp từ Google Sheets
+        var messageTime;
+        try {
+            if (typeof timestamp === 'string') {
+                // Xử lý format "HH:MM:SS DD/MM/YYYY"
+                if (timestamp.includes(':') && timestamp.includes('/')) {
+                    // Parse format "01:55:15 27/9/2025"
+                    var parts = timestamp.split(' ');
+                    if (parts.length === 2) {
+                        var timePart = parts[0]; // "01:55:15"
+                        var datePart = parts[1]; // "27/9/2025"
+                        
+                        // Chuyển đổi date format từ DD/MM/YYYY sang MM/DD/YYYY cho Date constructor
+                        var dateParts = datePart.split('/');
+                        if (dateParts.length === 3) {
+                            var day = dateParts[0];
+                            var month = dateParts[1];
+                            var year = dateParts[2];
+                            var dateString = month + '/' + day + '/' + year + ' ' + timePart;
+                            messageTime = new Date(dateString);
+                        } else {
+                            messageTime = new Date(timestamp);
+                        }
+                    } else {
+                        messageTime = new Date(timestamp);
+                    }
+                } else {
+                    messageTime = new Date(timestamp);
+                }
+                
+                if (isNaN(messageTime.getTime())) {
+                    messageTime = new Date();
+                }
+            } else {
+                messageTime = new Date(timestamp);
+            }
+        } catch (e) {
+            messageTime = new Date();
+        }
+        
+        var now = new Date();
+        var diffMinutes = Math.floor((now - messageTime) / (1000 * 60));
+        
+        // Nếu thời gian trong tương lai hoặc quá cũ, hiển thị timestamp gốc
+        if (diffMinutes < 0 || diffMinutes > 10080) { // > 7 ngày
+            return formatTimestamp(timestamp);
+        }
+        
+        if (diffMinutes < 5) {
+            return "Vừa xong";
+        } else if (diffMinutes < 60) {
+            return diffMinutes + " phút trước";
+        } else if (diffMinutes < 1440) { // 24 hours
+            var hours = Math.floor(diffMinutes / 60);
+            return hours + " giờ trước";
+        } else {
+            return formatTimestamp(timestamp);
+        }
+    }
+    
+    // Format timestamp safely
+    function formatTimestamp(timestamp) {
+        try {
+            if (typeof timestamp === 'string') {
+                // Xử lý format "HH:MM:SS DD/MM/YYYY" -> "DD/MM/YYYY, HH:MM"
+                if (timestamp.includes(':') && timestamp.includes('/')) {
+                    var parts = timestamp.split(' ');
+                    if (parts.length === 2) {
+                        var timePart = parts[0]; // "01:55:15"
+                        var datePart = parts[1]; // "27/9/2025"
+                        
+                        // Lấy chỉ giờ và phút
+                        var timeParts = timePart.split(':');
+                        if (timeParts.length >= 2) {
+                            var hour = timeParts[0];
+                            var minute = timeParts[1];
+                            return datePart + ', ' + hour + ':' + minute;
+                        }
+                    }
+                }
+                return timestamp;
+            } else {
+                // Nếu là Date object, format
+                return new Date(timestamp).toLocaleString('vi-VN', {
+                    year: 'numeric',
+                    month: '2-digit',
+                    day: '2-digit',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                });
+            }
+        } catch (e) {
+            return "Không rõ thời gian";
+        }
+    }
+    
+    // Display sample message when no data
+    function displaySampleMessage() {
+        var messagesContainer = document.getElementById('guestbook-messages');
+        if (!messagesContainer) return;
+        
+        messagesContainer.innerHTML = `
+            <div class="message-item" style="background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%); margin-bottom: 25px; padding: 30px; border-radius: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); border-left: 5px solid #e8ca6f; position: relative; transition: all 0.3s ease;">
+                <div class="message-content">
+                    <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                        <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #e8ca6f 0%, #d4af37 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; box-shadow: 0 4px 15px rgba(232, 202, 111, 0.3);">
+                            <i class="fa fa-heart" style="color: white; font-size: 20px;"></i>
+                        </div>
+                        <div>
+                            <h4 style="color: #333; margin: 0; font-family: 'Playfair Display', serif; font-size: 18px;">Chúc mừng hai bạn!</h4>
+                            <div style="display: flex; align-items: center; margin-top: 5px;">
+                                <span style="color: #e8ca6f; font-weight: 600; margin-right: 10px;">Anh Minh</span>
+                                <span style="color: #999; font-size: 12px; background: #f0f0f0; padding: 2px 8px; border-radius: 10px;">2 ngày trước</span>
+                            </div>
+                        </div>
+                    </div>
+                    <p style="color: #555; line-height: 1.6; margin: 0; font-size: 15px; font-style: italic;">
+                        "Chúc hai bạn trăm năm hạnh phúc, mãi mãi yêu thương nhau. Hẹn gặp lại trong ngày cưới nhé! 💕"
+                    </p>
+                </div>
+            </div>
+        `;
+    }
+
+    // Add message to display immediately
+    function addMessageToDisplay(name, message) {
+        var messagesContainer = document.getElementById('guestbook-messages');
+        if (messagesContainer) {
+            // Tạo thời gian hiện tại
+            var now = new Date();
+            var timeString = now.toLocaleString('vi-VN', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit',
+                hour: '2-digit',
+                minute: '2-digit'
+            });
+            
+            // Hiển thị "Vừa xong" cho lời chúc mới
+            var displayTime = "Vừa xong";
+            
+            var messageHtml = `
+                <div class="message-item" style="background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%); margin-bottom: 25px; padding: 30px; border-radius: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); border-left: 5px solid #e8ca6f; position: relative; transition: all 0.3s ease;">
+                    <div class="message-content">
+                        <div style="display: flex; align-items: center; margin-bottom: 15px;">
+                            <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #e8ca6f 0%, #d4af37 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; box-shadow: 0 4px 15px rgba(232, 202, 111, 0.3);">
+                                <i class="fa fa-heart" style="color: white; font-size: 20px;"></i>
+                            </div>
+                            <div>
+                                <h4 style="color: #333; margin: 0; font-family: 'Playfair Display', serif; font-size: 18px;">Lời chúc mới!</h4>
+                                <div style="display: flex; align-items: center; margin-top: 5px;">
+                                    <span style="color: #e8ca6f; font-weight: 600; margin-right: 10px;">${name}</span>
+                                    <span style="color: #999; font-size: 12px; background: #f0f0f0; padding: 2px 8px; border-radius: 10px;">${displayTime}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <p style="color: #555; line-height: 1.6; margin: 0; font-size: 15px; font-style: italic;">
+                            "${message}"
+                        </p>
+                    </div>
+                </div>
+            `;
+            messagesContainer.insertAdjacentHTML('afterbegin', messageHtml);
+            
+            // Sau 5 phút, cập nhật thành thời gian thực tế
+            setTimeout(function() {
+                var timeElement = messagesContainer.querySelector('.message-item:first-child .message-content span:last-child');
+                if (timeElement) {
+                    timeElement.textContent = timeString;
+                }
+            }, 5 * 60 * 1000); // 5 phút
+        }
+    }
+    
+    // Scroll to bottom functionality
+    function initScrollToBottom() {
+        var scrollToBottomBtn = document.getElementById('scroll-to-bottom');
+        if (scrollToBottomBtn) {
+            scrollToBottomBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                // Smooth scroll to bottom of page
+                window.scrollTo({
+                    top: document.body.scrollHeight,
+                    behavior: 'smooth'
+                });
             });
         }
     }
@@ -1194,6 +1850,10 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
     // Initialize when page loads
     document.addEventListener('DOMContentLoaded', function() {
         initRSVPButton();
+        initMobileMenu();
+        initGuestbookForm();
+        initScrollToBottom();
+        loadGuestbookMessages();
     });
 </script>
 
