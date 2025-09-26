@@ -64,7 +64,7 @@ $(document).ready(function () {
     /***************** Init Functions ******************/
 
     $(function () {
-        App.init();
+        App().init();
     });
 
 });
@@ -99,15 +99,6 @@ function App() {
         },
 
         menu: function () {
-            $('.header-nav').onePageNav({
-                currentClass: 'active',
-                changeHash: false,
-                scrollSpeed: 750,
-                scrollThreshold: 0.5,
-                filter: ':not(.external)',
-                easing: 'swing'
-            });
-
             $('.header-nav').on('click', 'a', function (e) {
                 if ($(this).hasClass('external')) {
                     return;
@@ -123,35 +114,15 @@ function App() {
         },
 
         testimonial: function () {
-            var owl = $("#owl-testimonial");
-            owl.owlCarousel({
-                pagination: true,
-                paginationNumbers: false,
-                autoPlay: 6000,
-                stopOnHover: true,
-                navigation: false,
-                navigationText: false,
-                scrollPerPage: false,
-                items: 1,
-                itemsTablet: [768, 1],
-                itemsMobile: [479, 1]
-            });
+            // Testimonial carousel disabled - plugin not available
         },
 
         counter: function () {
-            $('.counter').counterUp({
-                delay: 10,
-                time: 1000
-            });
+            // Counter animation disabled - plugin not available
         },
 
         masonry: function () {
-            var $container = $('.masonry');
-            $container.imagesLoaded(function () {
-                $container.masonry({
-                    itemSelector: '.masonry .masonry-item'
-                });
-            });
+            // Masonry layout disabled - plugin not available
         },
 
         scrollSpy: function () {
@@ -213,10 +184,11 @@ function App() {
                 
                 // Get form data
                 var formData = {
+                    name: $('input[name="name"]').val(),
+                    email: '', // Không quan trọng
                     attendance_status: attendanceStatus,
                     extras: $('#extras').val() || 0,
-                    invite_code: $('#invite_code').val(),
-                    invite_code_decline: $('#invite_code_decline').val(),
+                    invite_code: (attendanceStatus === 'attending') ? $('#invite_code').val() : $('#invite_code_decline').val(),
                     transport_seats: $('#transport_seats').val() || 0,
                     transport_phone: $('#transport_phone').val()
                 };
@@ -227,7 +199,10 @@ function App() {
                     method: 'POST',
                     data: formData,
                     success: function(response) {
-                        $status.html('<div class="alert alert-success">Cảm ơn bạn đã xác nhận tham dự! Chúng tôi rất mong được gặp bạn.</div>');
+                        var message = (attendanceStatus === 'attending') 
+                            ? 'Cảm ơn bạn đã xác nhận tham dự! Chúng tôi rất mong được gặp bạn.'
+                            : 'Cảm ơn bạn đã phản hồi! Hẹn dịp khác nhé!';
+                        $status.html('<div class="alert alert-success">' + message + '</div>');
                         $submit.prop('disabled', false).text('Gửi xác nhận');
                         $form[0].reset();
                     },

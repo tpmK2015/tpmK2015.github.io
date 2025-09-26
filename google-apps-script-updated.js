@@ -29,9 +29,11 @@ function doPost(e) {
     var inviteCode = mailData.invite_code;
     var transportSeats = mailData.transport_seats;
     var transportPhone = mailData.transport_phone || '';
+    var attendanceStatus = mailData.attendance_status || 'attending';
     
     // Debug log
     Logger.log('Received data: ' + JSON.stringify(mailData));
+    Logger.log('Attendance status: ' + attendanceStatus);
     Logger.log('Transport seats: ' + transportSeats);
     Logger.log('Transport phone: ' + transportPhone);
     
@@ -50,6 +52,12 @@ function doPost(e) {
     var dataRange = sheet.getDataRange();
     var values = dataRange.getValues();
     
+    // Debug: Log header row để kiểm tra cấu trúc
+    if (values.length > 0) {
+      Logger.log('Header row: ' + JSON.stringify(values[0]));
+      Logger.log('Total rows: ' + values.length);
+    }
+    
     // Tìm khách theo mã mời (cột E - index 4)
     var found = false;
     for (var i = 1; i < values.length; i++) { // Bỏ qua header row
@@ -64,12 +72,19 @@ function doPost(e) {
           sheet.getRange(i + 1, 4, 1, 1).setValue(transportPhone);
         }
         
-        // Cập nhật cột "Đã RSVP" (index 6) và "Số người đi cùng" (index 7)
-        sheet.getRange(i + 1, 7, 1, 2).setValues([["Yes", extras]]);
+        // Xác định trạng thái RSVP
+        var rsvpStatus = (attendanceStatus === 'attending') ? 'Yes' : 'No';
+        var extrasValue = (attendanceStatus === 'attending') ? extras : 0;
         
-        // Cập nhật cột "Đăng ký xe" (index 8) với số ghế
+        // Cập nhật cột "Đã RSVP" (index 6) - cẩn thận với index
+        sheet.getRange(i + 1, 7, 1, 1).setValue(rsvpStatus);
+        
+        // Cập nhật cột "Số người đi cùng" (index 7) 
+        sheet.getRange(i + 1, 8, 1, 1).setValue(extrasValue);
+        
+        // Cập nhật cột "Đăng ký xe" (index 8) với số ghế (chỉ khi tham dự)
         var transportInfo = "";
-        if (transportSeats) {
+        if (attendanceStatus === 'attending' && transportSeats) {
           transportInfo = transportSeats + " ghế";
         }
         Logger.log('Updating transport info: ' + transportInfo);
@@ -90,12 +105,16 @@ function doPost(e) {
     }
     
     // Gửi email thông báo RSVP
-    sendEmailNotification(name, email, extras, transportSeats, transportPhone);
+    sendEmailNotification(name, email, extras, transportSeats, transportPhone, attendanceStatus);
+    
+    var successMessage = (attendanceStatus === 'attending') 
+      ? "Cảm ơn bạn đã xác nhận tham dự!" 
+      : "Cảm ơn bạn đã phản hồi! Hẹn dịp khác nhé!";
     
     return ContentService
       .createTextOutput(JSON.stringify({
         result: "success",
-        message: "Cảm ơn bạn đã xác nhận tham dự!"
+        message: successMessage
       }))
       .setMimeType(ContentService.MimeType.JSON);
       
@@ -226,12 +245,14 @@ function validateInviteCode(code) {
 /**
  * Gửi email thông báo
  */
-function sendEmailNotification(name, email, extras, transportSeats, transportPhone) {
-  var subject = "Có người mới RSVP - " + name;
+function sendEmailNotification(name, email, extras, transportSeats, transportPhone, attendanceStatus) {
+  var statusText = (attendanceStatus === 'attending') ? 'SẼ THAM DỰ' : 'KHÔNG THAM DỰ';
+  var subject = "RSVP - " + name + " - " + statusText;
   var body = `
     <h2>Thông báo RSVP mới</h2>
     <p><strong>Tên:</strong> ${name}</p>
     <p><strong>Email:</strong> ${email}</p>
+    <p><strong>Trạng thái:</strong> <span style="color: ${attendanceStatus === 'attending' ? 'green' : 'red'}; font-weight: bold;">${statusText}</span></p>
     <p><strong>Số người đi cùng:</strong> ${extras}</p>
     <p><strong>Số ghế đăng ký:</strong> ${transportSeats || 'Không có thông tin'}</p>
     <p><strong>Số điện thoại:</strong> ${transportPhone || 'Không có'}</p>
