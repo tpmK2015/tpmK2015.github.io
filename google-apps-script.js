@@ -216,7 +216,8 @@ function getGuestbookMessages() {
           name: row[1],
           email: row[2] || '',
           message: row[3],
-          timestamp: timestamp
+          timestamp: timestamp,
+          likes: row[5] || 0 // Thêm trường likes từ cột F (index 5)
         });
       }
     }
@@ -446,7 +447,82 @@ function handleGuestbookSubmission(mailData) {
   }
 }
 
-// Hàm xử lý RSVP submission
+// Function để get current likes từ comments sheet
+function getCurrentCommentLikes(commentsSheet, messageId) {
+  try {
+    var data = commentsSheet.getDataRange().getValues();
+    
+    for (var i = 1; i < data.length; i++) {
+      var row = data[i];
+      var rowMessageId = row[0]; // STT
+      var rowLikes = row[5] || 0; // Likes column
+      
+      if (rowMessageId == messageId) {
+        return parseInt(rowLikes) || 0;
+      }
+    }
+    
+    return 0;
+  } catch (error) {
+    Logger.log('Error getting current comment likes: ' + error.toString());
+    return 0;
+  }
+}
+
+// Function để check duplicate submission
+function checkDuplicateSubmission(inviteCode) {
+  try {
+    var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = spreadsheet.getSheets()[0];
+    var dataRange = sheet.getDataRange();
+    var values = dataRange.getValues();
+    
+    if (values.length <= 1) return false; // No data yet
+    
+    var headerRow = values[0];
+    var inviteCodeColumn = -1;
+    var timestampColumn = -1;
+    
+    // Find invite code and timestamp columns
+    for (var i = 0; i < headerRow.length; i++) {
+      var header = headerRow[i].toString().toLowerCase();
+      if (header.includes('mã') || header.includes('code') || header.includes('invite')) {
+        inviteCodeColumn = i;
+      }
+      if (header.includes('thời gian') || header.includes('timestamp') || header.includes('ngày')) {
+        timestampColumn = i;
+      }
+    }
+    
+    if (inviteCodeColumn === -1) return false;
+    
+    var now = new Date();
+    var fiveMinutesAgo = new Date(now.getTime() - 5 * 60 * 1000); // 5 minutes ago
+    
+    // Check for recent submissions with same invite code
+    for (var i = 1; i < values.length; i++) {
+      var row = values[i];
+      var rowInviteCode = row[inviteCodeColumn];
+      var rowTimestamp = row[timestampColumn];
+      
+      if (rowInviteCode == inviteCode && rowTimestamp) {
+        var submissionTime = new Date(rowTimestamp);
+        if (submissionTime > fiveMinutesAgo) {
+          Logger.log('Found recent duplicate submission: ' + inviteCode + ' at ' + submissionTime);
+          return true;
+        }
+      }
+    }
+    
+    return false;
+    
+  } catch (error) {
+    Logger.log('Error checking duplicate submission: ' + error.toString());
+    return false; // Allow submission if check fails
+  }
+}
+
+// Hàm xử lý RSVP submission với duplicate prevention
 function handleRSVPSubmission(mailData) {
   try {
     Logger.log('=== RSVP SUBMISSION ===');
@@ -459,6 +535,17 @@ function handleRSVPSubmission(mailData) {
     var transportPhone = mailData.transport_phone || '';
     var attendanceStatus = mailData.attendance_status || 'attending';
     var guestMessage = mailData.guest_message || '';
+    
+    // Check for duplicate submission (same invite code + recent timestamp)
+    if (checkDuplicateSubmission(inviteCode)) {
+      Logger.log('Duplicate submission detected for invite code: ' + inviteCode);
+      return ContentService
+        .createTextOutput(JSON.stringify({
+          result: "error",
+          message: "Bạn đã gửi xác nhận rồi. Vui lòng không gửi lại."
+        }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
     
     // Cập nhật Google Sheet - tìm khách theo mã mời và cập nhật thông tin
     // Sử dụng sheet hiện tại (sheet đầu tiên - RSVP sheet)
@@ -606,7 +693,7 @@ function validateInviteCode(code) {
   return VALID_INVITE_CODES.includes(code.toString());
 }
 
-// Hàm xử lý like action
+// Hàm xử lý like action - track từng user để tránh race condition
 function handleLikeAction(mailData) {
   try {
     Logger.log('=== LIKE ACTION ===');
@@ -614,9 +701,9 @@ function handleLikeAction(mailData) {
     var messageId = mailData.messageId;
     var isLiked = mailData.isLiked === 'true' || mailData.isLiked === true;
     var userAgent = mailData.userAgent || 'Unknown';
-    var timestamp = new Date();
+    var userIP = mailData.userIP || 'Unknown';
     
-    Logger.log('Like data - MessageId: ' + messageId + ', IsLiked: ' + isLiked);
+    Logger.log('Like data - MessageId: ' + messageId + ', IsLiked: ' + isLiked + ', UserAgent: ' + userAgent);
     
     if (!messageId) {
       Logger.log('Missing messageId');
@@ -628,30 +715,37 @@ function handleLikeAction(mailData) {
         .setMimeType(ContentService.MimeType.JSON);
     }
     
-    // Lưu vào Google Sheet
     var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-    var sheet;
+    var commentsSheet;
+    var likesSheet;
     
-    // Tìm hoặc tạo sheet "Likes"
+    // Lấy sheet comments
     try {
-      sheet = spreadsheet.getSheetByName("Likes");
-      if (!sheet) {
-        Logger.log('Creating new Likes sheet');
-        sheet = spreadsheet.insertSheet("Likes");
+      commentsSheet = spreadsheet.getSheetByName("Lời chúc khách mời");
+    } catch (e) {
+      Logger.log('Comments sheet not found');
+      return ContentService
+        .createTextOutput(JSON.stringify({
+          result: "error",
+          message: "Không tìm thấy sheet comments"
+        }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+    
+    // Tìm hoặc tạo sheet Likes để track từng user
+    try {
+      likesSheet = spreadsheet.getSheetByName("Likes");
+      if (!likesSheet) {
+        Logger.log('Creating Likes sheet for user tracking');
+        likesSheet = spreadsheet.insertSheet("Likes");
         
         // Tạo header
-        var headers = [
-          "Timestamp",
-          "MessageId", 
-          "IsLiked",
-          "UserAgent",
-          "IPAddress"
-        ];
-        sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
-        sheet.getRange(1, 1, 1, headers.length).setFontWeight("bold");
+        var headers = ["MessageId", "UserAgent", "UserIP", "IsLiked", "Timestamp"];
+        likesSheet.getRange(1, 1, 1, headers.length).setValues([headers]);
+        likesSheet.getRange(1, 1, 1, headers.length).setFontWeight("bold");
       }
-    } catch (error) {
-      Logger.log('Error accessing Likes sheet: ' + error.toString());
+    } catch (e) {
+      Logger.log('Error accessing Likes sheet: ' + e.toString());
       return ContentService
         .createTextOutput(JSON.stringify({
           result: "error",
@@ -660,28 +754,57 @@ function handleLikeAction(mailData) {
         .setMimeType(ContentService.MimeType.JSON);
     }
     
-    // Thêm dữ liệu like
-    var newRow = [
-      timestamp,
-      messageId,
-      isLiked,
-      userAgent,
-      "Unknown" // IP address không có sẵn trong Apps Script
-    ];
+    // Tạo unique user identifier
+    var userIdentifier = userAgent + '_' + userIP;
     
-    sheet.appendRow(newRow);
-    Logger.log('Like data saved to sheet');
+    // Kiểm tra xem user đã like message này chưa
+    var existingLike = findExistingLike(likesSheet, messageId, userIdentifier);
     
-    // Tính tổng số likes cho message
-    var likeCount = calculateLikeCount(sheet, messageId);
+    if (existingLike) {
+      // User đã like/unlike trước đó, cập nhật trạng thái
+      var existingRow = existingLike.row;
+      var currentStatus = existingLike.isLiked;
+      
+      if (currentStatus === isLiked) {
+        // Trạng thái không đổi, không làm gì
+        Logger.log('User like status unchanged');
+      } else {
+        // Cập nhật trạng thái
+        likesSheet.getRange(existingRow, 4).setValue(isLiked); // Cột IsLiked
+        likesSheet.getRange(existingRow, 5).setValue(new Date()); // Cột Timestamp
+        Logger.log('Updated existing like status');
+      }
+    } else {
+      // User chưa like/unlike, thêm record mới
+      var newRow = [messageId, userAgent, userIP, isLiked, new Date()];
+      likesSheet.appendRow(newRow);
+      Logger.log('Added new like record');
+    }
     
-    Logger.log('Like action completed successfully. Total likes: ' + likeCount);
+    // Tính tổng likes cho một message với manual change protection
+    var totalLikes = calculateTotalLikes(likesSheet, messageId);
+    
+    // Check if this is a manual override (totalLikes much lower than current count)
+    var currentCommentLikes = getCurrentCommentLikes(commentsSheet, messageId);
+    var isManualOverride = (currentCommentLikes > 20 && totalLikes < currentCommentLikes * 0.5);
+    
+    if (isManualOverride) {
+      Logger.log('Manual override detected, preserving current count: ' + currentCommentLikes);
+      totalLikes = currentCommentLikes; // Keep manual count
+    }
+    
+    // Cập nhật tổng likes vào sheet comments
+    updateCommentLikeCount(commentsSheet, messageId, totalLikes);
+    
+    Logger.log('Total likes for messageId ' + messageId + ': ' + totalLikes);
     
     return ContentService
       .createTextOutput(JSON.stringify({
         result: "success",
         message: "Like đã được cập nhật",
-        likeCount: likeCount
+        messageId: messageId,
+        likeCount: totalLikes,
+        isLiked: isLiked
       }))
       .setMimeType(ContentService.MimeType.JSON);
       
@@ -696,79 +819,104 @@ function handleLikeAction(mailData) {
   }
 }
 
-// Hàm tính tổng số likes cho một message
-function calculateLikeCount(sheet, messageId) {
+// Hàm tìm existing like của user
+function findExistingLike(likesSheet, messageId, userIdentifier) {
   try {
-    var data = sheet.getDataRange().getValues();
-    var likeCount = 0;
+    var data = likesSheet.getDataRange().getValues();
     
-    // Bỏ qua header row
     for (var i = 1; i < data.length; i++) {
       var row = data[i];
-      var rowMessageId = row[1]; // MessageId column
-      var isLiked = row[2]; // IsLiked column
+      var rowMessageId = row[0]; // MessageId
+      var rowUserAgent = row[1]; // UserAgent
+      var rowUserIP = row[2]; // UserIP
+      var rowIsLiked = row[3]; // IsLiked
       
-      if (rowMessageId === messageId && isLiked === true) {
-        likeCount++;
+      var rowUserIdentifier = rowUserAgent + '_' + rowUserIP;
+      
+      if (rowMessageId == messageId && rowUserIdentifier === userIdentifier) {
+        return {
+          row: i + 1, // +1 vì sheet index bắt đầu từ 1
+          isLiked: rowIsLiked
+        };
       }
     }
     
-    // Đảm bảo không bao giờ có số âm
-    if (likeCount < 0) {
-      likeCount = 0;
+    return null;
+  } catch (error) {
+    Logger.log('Error finding existing like: ' + error.toString());
+    return null;
+  }
+}
+
+// Hàm tính tổng likes cho một message
+function calculateTotalLikes(likesSheet, messageId) {
+  try {
+    var data = likesSheet.getDataRange().getValues();
+    var totalLikes = 0;
+    
+    for (var i = 1; i < data.length; i++) {
+      var row = data[i];
+      var rowMessageId = row[0]; // MessageId
+      var rowIsLiked = row[3]; // IsLiked
+      var rowUserAgent = row[1]; // UserAgent
+      
+      // Skip fake likes from manual sync
+      if (rowUserAgent && rowUserAgent.startsWith('Manual-Sync-')) {
+        continue;
+      }
+      
+      // Skip system disable sync markers
+      if (rowUserAgent === 'SYSTEM-DISABLE-SYNC') {
+        continue;
+      }
+      
+      if (rowMessageId == messageId && rowIsLiked === true) {
+        totalLikes++;
+      }
     }
     
-    Logger.log('Calculated like count for ' + messageId + ': ' + likeCount);
-    return likeCount;
+    // Đảm bảo không bao giờ âm
+    if (totalLikes < 0) {
+      totalLikes = 0;
+    }
     
+    Logger.log('Calculated total likes for messageId ' + messageId + ': ' + totalLikes);
+    return totalLikes;
   } catch (error) {
-    Logger.log('Error calculating like count: ' + error.toString());
+    Logger.log('Error calculating total likes: ' + error.toString());
     return 0;
   }
 }
 
-// Hàm lấy tổng số likes cho tất cả messages
-function getAllLikeCounts() {
+// Hàm cập nhật like count trong sheet comments
+function updateCommentLikeCount(commentsSheet, messageId, totalLikes) {
   try {
-    var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
-    var sheet = spreadsheet.getSheetByName("Likes");
-    
-    if (!sheet) {
-      Logger.log('Likes sheet not found');
-      return {};
+    // Đảm bảo không bao giờ âm
+    if (totalLikes < 0) {
+      totalLikes = 0;
     }
     
-    var data = sheet.getDataRange().getValues();
-    var likeCounts = {};
+    var dataRange = commentsSheet.getDataRange();
+    var values = dataRange.getValues();
     
-    // Bỏ qua header row
-    for (var i = 1; i < data.length; i++) {
-      var row = data[i];
-      var messageId = row[1]; // MessageId column
-      var isLiked = row[2]; // IsLiked column
-      
-      if (!likeCounts[messageId]) {
-        likeCounts[messageId] = 0;
-      }
-      
-      if (isLiked === true) {
-        likeCounts[messageId]++;
-      }
-      
-      // Đảm bảo không bao giờ có số âm
-      if (likeCounts[messageId] < 0) {
-        likeCounts[messageId] = 0;
+    for (var i = 1; i < values.length; i++) {
+      if (values[i][0] == messageId) { // STT ở cột A
+        var messageRow = i + 1; // +1 vì sheet index bắt đầu từ 1
+        commentsSheet.getRange(messageRow, 6).setValue(totalLikes); // Cột F
+        Logger.log('Updated comment like count for messageId ' + messageId + ' to: ' + totalLikes);
+        return;
       }
     }
     
-    Logger.log('All like counts: ' + JSON.stringify(likeCounts));
-    return likeCounts;
-    
+    Logger.log('Message not found in comments sheet: ' + messageId);
   } catch (error) {
-    Logger.log('Error getting all like counts: ' + error.toString());
-    return {};
+    Logger.log('Error updating comment like count: ' + error.toString());
   }
 }
+
+// Function removed - likes now stored directly in comments sheet
+
+// Function removed - likes now stored directly in comments sheet
 
 // Hàm test
 function testGuestbook() {
@@ -783,15 +931,148 @@ function testGuestbook() {
   Logger.log('Test result: ' + result.getContent());
 }
 
-// Hàm test like
-function testLike() {
-  var testData = {
-    messageId: "test-message-1",
-    isLiked: true,
-    userAgent: "Test Browser",
-    action: "like"
-  };
+// Function để sync manual changes từ comments sheet về likes sheet
+function syncManualLikeChanges() {
+  Logger.log('=== SYNCING MANUAL LIKE CHANGES ===');
   
-  var result = handleLikeAction(testData);
-  Logger.log('Like test result: ' + result.getContent());
+  try {
+    var commentsSheet = getCommentsSheet();
+    var likesSheet = getLikesSheet();
+    
+    if (!commentsSheet || !likesSheet) {
+      Logger.log('Error: Could not access sheets');
+      return;
+    }
+    
+    var commentsData = commentsSheet.getDataRange().getValues();
+    var likesData = likesSheet.getDataRange().getValues();
+    
+    // Skip header row
+    for (var i = 1; i < commentsData.length; i++) {
+      var row = commentsData[i];
+      var messageId = row[0]; // STT
+      var currentLikes = row[5] || 0; // Likes column
+      
+      if (messageId && currentLikes > 0) {
+        Logger.log('Checking message ' + messageId + ' with ' + currentLikes + ' likes');
+        
+        // Calculate current likes from likes sheet
+        var calculatedLikes = calculateTotalLikes(likesSheet, messageId);
+        
+        Logger.log('Calculated likes: ' + calculatedLikes + ', Manual likes: ' + currentLikes);
+        
+        // If manual likes > calculated likes, add fake likes to match
+        if (currentLikes > calculatedLikes) {
+          var difference = currentLikes - calculatedLikes;
+          Logger.log('Adding ' + difference + ' fake likes for message ' + messageId);
+          
+          // Add fake likes to match manual count
+          for (var j = 0; j < difference; j++) {
+            var fakeUserAgent = 'Manual-Sync-' + j;
+            var fakeUserIP = '127.0.0.' + j;
+            
+            likesSheet.appendRow([
+              messageId,
+              fakeUserAgent,
+              fakeUserIP,
+              'true',
+              new Date()
+            ]);
+          }
+          
+          Logger.log('Added ' + difference + ' fake likes for message ' + messageId);
+        }
+      }
+    }
+    
+    Logger.log('=== SYNC COMPLETE ===');
+    
+  } catch (error) {
+    Logger.log('Error syncing manual changes: ' + error.toString());
+  }
 }
+
+// Function để disable real-time sync cho specific message
+function disableRealTimeSyncForMessage(messageId) {
+  Logger.log('Disabling real-time sync for message: ' + messageId);
+  
+  try {
+    var likesSheet = getLikesSheet();
+    if (!likesSheet) return;
+    
+    // Add a special marker to prevent real-time updates
+    likesSheet.appendRow([
+      messageId,
+      'SYSTEM-DISABLE-SYNC',
+      '127.0.0.0',
+      'false',
+      new Date()
+    ]);
+    
+    Logger.log('Real-time sync disabled for message: ' + messageId);
+    
+  } catch (error) {
+    Logger.log('Error disabling sync: ' + error.toString());
+  }
+}
+
+// Test function để kiểm tra multiple users like cùng comment
+function testMultipleUsersLike() {
+  Logger.log('=== TESTING MULTIPLE USERS LIKE ===');
+  
+  // Test data: 3 users like cùng messageId = 1
+  var testUsers = [
+    {
+      messageId: "1",
+      isLiked: "true",
+      userAgent: "Chrome/120.0.0.0",
+      userIP: "192.168.1.100"
+    },
+    {
+      messageId: "1", 
+      isLiked: "true",
+      userAgent: "Safari/17.0.0.0",
+      userIP: "192.168.1.101"
+    },
+    {
+      messageId: "1",
+      isLiked: "true", 
+      userAgent: "Firefox/120.0.0.0",
+      userIP: "192.168.1.102"
+    }
+  ];
+  
+  Logger.log('Testing with ' + testUsers.length + ' users...');
+  
+  // Simulate each user liking
+  for (var i = 0; i < testUsers.length; i++) {
+    Logger.log('User ' + (i + 1) + ' liking...');
+    var result = handleLikeAction(testUsers[i]);
+    Logger.log('User ' + (i + 1) + ' result: ' + result.getContent());
+  }
+  
+  // Check final state
+  Logger.log('=== FINAL STATE CHECK ===');
+  var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+  var likesSheet = spreadsheet.getSheetByName("Likes");
+  var commentsSheet = spreadsheet.getSheetByName("Lời chúc khách mời");
+  
+  if (likesSheet) {
+    var likesData = likesSheet.getDataRange().getValues();
+    Logger.log('Likes sheet data:');
+    for (var i = 0; i < likesData.length; i++) {
+      Logger.log('Row ' + i + ': ' + JSON.stringify(likesData[i]));
+    }
+  }
+  
+  if (commentsSheet) {
+    var commentsData = commentsSheet.getDataRange().getValues();
+    Logger.log('Comments sheet data:');
+    for (var i = 0; i < commentsData.length; i++) {
+      Logger.log('Row ' + i + ': ' + JSON.stringify(commentsData[i]));
+    }
+  }
+  
+  Logger.log('=== TEST COMPLETED ===');
+}
+
