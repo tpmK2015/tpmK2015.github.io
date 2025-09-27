@@ -198,24 +198,24 @@ $(document).ready(function () {
     var events = [
         {
             title: "Lễ Ăn Hỏi - Trung & Thư",
-            start: new Date('Dec 19, 2025 09:00'),
-            end: new Date('Dec 19, 2025 12:00'),
+            start: new Date('Dec 13, 2025 09:00'),
+            end: new Date('Dec 13, 2025 12:00'),
             address: 'Tam Xuân, Đà Nẵng, Việt Nam',
             description: "Lễ Ăn Hỏi của Trung & Thư. Liên hệ: Trung - 0384101606"
         },
         {
-            title: "Tiệc Độc Thân - Trung & Thư", 
-            start: new Date('Dec 20, 2025 17:00'),
-            end: new Date('Dec 20, 2025 00:00'),
+            title: "Tiệc Nhà Gái - Trung & Thư", 
+            start: new Date('Dec 19, 2025 11:00'),
+            end: new Date('Dec 19, 2025 15:00'),
             address: 'Tam Xuân, Đà Nẵng, Việt Nam',
-            description: "Tiệc Độc Thân của Trung & Thư. Liên hệ: Trung - 0384101606"
+            description: "Tiệc Nhà Gái của Trung & Thư. Liên hệ: Trung - 0384101606"
         },
         {
-            title: "Lễ Thành Hôn & Tiệc Cưới - Trung & Thư",
+            title: "Lễ Thành Hôn & Tiệc Nhà Trai - Trung & Thư",
             start: new Date('Dec 21, 2025 10:00'),
             end: new Date('Dec 21, 2025 15:00'),
             address: 'Tam Xuân, Đà Nẵng, Việt Nam',
-            description: "Lễ Thành Hôn & Tiệc Cưới của Trung & Thư. Liên hệ: Trung - 0384101606"
+            description: "Lễ Thành Hôn & Tiệc Nhà Trai của Trung & Thư. Liên hệ: Trung - 0384101606"
         }
     ];
 

@@ -120,7 +120,57 @@
         <div class="row">
             <div class="col-md-12 text-center">
                 <h3>Chúng mình sắp cưới!</h3>
-                <p>Vào ngày 19 & 21 tháng 12 năm 2025, chúng mình sẽ về chung một nhà và rất mong bạn sẽ đến chung vui.</p>
+                <p>Vào ngày 13, 19 & 21 tháng 12 năm 2025, chúng mình sẽ về chung một nhà và rất mong bạn sẽ đến chung vui.</p>
+                
+                <!-- Compact Countdown Timer -->
+                <div class="compact-countdown" style="background: linear-gradient(135deg, #fffbf0 0%, #fffef7 100%); border-radius: 15px; padding: 20px; margin: 30px auto; max-width: 600px; box-shadow: 0 5px 20px rgba(232, 202, 111, 0.15); border: 1px solid rgba(232, 202, 111, 0.2);">
+                    <div class="countdown-header" style="margin-bottom: 15px;">
+                        <h4 style="color: #e8ca6f; font-size: 18px; font-weight: 600; margin-bottom: 8px;">
+                            ⏰ Đếm ngược đến ngày cưới
+                        </h4>
+                    </div>
+                    
+                    <!-- Event Tabs -->
+                    <div class="countdown-tabs text-center" style="margin-bottom: 15px;">
+                        <button class="countdown-tab active" data-event="engagement" style="background: #e8ca6f; color: white; border: none; padding: 8px 16px; margin: 0 3px; border-radius: 20px; font-weight: 500; font-size: 12px; cursor: pointer; transition: all 0.3s ease;">
+                            💍 Lễ Ăn Hỏi
+                        </button>
+                        <button class="countdown-tab" data-event="bride-party" style="background: rgba(232, 202, 111, 0.2); color: #e8ca6f; border: 1px solid #e8ca6f; padding: 8px 16px; margin: 0 3px; border-radius: 20px; font-weight: 500; font-size: 12px; cursor: pointer; transition: all 0.3s ease;">
+                            👰 Tiệc Nhà Gái
+                        </button>
+                        <button class="countdown-tab" data-event="wedding" style="background: rgba(232, 202, 111, 0.2); color: #e8ca6f; border: 1px solid #e8ca6f; padding: 8px 16px; margin: 0 3px; border-radius: 20px; font-weight: 500; font-size: 12px; cursor: pointer; transition: all 0.3s ease;">
+                            💒 Lễ Thành Hôn
+                        </button>
+                    </div>
+                    
+                    <!-- Countdown Display -->
+                    <div class="countdown-display text-center">
+                        <div class="countdown-timer" id="countdown-timer" style="display: flex; justify-content: center; gap: 12px; flex-wrap: wrap;">
+                            <div class="time-unit" style="background: linear-gradient(135deg, #e8ca6f 0%, #d4af37 100%); color: white; padding: 12px 8px; border-radius: 10px; min-width: 50px; box-shadow: 0 3px 10px rgba(232, 202, 111, 0.3);">
+                                <div class="time-number" id="days" style="font-size: 20px; font-weight: 700; line-height: 1;">00</div>
+                                <div class="time-label" style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 3px;">Ngày</div>
+                            </div>
+                            <div class="time-unit" style="background: linear-gradient(135deg, #e8ca6f 0%, #d4af37 100%); color: white; padding: 12px 8px; border-radius: 10px; min-width: 50px; box-shadow: 0 3px 10px rgba(232, 202, 111, 0.3);">
+                                <div class="time-number" id="hours" style="font-size: 20px; font-weight: 700; line-height: 1;">00</div>
+                                <div class="time-label" style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 3px;">Giờ</div>
+                            </div>
+                            <div class="time-unit" style="background: linear-gradient(135deg, #e8ca6f 0%, #d4af37 100%); color: white; padding: 12px 8px; border-radius: 10px; min-width: 50px; box-shadow: 0 3px 10px rgba(232, 202, 111, 0.3);">
+                                <div class="time-number" id="minutes" style="font-size: 20px; font-weight: 700; line-height: 1;">00</div>
+                                <div class="time-label" style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 3px;">Phút</div>
+                            </div>
+                            <div class="time-unit" style="background: linear-gradient(135deg, #e8ca6f 0%, #d4af37 100%); color: white; padding: 12px 8px; border-radius: 10px; min-width: 50px; box-shadow: 0 3px 10px rgba(232, 202, 111, 0.3);">
+                                <div class="time-number" id="seconds" style="font-size: 20px; font-weight: 700; line-height: 1;">00</div>
+                                <div class="time-label" style="font-size: 10px; text-transform: uppercase; letter-spacing: 0.5px; margin-top: 3px;">Giây</div>
+                            </div>
+                        </div>
+                        
+                        <div class="countdown-info" style="margin-top: 12px;">
+                            <h5 id="countdown-event-title" style="color: #e8ca6f; font-size: 14px; margin-bottom: 4px;">Lễ Ăn Hỏi</h5>
+                            <p id="countdown-event-date" style="color: #666; font-size: 12px; margin: 0;">13 tháng 12, 2025 - 09:00</p>
+                        </div>
+                    </div>
+                </div>
+                
                 <div class="share-bar"></div>
             </div>
         </div>
@@ -199,7 +249,7 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
             <div class="col-md-4 col-sm-12 col-xs-12">
                 <div class="event-card wp3" style="background: linear-gradient(135deg, #fffbf0 0%, #fffef7 100%); padding: 30px; border-radius: 20px; box-shadow: 0 8px 25px rgba(232, 202, 111, 0.1); margin-bottom: 30px; text-align: center; height: 100%;">
                     <div style="background: #e8ca6f; color: white; padding: 10px 20px; border-radius: 25px; display: inline-block; margin-bottom: 20px; font-weight: 600;">
-                        <i class="fa fa-calendar" style="margin-right: 8px;"></i> Ngày 19 tháng 12
+                        <i class="fa fa-calendar" style="margin-right: 8px;"></i> Ngày 13 tháng 12
                     </div>
                     <h5 style="color: #e8ca6f; font-size: 20px; font-weight: 700; margin-bottom: 15px;">
                         Lễ Ăn Hỏi
@@ -215,16 +265,16 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
             <div class="col-md-4 col-sm-12 col-xs-12">
                 <div class="event-card wp4" style="background: linear-gradient(135deg, #e3f2fd 0%, #f0f8ff 100%); padding: 30px; border-radius: 20px; box-shadow: 0 8px 25px rgba(33, 150, 243, 0.1); margin-bottom: 30px; text-align: center; height: 100%;">
                     <div style="background: #2196f3; color: white; padding: 10px 20px; border-radius: 25px; display: inline-block; margin-bottom: 20px; font-weight: 600;">
-                        <i class="fa fa-calendar" style="margin-right: 8px;"></i> Ngày 20 tháng 12
+                        <i class="fa fa-calendar" style="margin-right: 8px;"></i> Ngày 19 tháng 12
                     </div>
                     <h5 style="color: #2196f3; font-size: 20px; font-weight: 700; margin-bottom: 15px;">
-                        Tiệc Độc Thân
+                        Tiệc Nhà Gái
                     </h5>
                     <div style="background: rgba(33, 150, 243, 0.1); padding: 8px 15px; border-radius: 15px; margin-bottom: 20px; display: inline-block;">
-                        <i class="fa fa-clock-o" style="margin-right: 5px;"></i> 17:00 - 00:00
+                        <i class="fa fa-clock-o" style="margin-right: 5px;"></i> 11:00 - 15:00
                     </div>
                     <p style="color: #555; line-height: 1.8; margin: 0;">
-                        Một đêm tiệc thân mật dành cho cô dâu, chú rể và những người bạn thân thiết nhất để cùng nhau chia sẻ, ôn lại kỷ niệm.
+                        Gia đình nhà gái tổ chức tiệc cưới để đón tiếp bạn bè và người thân. Đây là dịp để hai bên gia đình gặp gỡ và chúc mừng.
                     </p>
                 </div>
             </div>
@@ -234,13 +284,13 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
                         <i class="fa fa-calendar" style="margin-right: 8px;"></i> Ngày 21 tháng 12
                     </div>
                     <h5 style="color: #9c27b0; font-size: 20px; font-weight: 700; margin-bottom: 15px;">
-                        Lễ Thành Hôn & Tiệc Cưới
+                        Lễ Thành Hôn & Tiệc Nhà Trai
                     </h5>
                     <div style="background: rgba(156, 39, 176, 0.1); padding: 8px 15px; border-radius: 15px; margin-bottom: 20px; display: inline-block;">
                         <i class="fa fa-clock-o" style="margin-right: 5px;"></i> 10:00 - 15:00
                     </div>
                     <p style="color: #555; line-height: 1.8; margin: 0;">
-                        Đây là sự kiện chính và được mong chờ nhất, nơi cô dâu và chú rể sẽ trao nhau lời thề nguyện và chính thức nên duyên vợ chồng.
+                        Đây là sự kiện chính và được mong chờ nhất, nơi cô dâu và chú rể sẽ trao nhau lời thề nguyện và chính thức nên duyên vợ chồng. Gia đình nhà trai tổ chức tiệc cưới.
                     </p>
                 </div>
             </div>
@@ -1268,6 +1318,90 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
                    display: block !important;
                }
            }
+           
+           /* Compact Countdown Timer Styles */
+           .compact-countdown .countdown-tab:hover {
+               transform: translateY(-1px);
+               box-shadow: 0 3px 10px rgba(232, 202, 111, 0.3);
+           }
+           
+           .compact-countdown .countdown-tab.active {
+               background: #e8ca6f !important;
+               color: white !important;
+               border: none !important;
+               transform: translateY(-1px);
+               box-shadow: 0 3px 10px rgba(232, 202, 111, 0.3);
+           }
+           
+           .compact-countdown .time-unit {
+               animation: pulse 2s infinite;
+           }
+           
+           @keyframes pulse {
+               0% { transform: scale(1); }
+               50% { transform: scale(1.02); }
+               100% { transform: scale(1); }
+           }
+           
+           /* Mobile responsive for compact countdown */
+           @media (max-width: 768px) {
+               .compact-countdown {
+                   padding: 15px !important;
+                   margin: 20px 15px !important;
+               }
+               
+               .compact-countdown .countdown-tabs {
+                   display: flex;
+                   flex-direction: column;
+                   gap: 8px;
+               }
+               
+               .compact-countdown .countdown-tab {
+                   margin: 0 !important;
+                   width: 100%;
+                   padding: 10px 16px !important;
+               }
+               
+               .compact-countdown .countdown-timer {
+                   gap: 8px !important;
+               }
+               
+               .compact-countdown .time-unit {
+                   min-width: 45px !important;
+                   padding: 10px 6px !important;
+               }
+               
+               .compact-countdown .time-number {
+                   font-size: 18px !important;
+               }
+               
+               .compact-countdown .time-label {
+                   font-size: 9px !important;
+               }
+           }
+           
+           @media (max-width: 480px) {
+               .compact-countdown .countdown-header h4 {
+                   font-size: 16px !important;
+               }
+               
+               .compact-countdown .countdown-timer {
+                   gap: 6px !important;
+               }
+               
+               .compact-countdown .time-unit {
+                   min-width: 40px !important;
+                   padding: 8px 4px !important;
+               }
+               
+               .compact-countdown .time-number {
+                   font-size: 16px !important;
+               }
+               
+               .compact-countdown .time-label {
+                   font-size: 8px !important;
+               }
+           }
        </style>
 
 <!-- Inline JavaScript for QR Code functionality -->
@@ -1952,6 +2086,146 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
         window.weddingAudio = audio;
     }
     
+    // Countdown Timer Functionality
+    function initCountdownTimer() {
+        console.log('🕐 Initializing countdown timer...');
+        
+        // Event data
+        const events = {
+            engagement: {
+                title: 'Lễ Ăn Hỏi',
+                date: '13 tháng 12, 2025 - 09:00',
+                targetDate: new Date('Dec 13, 2025 09:00:00')
+            },
+            'bride-party': {
+                title: 'Tiệc Nhà Gái',
+                date: '19 tháng 12, 2025 - 11:00',
+                targetDate: new Date('Dec 19, 2025 11:00:00')
+            },
+            wedding: {
+                title: 'Lễ Thành Hôn',
+                date: '21 tháng 12, 2025 - 10:00',
+                targetDate: new Date('Dec 21, 2025 10:00:00')
+            }
+        };
+        
+        let currentEvent = 'engagement';
+        let countdownInterval;
+        
+        // Tab switching functionality
+        function initTabs() {
+            const tabs = document.querySelectorAll('.countdown-tab');
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Remove active class from all tabs
+                    tabs.forEach(t => {
+                        t.classList.remove('active');
+                        t.style.background = 'rgba(232, 202, 111, 0.2)';
+                        t.style.color = '#e8ca6f';
+                        t.style.border = '2px solid #e8ca6f';
+                    });
+                    
+                    // Add active class to clicked tab
+                    this.classList.add('active');
+                    this.style.background = '#e8ca6f';
+                    this.style.color = 'white';
+                    this.style.border = 'none';
+                    
+                    // Update current event
+                    currentEvent = this.getAttribute('data-event');
+                    
+                    // Update event info
+                    updateEventInfo(events[currentEvent]);
+                    
+                    // Restart countdown
+                    startCountdown();
+                });
+            });
+        }
+        
+        // Update event information display
+        function updateEventInfo(event) {
+            const titleEl = document.getElementById('countdown-event-title');
+            const dateEl = document.getElementById('countdown-event-date');
+            
+            if (titleEl) titleEl.textContent = event.title;
+            if (dateEl) dateEl.textContent = event.date;
+        }
+        
+        // Calculate time difference
+        function getTimeDifference(targetDate) {
+            const now = new Date();
+            const difference = targetDate - now;
+            
+            if (difference <= 0) {
+                return {
+                    days: 0,
+                    hours: 0,
+                    minutes: 0,
+                    seconds: 0,
+                    isExpired: true
+                };
+            }
+            
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+            
+            return {
+                days,
+                hours,
+                minutes,
+                seconds,
+                isExpired: false
+            };
+        }
+        
+        // Update countdown display
+        function updateCountdown() {
+            const event = events[currentEvent];
+            const timeDiff = getTimeDifference(event.targetDate);
+            
+            // Update time units
+            document.getElementById('days').textContent = String(timeDiff.days).padStart(2, '0');
+            document.getElementById('hours').textContent = String(timeDiff.hours).padStart(2, '0');
+            document.getElementById('minutes').textContent = String(timeDiff.minutes).padStart(2, '0');
+            document.getElementById('seconds').textContent = String(timeDiff.seconds).padStart(2, '0');
+            
+            // If event has passed, show special message
+            if (timeDiff.isExpired) {
+                const countdownTimer = document.getElementById('countdown-timer');
+                if (countdownTimer) {
+                    countdownTimer.innerHTML = `
+                        <div style="background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%); color: white; padding: 30px; border-radius: 15px; box-shadow: 0 5px 15px rgba(76, 175, 80, 0.3);">
+                            <div style="font-size: 48px; margin-bottom: 10px;">🎉</div>
+                            <div style="font-size: 24px; font-weight: 700; margin-bottom: 5px;">Đã diễn ra!</div>
+                            <div style="font-size: 16px; opacity: 0.9;">Sự kiện đã kết thúc</div>
+                        </div>
+                    `;
+                }
+                clearInterval(countdownInterval);
+            }
+        }
+        
+        // Start countdown
+        function startCountdown() {
+            if (countdownInterval) {
+                clearInterval(countdownInterval);
+            }
+            
+            updateCountdown(); // Initial update
+            countdownInterval = setInterval(updateCountdown, 1000);
+        }
+        
+        // Initialize everything
+        initTabs();
+        updateEventInfo(events[currentEvent]);
+        startCountdown();
+        
+        console.log('🕐 Countdown timer initialized successfully!');
+    }
+    
     // Initialize when page loads
     document.addEventListener('DOMContentLoaded', function() {
         initRSVPButton();
@@ -1960,6 +2234,7 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
         initScrollToBottom();
         loadGuestbookMessages();
         initBackgroundMusic();
+        initCountdownTimer();
     });
 </script>
 
