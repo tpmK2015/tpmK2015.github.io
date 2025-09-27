@@ -297,6 +297,12 @@ function doPost(e) {
     Logger.log('Action: ' + action);
     Logger.log('Mail data: ' + JSON.stringify(mailData));
     
+    // Handle like action
+    if (action === 'like') {
+      Logger.log('*** PROCESSING LIKE ACTION ***');
+      return handleLikeAction(mailData);
+    }
+    
     // PRIORITY: Check for guestbook submission FIRST
     if (action === 'guestbook' || 
         (mailData.guest_name && mailData.guest_message) ||
@@ -600,6 +606,170 @@ function validateInviteCode(code) {
   return VALID_INVITE_CODES.includes(code.toString());
 }
 
+// Hàm xử lý like action
+function handleLikeAction(mailData) {
+  try {
+    Logger.log('=== LIKE ACTION ===');
+    
+    var messageId = mailData.messageId;
+    var isLiked = mailData.isLiked === 'true' || mailData.isLiked === true;
+    var userAgent = mailData.userAgent || 'Unknown';
+    var timestamp = new Date();
+    
+    Logger.log('Like data - MessageId: ' + messageId + ', IsLiked: ' + isLiked);
+    
+    if (!messageId) {
+      Logger.log('Missing messageId');
+      return ContentService
+        .createTextOutput(JSON.stringify({
+          result: "error",
+          message: "Thiếu thông tin message ID"
+        }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+    
+    // Lưu vào Google Sheet
+    var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet;
+    
+    // Tìm hoặc tạo sheet "Likes"
+    try {
+      sheet = spreadsheet.getSheetByName("Likes");
+      if (!sheet) {
+        Logger.log('Creating new Likes sheet');
+        sheet = spreadsheet.insertSheet("Likes");
+        
+        // Tạo header
+        var headers = [
+          "Timestamp",
+          "MessageId", 
+          "IsLiked",
+          "UserAgent",
+          "IPAddress"
+        ];
+        sheet.getRange(1, 1, 1, headers.length).setValues([headers]);
+        sheet.getRange(1, 1, 1, headers.length).setFontWeight("bold");
+      }
+    } catch (error) {
+      Logger.log('Error accessing Likes sheet: ' + error.toString());
+      return ContentService
+        .createTextOutput(JSON.stringify({
+          result: "error",
+          message: "Không thể truy cập sheet Likes"
+        }))
+        .setMimeType(ContentService.MimeType.JSON);
+    }
+    
+    // Thêm dữ liệu like
+    var newRow = [
+      timestamp,
+      messageId,
+      isLiked,
+      userAgent,
+      "Unknown" // IP address không có sẵn trong Apps Script
+    ];
+    
+    sheet.appendRow(newRow);
+    Logger.log('Like data saved to sheet');
+    
+    // Tính tổng số likes cho message
+    var likeCount = calculateLikeCount(sheet, messageId);
+    
+    Logger.log('Like action completed successfully. Total likes: ' + likeCount);
+    
+    return ContentService
+      .createTextOutput(JSON.stringify({
+        result: "success",
+        message: "Like đã được cập nhật",
+        likeCount: likeCount
+      }))
+      .setMimeType(ContentService.MimeType.JSON);
+      
+  } catch (error) {
+    Logger.log('Error in handleLikeAction: ' + error.toString());
+    return ContentService
+      .createTextOutput(JSON.stringify({
+        result: "error",
+        message: "Có lỗi xảy ra khi xử lý like: " + error.toString()
+      }))
+      .setMimeType(ContentService.MimeType.JSON);
+  }
+}
+
+// Hàm tính tổng số likes cho một message
+function calculateLikeCount(sheet, messageId) {
+  try {
+    var data = sheet.getDataRange().getValues();
+    var likeCount = 0;
+    
+    // Bỏ qua header row
+    for (var i = 1; i < data.length; i++) {
+      var row = data[i];
+      var rowMessageId = row[1]; // MessageId column
+      var isLiked = row[2]; // IsLiked column
+      
+      if (rowMessageId === messageId && isLiked === true) {
+        likeCount++;
+      }
+    }
+    
+    // Đảm bảo không bao giờ có số âm
+    if (likeCount < 0) {
+      likeCount = 0;
+    }
+    
+    Logger.log('Calculated like count for ' + messageId + ': ' + likeCount);
+    return likeCount;
+    
+  } catch (error) {
+    Logger.log('Error calculating like count: ' + error.toString());
+    return 0;
+  }
+}
+
+// Hàm lấy tổng số likes cho tất cả messages
+function getAllLikeCounts() {
+  try {
+    var spreadsheet = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = spreadsheet.getSheetByName("Likes");
+    
+    if (!sheet) {
+      Logger.log('Likes sheet not found');
+      return {};
+    }
+    
+    var data = sheet.getDataRange().getValues();
+    var likeCounts = {};
+    
+    // Bỏ qua header row
+    for (var i = 1; i < data.length; i++) {
+      var row = data[i];
+      var messageId = row[1]; // MessageId column
+      var isLiked = row[2]; // IsLiked column
+      
+      if (!likeCounts[messageId]) {
+        likeCounts[messageId] = 0;
+      }
+      
+      if (isLiked === true) {
+        likeCounts[messageId]++;
+      }
+      
+      // Đảm bảo không bao giờ có số âm
+      if (likeCounts[messageId] < 0) {
+        likeCounts[messageId] = 0;
+      }
+    }
+    
+    Logger.log('All like counts: ' + JSON.stringify(likeCounts));
+    return likeCounts;
+    
+  } catch (error) {
+    Logger.log('Error getting all like counts: ' + error.toString());
+    return {};
+  }
+}
+
 // Hàm test
 function testGuestbook() {
   var testData = {
@@ -611,4 +781,17 @@ function testGuestbook() {
   
   var result = handleGuestbookSubmission(testData);
   Logger.log('Test result: ' + result.getContent());
+}
+
+// Hàm test like
+function testLike() {
+  var testData = {
+    messageId: "test-message-1",
+    isLiked: true,
+    userAgent: "Test Browser",
+    action: "like"
+  };
+  
+  var result = handleLikeAction(testData);
+  Logger.log('Like test result: ' + result.getContent());
 }

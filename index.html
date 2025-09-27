@@ -928,12 +928,19 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
                                 <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #e8ca6f 0%, #d4af37 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; box-shadow: 0 4px 15px rgba(232, 202, 111, 0.3);">
                                     <i class="fa fa-heart" style="color: white; font-size: 20px;"></i>
                                 </div>
-                                <div>
+                                <div style="flex: 1;">
                                     <h4 style="color: #333; margin: 0; font-family: 'Playfair Display', serif; font-size: 18px;">Chúc mừng hai bạn!</h4>
                                     <div style="display: flex; align-items: center; margin-top: 5px;">
                                         <span style="color: #e8ca6f; font-weight: 600; margin-right: 10px;">Anh Minh</span>
                                         <span style="color: #999; font-size: 12px; background: #f0f0f0; padding: 2px 8px; border-radius: 10px;">2 ngày trước</span>
                                     </div>
+                                </div>
+                                <!-- Like Button -->
+                                <div class="like-section" style="display: flex; align-items: center; gap: 8px;">
+                                    <button class="like-btn" data-message-id="sample-1" style="background: none; border: none; cursor: pointer; padding: 8px; border-radius: 50%; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                        <i class="fa fa-heart-o" style="color: #e8ca6f; font-size: 18px; transition: all 0.3s ease;"></i>
+                                    </button>
+                                    <span class="like-count" style="color: #e8ca6f; font-weight: 600; font-size: 14px; min-width: 20px; text-align: center;">12</span>
                                 </div>
                             </div>
                             <p style="color: #555; line-height: 1.6; margin: 0; font-size: 15px; font-style: italic;">
@@ -948,12 +955,19 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
                                 <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #e8ca6f 0%, #d4af37 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; box-shadow: 0 4px 15px rgba(232, 202, 111, 0.3);">
                                     <i class="fa fa-heart" style="color: white; font-size: 20px;"></i>
                                 </div>
-                                <div>
+                                <div style="flex: 1;">
                                     <h4 style="color: #333; margin: 0; font-family: 'Playfair Display', serif; font-size: 18px;">Thật hạnh phúc!</h4>
                                     <div style="display: flex; align-items: center; margin-top: 5px;">
                                         <span style="color: #e8ca6f; font-weight: 600; margin-right: 10px;">Chị Lan</span>
                                         <span style="color: #999; font-size: 12px; background: #f0f0f0; padding: 2px 8px; border-radius: 10px;">1 tuần trước</span>
                                     </div>
+                                </div>
+                                <!-- Like Button -->
+                                <div class="like-section" style="display: flex; align-items: center; gap: 8px;">
+                                    <button class="like-btn" data-message-id="sample-2" style="background: none; border: none; cursor: pointer; padding: 8px; border-radius: 50%; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                        <i class="fa fa-heart-o" style="color: #e8ca6f; font-size: 18px; transition: all 0.3s ease;"></i>
+                                    </button>
+                                    <span class="like-count" style="color: #e8ca6f; font-weight: 600; font-size: 14px; min-width: 20px; text-align: center;">8</span>
                                 </div>
                             </div>
                             <p style="color: #555; line-height: 1.6; margin: 0; font-size: 15px; font-style: italic;">
@@ -1091,13 +1105,83 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
         color: #ccc;
     }
     
-    .message-item:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important;
-    }
-    
+           .message-item:hover {
+               transform: translateY(-5px);
+               box-shadow: 0 15px 35px rgba(0,0,0,0.15) !important;
+           }
+           
            .message-item {
                cursor: pointer;
+           }
+           
+           /* Like Button Styles */
+           .like-btn {
+               position: relative;
+               overflow: hidden;
+           }
+           
+           .like-btn:hover {
+               background: rgba(232, 202, 111, 0.1) !important;
+               transform: scale(1.1);
+           }
+           
+           .like-btn.liked {
+               background: rgba(232, 202, 111, 0.2) !important;
+           }
+           
+           .like-btn.liked i {
+               color: #e74c3c !important;
+               transform: scale(1.2);
+           }
+           
+           .like-btn i {
+               transition: all 0.3s ease;
+           }
+           
+           .like-btn:hover i {
+               color: #e74c3c !important;
+               transform: scale(1.1);
+           }
+           
+           .like-count {
+               transition: all 0.3s ease;
+           }
+           
+           .like-btn.liked + .like-count {
+               color: #e74c3c !important;
+               font-weight: 700;
+           }
+           
+           /* Like Animation */
+           @keyframes heartBeat {
+               0% { transform: scale(1); }
+               25% { transform: scale(1.3); }
+               50% { transform: scale(1); }
+               75% { transform: scale(1.2); }
+               100% { transform: scale(1); }
+           }
+           
+           .like-btn.animate i {
+               animation: heartBeat 0.6s ease-in-out;
+           }
+           
+           /* Mobile responsive for like button */
+           @media (max-width: 768px) {
+               .like-section {
+                   gap: 6px !important;
+               }
+               
+               .like-btn {
+                   padding: 6px !important;
+               }
+               
+               .like-btn i {
+                   font-size: 16px !important;
+               }
+               
+               .like-count {
+                   font-size: 12px !important;
+               }
            }
            
            /* Desktop Navigation Styles */
@@ -1790,9 +1874,25 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
             return;
         }
         
+        // Sort messages by likes (descending) then by timestamp (descending)
+        messages.sort(function(a, b) {
+            var likesA = a.likes || 0;
+            var likesB = b.likes || 0;
+            
+            if (likesA !== likesB) {
+                return likesB - likesA; // Sort by likes descending
+            }
+            
+            // If likes are equal, sort by timestamp descending
+            return new Date(b.timestamp) - new Date(a.timestamp);
+        });
+        
         var html = '';
         messages.forEach(function(msg, index) {
             var timeDisplay = getTimeDisplay(msg.timestamp);
+            var likes = msg.likes || 0;
+            var messageId = msg.id || 'msg-' + index;
+            
             html += `
                 <div class="message-item" style="background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%); margin-bottom: 25px; padding: 30px; border-radius: 20px; box-shadow: 0 8px 25px rgba(0,0,0,0.08); border-left: 5px solid #e8ca6f; position: relative; transition: all 0.3s ease;">
                     <div class="message-content">
@@ -1800,12 +1900,19 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
                             <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #e8ca6f 0%, #d4af37 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; box-shadow: 0 4px 15px rgba(232, 202, 111, 0.3);">
                                 <i class="fa fa-heart" style="color: white; font-size: 20px;"></i>
                             </div>
-                            <div>
+                            <div style="flex: 1;">
                                 <h4 style="color: #333; margin: 0; font-family: 'Playfair Display', serif; font-size: 18px;">Lời chúc từ ${msg.name}</h4>
                                 <div style="display: flex; align-items: center; margin-top: 5px;">
                                     <span style="color: #e8ca6f; font-weight: 600; margin-right: 10px;">${msg.name}</span>
                                     <span style="color: #999; font-size: 12px; background: #f0f0f0; padding: 2px 8px; border-radius: 10px;">${timeDisplay}</span>
                                 </div>
+                            </div>
+                            <!-- Like Button -->
+                            <div class="like-section" style="display: flex; align-items: center; gap: 8px;">
+                                <button class="like-btn" data-message-id="${messageId}" style="background: none; border: none; cursor: pointer; padding: 8px; border-radius: 50%; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fa fa-heart-o" style="color: #e8ca6f; font-size: 18px; transition: all 0.3s ease;"></i>
+                                </button>
+                                <span class="like-count" style="color: #e8ca6f; font-weight: 600; font-size: 14px; min-width: 20px; text-align: center;">${likes}</span>
                             </div>
                         </div>
                         <p style="color: #555; line-height: 1.6; margin: 0; font-size: 15px; font-style: italic;">
@@ -1817,6 +1924,9 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
         });
         
         messagesContainer.innerHTML = html;
+        
+        // Initialize like buttons after rendering
+        initLikeButtons();
     }
     
     // Get smart time display
@@ -1971,12 +2081,19 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
                             <div style="width: 50px; height: 50px; background: linear-gradient(135deg, #e8ca6f 0%, #d4af37 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin-right: 15px; box-shadow: 0 4px 15px rgba(232, 202, 111, 0.3);">
                                 <i class="fa fa-heart" style="color: white; font-size: 20px;"></i>
                             </div>
-                            <div>
+                            <div style="flex: 1;">
                                 <h4 style="color: #333; margin: 0; font-family: 'Playfair Display', serif; font-size: 18px;">Lời chúc mới!</h4>
                                 <div style="display: flex; align-items: center; margin-top: 5px;">
                                     <span style="color: #e8ca6f; font-weight: 600; margin-right: 10px;">${name}</span>
                                     <span style="color: #999; font-size: 12px; background: #f0f0f0; padding: 2px 8px; border-radius: 10px;">${displayTime}</span>
                                 </div>
+                            </div>
+                            <!-- Like Button -->
+                            <div class="like-section" style="display: flex; align-items: center; gap: 8px;">
+                                <button class="like-btn" data-message-id="new-${Date.now()}" style="background: none; border: none; cursor: pointer; padding: 8px; border-radius: 50%; transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fa fa-heart-o" style="color: #e8ca6f; font-size: 18px; transition: all 0.3s ease;"></i>
+                                </button>
+                                <span class="like-count" style="color: #e8ca6f; font-weight: 600; font-size: 14px; min-width: 20px; text-align: center;">0</span>
                             </div>
                         </div>
                         <p style="color: #555; line-height: 1.6; margin: 0; font-size: 15px; font-style: italic;">
@@ -2015,6 +2132,9 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
             
             // Lưu lại vào localStorage
             localStorage.setItem('guestbook_messages', JSON.stringify(existingMessages));
+            
+            // Initialize like button for new message
+            initLikeButtons();
             
             // Sau 5 phút, cập nhật thành thời gian thực tế
             setTimeout(function() {
@@ -2224,6 +2344,142 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
         startCountdown();
         
         console.log('🕐 Countdown timer initialized successfully!');
+    }
+    
+    // Initialize like buttons functionality
+    function initLikeButtons() {
+        console.log('❤️ Initializing like buttons...');
+        
+        var likeButtons = document.querySelectorAll('.like-btn');
+        likeButtons.forEach(function(button) {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                var messageId = this.getAttribute('data-message-id');
+                var likeCountSpan = this.nextElementSibling;
+                var currentCount = parseInt(likeCountSpan.textContent) || 0;
+                
+                // Toggle like state
+                if (this.classList.contains('liked')) {
+                    // Unlike - chỉ giảm nếu count > 0
+                    if (currentCount > 0) {
+                        this.classList.remove('liked');
+                        this.querySelector('i').className = 'fa fa-heart-o';
+                        likeCountSpan.textContent = currentCount - 1;
+                        likeCountSpan.style.color = '#e8ca6f';
+                        likeCountSpan.style.fontWeight = '600';
+                        
+                        // Update in localStorage
+                        updateLikeInStorage(messageId, -1);
+                    }
+                } else {
+                    // Like - chỉ tăng lên
+                    this.classList.add('liked');
+                    this.querySelector('i').className = 'fa fa-heart';
+                    likeCountSpan.textContent = currentCount + 1;
+                    likeCountSpan.style.color = '#e74c3c';
+                    likeCountSpan.style.fontWeight = '700';
+                    
+                    // Add animation
+                    this.classList.add('animate');
+                    setTimeout(() => {
+                        this.classList.remove('animate');
+                    }, 600);
+                    
+                    // Update in localStorage
+                    updateLikeInStorage(messageId, 1);
+                }
+                
+                // Send like data to server (optional)
+                sendLikeToServer(messageId, this.classList.contains('liked'));
+            });
+        });
+        
+        // Load like states from localStorage
+        loadLikeStates();
+        
+        console.log('❤️ Like buttons initialized successfully!');
+    }
+    
+    // Update like count in localStorage
+    function updateLikeInStorage(messageId, delta) {
+        try {
+            var likes = JSON.parse(localStorage.getItem('guestbook_likes') || '{}');
+            var currentLikes = likes[messageId] || 0;
+            var newLikes = currentLikes + delta;
+            
+            // Đảm bảo không bao giờ có số âm
+            if (newLikes < 0) {
+                newLikes = 0;
+            }
+            
+            likes[messageId] = newLikes;
+            localStorage.setItem('guestbook_likes', JSON.stringify(likes));
+            
+            console.log(`Updated likes for ${messageId}: ${currentLikes} -> ${newLikes}`);
+        } catch (e) {
+            console.error('Error updating likes in localStorage:', e);
+        }
+    }
+    
+    // Load like states from localStorage
+    function loadLikeStates() {
+        try {
+            var likes = JSON.parse(localStorage.getItem('guestbook_likes') || '{}');
+            var likeButtons = document.querySelectorAll('.like-btn');
+            
+            likeButtons.forEach(function(button) {
+                var messageId = button.getAttribute('data-message-id');
+                var likeCountSpan = button.nextElementSibling;
+                
+                if (likes[messageId] > 0) {
+                    button.classList.add('liked');
+                    button.querySelector('i').className = 'fa fa-heart';
+                    likeCountSpan.style.color = '#e74c3c';
+                    likeCountSpan.style.fontWeight = '700';
+                }
+            });
+        } catch (e) {
+            console.error('Error loading like states:', e);
+        }
+    }
+    
+    // Send like data to server (optional - for analytics)
+    function sendLikeToServer(messageId, isLiked) {
+        // Send like data to Google Apps Script
+        console.log('Sending like data to server:', {
+            messageId: messageId,
+            isLiked: isLiked,
+            timestamp: new Date().toISOString()
+        });
+        
+        // Send to Google Apps Script
+        fetch('https://script.google.com/macros/s/AKfycbxbT20wJlX3fgzm1A384zn44zp3D22WNYzlei03MhE4g5i6Qit3m8eOgUDp6Dmhuir9Tg/exec', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: new URLSearchParams({
+                action: 'like',
+                messageId: messageId,
+                isLiked: isLiked,
+                userAgent: navigator.userAgent,
+                timestamp: new Date().toISOString()
+            })
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log('Like response:', data);
+            if (data.result === 'success') {
+                console.log('Like saved successfully. Total likes:', data.likeCount);
+            } else {
+                console.error('Error saving like:', data.message);
+            }
+        })
+        .catch(error => {
+            console.error('Error sending like data:', error);
+        });
     }
     
     // Initialize when page loads
