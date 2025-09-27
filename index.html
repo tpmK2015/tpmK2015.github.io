@@ -72,11 +72,35 @@
 <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade
     your browser</a> to improve your experience.</p>
 <![endif]-->
+<!-- Welcome Screen -->
+<div id="welcome-screen" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: linear-gradient(135deg, rgba(232, 202, 111, 0.95), rgba(255, 255, 255, 0.9)); z-index: 9999; display: flex; align-items: center; justify-content: center; flex-direction: column; font-family: 'Playfair Display', serif;">
+    <div style="text-align: center; padding: 40px; background: rgba(255,255,255,0.9); border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); max-width: 500px; margin: 20px;">
+        <img src="Assest/mainLG.png" alt="Trung & Thư" style="width: 120px; height: auto; margin-bottom: 20px;">
+        <h1 style="color: #e8ca6f; font-size: 28px; margin-bottom: 15px; font-weight: 600;">Chào mừng đến với</h1>
+        <h2 style="color: #333; font-size: 24px; margin-bottom: 20px; font-weight: 400;">Lễ cưới Trung & Thư</h2>
+        <p style="color: #666; font-size: 16px; margin-bottom: 30px; line-height: 1.6;">Hãy cùng chúng mình khám phá hành trình tình yêu và chia sẻ niềm vui trong ngày trọng đại này 💕</p>
+        
+        <button onclick="startWeddingExperience()" style="background: linear-gradient(45deg, #e8ca6f, #d3b56a); color: white; border: none; padding: 15px 40px; border-radius: 30px; font-size: 18px; font-weight: 600; cursor: pointer; box-shadow: 0 5px 15px rgba(232, 202, 111, 0.4); transition: all 0.3s ease; font-family: 'Playfair Display', serif;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 20px rgba(232, 202, 111, 0.6)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 15px rgba(232, 202, 111, 0.4)'">
+            🎵 Bắt đầu trải nghiệm
+        </button>
+        
+        <p style="color: #999; font-size: 12px; margin-top: 20px;">Nhạc nền sẽ tự động phát sau khi bạn bấm nút</p>
+    </div>
+</div>
+
 <section class="hero" style="min-height: 100vh !important; background: url('img/hero1.jpg') center center !important; background-size: cover !important;">
     <section class="navigation">
         <header>
             <div class="header-content">
                 <div class="logo"><a href="#"><img src="Assest/SubLogo.png" alt="Trung & Thư Logo" style="background: white; padding: 8px; border-radius: 8px; width: 60px; height: auto;"></a></div>
+                
+                <!-- Music Control Button -->
+                <div class="music-control" style="position: absolute; right: 80px; top: 50%; transform: translateY(-50%); z-index: 1000;">
+                    <button id="music-toggle" onclick="toggleMusic()" style="background: rgba(255,255,255,0.9); border: none; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 10px rgba(0,0,0,0.2); transition: all 0.3s ease;" onmouseover="this.style.background='white'" onmouseout="this.style.background='rgba(255,255,255,0.9)'">
+                        <i id="music-icon" class="fa fa-volume-up" style="color: #e8ca6f; font-size: 16px;"></i>
+                    </button>
+                </div>
+                
                 <div class="mobile-menu-toggle" style="display: none; background: none; border: none; font-size: 24px; color: #e8ca6f; cursor: pointer; padding: 10px; z-index: 1000;">
                     <i class="fa fa-bars"></i>
                 </div>
@@ -105,7 +129,7 @@
         <div class="row">
             <div class="col-md-12 text-center">
                 <div style="margin-bottom: 5px;">
-                    <img src="Assest/mainLogo500x500.png" style="width: 200px; height: auto;">
+                    <img src="Assest/mainLG.png" style="width: 200px; height: auto;">
                 </div>
                 <a href="#rsvp" class="btn btn-accent btn-large rsvp-btn" style="background: #e8ca6f; color: white; border: 2px solid #e8ca6f; font-weight: 600; text-shadow: none;">Xác nhận tham dự</a>
             </div>
@@ -877,6 +901,13 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
                 <p class="section-subtitle" style="color: #666; font-size: 16px; margin-bottom: 40px;">
                     Hãy để lại lời chúc cho chúng mình nhé 💕
                 </p>
+                
+                <!-- Refresh Button -->
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <button onclick="refreshGuestbookMessages()" style="background: #e8ca6f; color: white; border: none; padding: 8px 16px; border-radius: 20px; font-size: 12px; cursor: pointer; transition: all 0.3s ease;" onmouseover="this.style.background='#d3b56a'" onmouseout="this.style.background='#e8ca6f'">
+                        <i class="fa fa-refresh" style="margin-right: 5px;"></i> Làm mới lời chúc
+                    </button>
+                </div>
             </div>
         </div>
         
@@ -1273,6 +1304,46 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
            @media (max-width: 768px) {
                .mobile-menu-toggle {
                    display: block !important;
+               }
+               
+               /* Music control responsive */
+               .music-control {
+                   right: 20px !important;
+                   top: 20px !important;
+                   transform: none !important;
+               }
+               
+               .music-control button {
+                   width: 35px !important;
+                   height: 35px !important;
+               }
+               
+               .music-control i {
+                   font-size: 14px !important;
+               }
+               
+               /* Welcome screen responsive */
+               #welcome-screen div {
+                   padding: 30px 20px !important;
+                   margin: 10px !important;
+                   max-width: 90% !important;
+               }
+               
+               #welcome-screen h1 {
+                   font-size: 24px !important;
+               }
+               
+               #welcome-screen h2 {
+                   font-size: 20px !important;
+               }
+               
+               #welcome-screen p {
+                   font-size: 14px !important;
+               }
+               
+               #welcome-screen button {
+                   padding: 12px 30px !important;
+                   font-size: 16px !important;
                }
                
                .header-content {
@@ -1815,20 +1886,7 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
         // Show loading state
         messagesContainer.innerHTML = '<div style="text-align: center; padding: 20px; color: #999;">Đang tải lời chúc...</div>';
         
-        // Try to load from localStorage first (for testing)
-        var savedMessages = localStorage.getItem('guestbook_messages');
-        if (savedMessages) {
-            try {
-                var messages = JSON.parse(savedMessages);
-                console.log('Loaded messages from localStorage:', messages);
-                displayMessages(messages);
-                return;
-            } catch (e) {
-                console.error('Error parsing localStorage messages:', e);
-            }
-        }
-        
-        // Fetch messages from Google Apps Script
+        // ALWAYS fetch from server first for latest data
         console.log('Fetching guestbook messages from Google Apps Script...');
         fetch('https://script.google.com/macros/s/AKfycbxbT20wJlX3fgzm1A384zn44zp3D22WNYzlei03MhE4g5i6Qit3m8eOgUDp6Dmhuir9Tg/exec?action=get_messages')
             .then(response => {
@@ -1848,20 +1906,50 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
                         // Save to localStorage for offline access
                         localStorage.setItem('guestbook_messages', JSON.stringify(data.messages));
                     } else {
-                        console.log('No messages found, showing sample');
-                        displaySampleMessage();
+                        console.log('No messages found, trying localStorage backup');
+                        loadFromLocalStorageBackup();
                     }
                 } catch (e) {
                     console.error('JSON parse error:', e);
-                    console.log('Showing sample message due to parse error');
-                    displaySampleMessage();
+                    console.log('Parse error, trying localStorage backup');
+                    loadFromLocalStorageBackup();
                 }
             })
             .catch(error => {
                 console.error('Fetch error:', error);
-                console.log('Showing sample message due to fetch error');
-                displaySampleMessage();
+                console.log('Network error, trying localStorage backup');
+                loadFromLocalStorageBackup();
             });
+    }
+    
+    // Load from localStorage as backup when server fails
+    function loadFromLocalStorageBackup() {
+        var savedMessages = localStorage.getItem('guestbook_messages');
+        if (savedMessages) {
+            try {
+                var messages = JSON.parse(savedMessages);
+                console.log('Loaded messages from localStorage backup:', messages);
+                displayMessages(messages);
+                return;
+            } catch (e) {
+                console.error('Error parsing localStorage messages:', e);
+            }
+        }
+        
+        // If no localStorage backup, show sample
+        console.log('No backup data, showing sample message');
+        displaySampleMessage();
+    }
+    
+    // Force refresh messages from server (bypass localStorage)
+    function refreshGuestbookMessages() {
+        console.log('🔄 Force refreshing guestbook messages from server...');
+        
+        // Clear localStorage to force fresh fetch
+        localStorage.removeItem('guestbook_messages');
+        
+        // Reload messages
+        loadGuestbookMessages();
     }
     
     // Display messages from data
@@ -2161,13 +2249,52 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
         }
     }
     
+    // Start wedding experience - hide welcome screen and play music
+    function startWeddingExperience() {
+        console.log('🎉 Starting wedding experience...');
+        
+        // Hide welcome screen with fade out animation
+        const welcomeScreen = document.getElementById('welcome-screen');
+        if (welcomeScreen) {
+            welcomeScreen.style.transition = 'opacity 0.8s ease-out';
+            welcomeScreen.style.opacity = '0';
+            
+            setTimeout(() => {
+                welcomeScreen.style.display = 'none';
+                console.log('✅ Welcome screen hidden');
+            }, 800);
+        }
+        
+        // Now that user has interacted, try to play music
+        setTimeout(() => {
+            console.log('🎵 User interaction detected - attempting to play music...');
+            if (window.weddingAudio) {
+                window.weddingAudio.play().then(() => {
+                    console.log('🎵 Music started successfully after user interaction!');
+                    window.isMusicPlaying = true;
+                    updateMusicButton();
+                }).catch(e => {
+                    console.log('🎵 Still failed to play music:', e.message);
+                    window.isMusicPlaying = false;
+                    updateMusicButton();
+                });
+            }
+        }, 100);
+        
+        // Scroll to top smoothly
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    }
+    
     // Initialize background music
     function initBackgroundMusic() {
         console.log('🎵 Initializing background music...');
         
         const audio = new Audio('Assest/musicOffical.mp3');
         audio.loop = true;
-        audio.volume = 1; // Set volume to 100%
+        audio.volume = 0.3; // Giảm volume xuống 30% để không quá to
         
         // Debug audio events
         audio.addEventListener('loadstart', () => console.log('🎵 Audio load started'));
@@ -2175,35 +2302,100 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
         audio.addEventListener('playing', () => console.log('🎵 Audio is playing'));
         audio.addEventListener('error', (e) => console.error('🎵 Audio error:', e));
         
-        // Try to play music when user interacts with page
+        // Try to play immediately
         const playMusic = () => {
-            console.log('🎵 User interaction detected, trying to play music...');
+            console.log('🎵 Trying to play music...');
             audio.play().then(() => {
                 console.log('🎵 Music started successfully!');
+                window.isMusicPlaying = true;
+                updateMusicButton();
             }).catch(e => {
-                console.error('🎵 Auto-play prevented:', e);
+                console.log('🎵 Auto-play prevented by browser:', e.message);
+                console.log('🎵 Music will play on first user interaction');
+                window.isMusicPlaying = false;
+                updateMusicButton();
             });
         };
         
-        // Play on first user interaction
-        document.addEventListener('click', playMusic, { once: true });
-        document.addEventListener('touchstart', playMusic, { once: true });
-        document.addEventListener('keydown', playMusic, { once: true });
-        document.addEventListener('scroll', playMusic, { once: true });
+        // Music will be played after user clicks welcome screen button
+        console.log('🎵 Music ready, waiting for user interaction via welcome screen...');
         
-        // Also try to play immediately (may be blocked by browser)
-        setTimeout(() => {
-            console.log('🎵 Trying to auto-play music...');
-            audio.play().then(() => {
-                console.log('🎵 Auto-play successful!');
-            }).catch(e => {
-                console.log('🎵 Auto-play blocked by browser policy:', e.message);
-                console.log('🎵 Music will play on first user interaction');
-            });
-        }, 1000);
-        
-        // Store audio globally for debugging
+        // Store audio globally for debugging and control
         window.weddingAudio = audio;
+        window.isMusicPlaying = false;
+        
+        // Add event listeners to track actual audio state
+        audio.addEventListener('play', () => {
+            console.log('🎵 Audio play event fired');
+            window.isMusicPlaying = true;
+            updateMusicButton();
+        });
+        
+        audio.addEventListener('pause', () => {
+            console.log('🎵 Audio pause event fired');
+            window.isMusicPlaying = false;
+            updateMusicButton();
+        });
+        
+        audio.addEventListener('ended', () => {
+            console.log('🎵 Audio ended event fired');
+            window.isMusicPlaying = false;
+            updateMusicButton();
+        });
+        
+        // Update music button state
+        updateMusicButton();
+    }
+    
+    // Toggle music on/off
+    function toggleMusic() {
+        console.log('🎵 Toggle music clicked, current state:', window.isMusicPlaying);
+        
+        if (!window.weddingAudio) {
+            console.log('🎵 No audio available');
+            return;
+        }
+        
+        if (window.isMusicPlaying) {
+            // Pause music
+            window.weddingAudio.pause();
+            window.isMusicPlaying = false;
+            console.log('🎵 Music paused');
+            updateMusicButton();
+        } else {
+            // Play music
+            console.log('🎵 Attempting to play music...');
+            window.weddingAudio.play().then(() => {
+                window.isMusicPlaying = true;
+                console.log('🎵 Music resumed');
+                updateMusicButton();
+            }).catch(e => {
+                console.log('🎵 Failed to resume music:', e.message);
+                window.isMusicPlaying = false;
+                updateMusicButton();
+            });
+        }
+    }
+    
+    // Update music button icon
+    function updateMusicButton() {
+        const icon = document.getElementById('music-icon');
+        if (!icon) {
+            console.log('🎵 Music icon not found');
+            return;
+        }
+        
+        console.log('🎵 Updating music button, isPlaying:', window.isMusicPlaying);
+        
+        if (window.isMusicPlaying) {
+            icon.className = 'fa fa-volume-up';
+            icon.style.color = '#e8ca6f';
+            console.log('🎵 Icon set to volume-up');
+        } else {
+            icon.className = 'fa fa-volume-off';
+            icon.style.color = '#999';
+            console.log('🎵 Icon set to volume-off');
+        }
     }
     
     // Countdown Timer Functionality
@@ -2491,6 +2683,8 @@ Sự gần gũi dần lớn lên, và từ lúc nào không hay, mỗi lần th�
         loadGuestbookMessages();
         initBackgroundMusic();
         initCountdownTimer();
+        
+        // Music will be played after user clicks welcome screen button
     });
 </script>
 
