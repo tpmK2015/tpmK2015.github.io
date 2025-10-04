@@ -88,7 +88,7 @@
     </div>
 </div>
 
-<section class="hero" style="min-height: 100vh !important; background: url('img/ALBUM25X35/pic_07.jpg') center top !important; background-size: cover !important; background-repeat: no-repeat !important; position: relative !important; z-index: 1 !important;">
+<section class="hero" style="min-height: 100vh !important; background: url('img/ALBUM25X35/pic_01.jpg') center center !important; background-size: cover !important; background-repeat: no-repeat !important; position: relative !important; z-index: 1 !important;">
     <section class="navigation" style="position: relative !important; z-index: 10 !important;">
         <header>
             <div class="header-content">
@@ -109,7 +109,7 @@
                         <ul class="primary-nav" style="background: rgba(255,255,255,0.95); border-radius: 20px; padding: 6px 15px; box-shadow: 0 2px 10px rgba(0,0,0,0.08); display: flex; align-items: center; gap: 8px; margin: 0; list-style: none;">
                             <li><a href="#story" style="color: #e8ca6f; font-weight: 500; text-shadow: none; padding: 6px 12px; display: inline-block; line-height: 1.2; text-decoration: none; font-size: 13px;">Câu chuyện</a></li>
                             <li><a href="#events" style="color: #e8ca6f; font-weight: 500; text-shadow: none; padding: 6px 12px; display: inline-block; line-height: 1.2; text-decoration: none; font-size: 13px;">Sự kiện cưới</a></li>
-                            <li><a href="#instagram" style="color: #e8ca6f; font-weight: 500; text-shadow: none; padding: 6px 12px; display: inline-block; line-height: 1.2; text-decoration: none; font-size: 13px;">Khoảnh khắc</a></li>
+                            <li><a href="#gallery-tabbed" style="color: #e8ca6f; font-weight: 500; text-shadow: none; padding: 6px 12px; display: inline-block; line-height: 1.2; text-decoration: none; font-size: 13px;">Khoảnh khắc</a></li>
                             <li><a href="#eng-pics" style="color: #e8ca6f; font-weight: 500; text-shadow: none; padding: 6px 12px; display: inline-block; line-height: 1.2; text-decoration: none; font-size: 13px;">Lễ đính hôn</a></li>
                             <li><a href="#guestbook" style="color: #e8ca6f; font-weight: 500; text-shadow: none; padding: 6px 12px; display: inline-block; line-height: 1.2; text-decoration: none; font-size: 13px;">Lời chúc</a></li>
                             <li><a href="#hashtag" style="color: #e8ca6f; font-weight: 500; text-shadow: none; padding: 6px 12px; display: inline-block; line-height: 1.2; text-decoration: none; font-size: 13px;">Chia sẻ</a></li>
@@ -136,7 +136,7 @@
         </div>
     </div>
     
-    <div class="down-arrow floating-arrow" style="position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);"><a href="#" id="scroll-to-bottom"><i class="fa fa-angle-down"></i></a></div>
+    <div class="down-arrow floating-arrow" style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 1000;"><a href="#" id="scroll-to-bottom" style="background: rgba(232, 202, 111, 0.9); color: white; width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; text-decoration: none; box-shadow: 0 4px 15px rgba(0,0,0,0.3); transition: all 0.3s ease; border: 2px solid white;" onmouseover="this.style.background='#e8ca6f'; this.style.transform='scale(1.1)'" onmouseout="this.style.background='rgba(232, 202, 111, 0.9)'; this.style.transform='scale(1)'"><i class="fa fa-angle-down" style="font-size: 20px; font-weight: bold;"></i></a></div>
 </section>
 
 <section id="invitation" class="section-padding" style="padding-top: 40px; padding-bottom: 40px;">
@@ -252,10 +252,6 @@
                     </p>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="col-sm-4 col-sm-push-2 col-xs-6 hidden-md hidden-lg"><img src="img/ALBUM25X35/pic_05.jpg" class="wp8"></div>
-            <div class="col-sm-4 col-sm-push-2 col-xs-6 hidden-md hidden-lg"><img src="img/ALBUM25X35/pic_06.jpg" class="wp9"></div>
         </div>
     </div>
 </section>
@@ -375,7 +371,7 @@
         <div class="row section-border wp7">
             <div class="col-md-12">
                 <!-- Gallery Tabbed -->
-                <div class="gallery-tabs-container" style="margin-top: 30px;">
+                <div id="gallery-tabbed" class="gallery-tabs-container" style="margin-top: 30px;">
                     <!-- Tab Navigation -->
                     <div class="gallery-tabs" style="display: flex; justify-content: center; margin-bottom: 30px; flex-wrap: wrap; gap: 10px;">
                         <button class="tab-btn active" data-tab="all" style="background: linear-gradient(135deg, #e8ca6f, #f4d03f); color: white; border: none; padding: 12px 24px; border-radius: 25px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 4px 15px rgba(232, 202, 111, 0.3);">
@@ -1791,6 +1787,20 @@
                    transform: none !important;
                }
                
+               /* Hero section responsive for mobile */
+               .hero {
+                   background-size: cover !important;
+                   background-position: center 25% !important;
+                   min-height: 100vh !important;
+               }
+               
+               /* Alternative: Use different positioning for mobile */
+               @media (max-width: 480px) {
+                   .hero {
+                       background-position: center 20% !important;
+                   }
+               }
+               
                .music-control button {
                    width: 35px !important;
                    height: 35px !important;
@@ -2082,34 +2092,37 @@
            
            /* To-top button styling */
            .to-top-wrapper {
-               position: fixed;
-               bottom: 30px;
-               right: 30px;
-               z-index: 1000;
+               position: fixed !important;
+               bottom: 30px !important;
+               right: 30px !important;
+               z-index: 10000 !important;
+               display: block !important;
            }
            
            .to-top {
-               width: 60px;
-               height: 60px;
-               background: linear-gradient(135deg, #e8ca6f 0%, #d4af37 100%);
-               border-radius: 50%;
-               display: flex;
-               align-items: center;
-               justify-content: center;
-               color: white;
-               text-decoration: none;
-               box-shadow: 0 5px 15px rgba(232, 202, 111, 0.4);
-               transition: all 0.2s ease;
-               cursor: pointer;
-               border: none;
-               outline: none;
-               transform: scale(1);
+               width: 60px !important;
+               height: 60px !important;
+               background: linear-gradient(135deg, #e8ca6f 0%, #d4af37 100%) !important;
+               border-radius: 50% !important;
+               display: flex !important;
+               align-items: center !important;
+               justify-content: center !important;
+               color: white !important;
+               text-decoration: none !important;
+               box-shadow: 0 5px 15px rgba(232, 202, 111, 0.6) !important;
+               transition: all 0.3s ease !important;
+               cursor: pointer !important;
+               border: 3px solid white !important;
+               outline: none !important;
+               transform: scale(1) !important;
+               opacity: 0.9 !important;
            }
            
            .to-top:hover {
-               transform: translateY(-3px);
-               box-shadow: 0 8px 25px rgba(232, 202, 111, 0.6);
-               background: linear-gradient(135deg, #d4af37 0%, #e8ca6f 100%);
+               transform: translateY(-3px) scale(1.1) !important;
+               box-shadow: 0 8px 25px rgba(232, 202, 111, 0.8) !important;
+               background: linear-gradient(135deg, #d4af37 0%, #e8ca6f 100%) !important;
+               opacity: 1 !important;
            }
            
            .to-top i {
