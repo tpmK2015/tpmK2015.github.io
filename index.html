@@ -380,8 +380,8 @@
                         <button class="tab-btn" data-tab="album" style="background: rgba(255,255,255,0.9); color: #e8ca6f; border: 2px solid #e8ca6f; padding: 12px 24px; border-radius: 25px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
                             <i class="fa fa-book" style="margin-right: 8px;"></i>Album chính
                         </button>
-                        <button class="tab-btn" data-tab="moments" style="background: rgba(255,255,255,0.9); color: #2196f3; border: 2px solid #2196f3; padding: 12px 24px; border-radius: 25px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
-                            <i class="fa fa-camera" style="margin-right: 8px;"></i>Khoảnh khắc
+                        <button class="tab-btn" data-tab="picture" style="background: rgba(255,255,255,0.9); color: #2196f3; border: 2px solid #2196f3; padding: 12px 24px; border-radius: 25px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
+                            <i class="fa fa-images" style="margin-right: 8px;"></i>Album Picture
                         </button>
                         <button class="tab-btn" data-tab="special" style="background: rgba(255,255,255,0.9); color: #e91e63; border: 2px solid #e91e63; padding: 12px 24px; border-radius: 25px; font-weight: 600; cursor: pointer; transition: all 0.3s ease;">
                             <i class="fa fa-star" style="margin-right: 8px;"></i>Ảnh đặc biệt
@@ -639,43 +639,139 @@
                             </div>
                         </div>
                         
-                        <!-- Tab: Moments Only -->
-                        <div class="tab-content" id="moments" style="display: none;">
-                            <!-- Picture Images Only -->
-                            <div class="gallery-item picture-item" style="position: relative; overflow: hidden; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); cursor: pointer;" onclick="openLightbox('img/picture/7U6A2277.jpg')">
-                                <img src="img/picture/7U6A2277.jpg" style="width: 100%; height: 300px; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: white; padding: 15px; text-align: center;">
-                                    <i class="fa fa-camera" style="color: #2196f3;"></i> Khoảnh khắc 01
+                        <!-- Tab: Album Picture -->
+                        <div class="tab-content" id="picture" style="display: none;">
+                            <div class="masonry-container" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 25px; margin-top: 20px;">
+                                
+                            <div class="gallery-item picture-item masonry-item" style="position: relative; overflow: hidden; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); cursor: pointer; transition: all 0.4s ease; opacity: 0; transform: translateY(20px);" onclick="openLightbox('img/picture/7U6A2277.jpg')" data-index="0">
+                                <img src="img/picture/7U6A2277.jpg" style="width: 100%; height: 320px; object-fit: cover; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" loading="lazy">
+                                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 20px; text-align: center;">
+                                    <i class="fa fa-images" style="color: #2196f3; margin-right: 8px;"></i> 
+                                    <span style="font-weight: 600;">Picture 01</span>
+                                </div>
+                                <div class="image-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(33, 150, 243, 0); transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fa fa-search-plus" style="color: transparent; font-size: 30px; transition: all 0.3s ease;"></i>
                                 </div>
                             </div>
-                            <div class="gallery-item picture-item" style="position: relative; overflow: hidden; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); cursor: pointer;" onclick="openLightbox('img/picture/7U6A2340.jpg')">
-                                <img src="img/picture/7U6A2340.jpg" style="width: 100%; height: 300px; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: white; padding: 15px; text-align: center;">
-                                    <i class="fa fa-camera" style="color: #2196f3;"></i> Khoảnh khắc 02
+                            <div class="gallery-item picture-item masonry-item" style="position: relative; overflow: hidden; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); cursor: pointer; transition: all 0.4s ease; opacity: 0; transform: translateY(20px);" onclick="openLightbox('img/picture/7U6A2294.jpg')" data-index="1">
+                                <img src="img/picture/7U6A2294.jpg" style="width: 100%; height: 286px; object-fit: cover; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" loading="lazy">
+                                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 20px; text-align: center;">
+                                    <i class="fa fa-images" style="color: #2196f3; margin-right: 8px;"></i> 
+                                    <span style="font-weight: 600;">Picture 02</span>
+                                </div>
+                                <div class="image-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(33, 150, 243, 0); transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fa fa-search-plus" style="color: transparent; font-size: 30px; transition: all 0.3s ease;"></i>
                                 </div>
                             </div>
-                            <div class="gallery-item picture-item" style="position: relative; overflow: hidden; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); cursor: pointer;" onclick="openLightbox('img/picture/7U6A3602.jpg')">
-                                <img src="img/picture/7U6A3602.jpg" style="width: 100%; height: 300px; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: white; padding: 15px; text-align: center;">
-                                    <i class="fa fa-camera" style="color: #2196f3;"></i> Khoảnh khắc 03
+                            <div class="gallery-item picture-item masonry-item" style="position: relative; overflow: hidden; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); cursor: pointer; transition: all 0.4s ease; opacity: 0; transform: translateY(20px);" onclick="openLightbox('img/picture/7U6A2312.jpg')" data-index="2">
+                                <img src="img/picture/7U6A2312.jpg" style="width: 100%; height: 349px; object-fit: cover; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" loading="lazy">
+                                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 20px; text-align: center;">
+                                    <i class="fa fa-images" style="color: #2196f3; margin-right: 8px;"></i> 
+                                    <span style="font-weight: 600;">Picture 03</span>
+                                </div>
+                                <div class="image-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(33, 150, 243, 0); transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fa fa-search-plus" style="color: transparent; font-size: 30px; transition: all 0.3s ease;"></i>
                                 </div>
                             </div>
-                            <div class="gallery-item picture-item" style="position: relative; overflow: hidden; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); cursor: pointer;" onclick="openLightbox('img/picture/7U6A4248.jpg')">
-                                <img src="img/picture/7U6A4248.jpg" style="width: 100%; height: 300px; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: white; padding: 15px; text-align: center;">
-                                    <i class="fa fa-camera" style="color: #2196f3;"></i> Khoảnh khắc 04
+                            <div class="gallery-item picture-item masonry-item" style="position: relative; overflow: hidden; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); cursor: pointer; transition: all 0.4s ease; opacity: 0; transform: translateY(20px);" onclick="openLightbox('img/picture/7U6A2340.jpg')" data-index="3">
+                                <img src="img/picture/7U6A2340.jpg" style="width: 100%; height: 290px; object-fit: cover; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" loading="lazy">
+                                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 20px; text-align: center;">
+                                    <i class="fa fa-images" style="color: #2196f3; margin-right: 8px;"></i> 
+                                    <span style="font-weight: 600;">Picture 04</span>
+                                </div>
+                                <div class="image-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(33, 150, 243, 0); transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fa fa-search-plus" style="color: transparent; font-size: 30px; transition: all 0.3s ease;"></i>
                                 </div>
                             </div>
-                            <div class="gallery-item picture-item" style="position: relative; overflow: hidden; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); cursor: pointer;" onclick="openLightbox('img/picture/7U6A4474.jpg')">
-                                <img src="img/picture/7U6A4474.jpg" style="width: 100%; height: 300px; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: white; padding: 15px; text-align: center;">
-                                    <i class="fa fa-camera" style="color: #2196f3;"></i> Khoảnh khắc 05
+                            <div class="gallery-item picture-item masonry-item" style="position: relative; overflow: hidden; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); cursor: pointer; transition: all 0.4s ease; opacity: 0; transform: translateY(20px);" onclick="openLightbox('img/picture/7U6A2356.jpg')" data-index="4">
+                                <img src="img/picture/7U6A2356.jpg" style="width: 100%; height: 298px; object-fit: cover; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" loading="lazy">
+                                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 20px; text-align: center;">
+                                    <i class="fa fa-images" style="color: #2196f3; margin-right: 8px;"></i> 
+                                    <span style="font-weight: 600;">Picture 05</span>
+                                </div>
+                                <div class="image-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(33, 150, 243, 0); transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fa fa-search-plus" style="color: transparent; font-size: 30px; transition: all 0.3s ease;"></i>
                                 </div>
                             </div>
-                            <div class="gallery-item picture-item" style="position: relative; overflow: hidden; border-radius: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.1); cursor: pointer;" onclick="openLightbox('img/picture/7U6A4588.jpg')">
-                                <img src="img/picture/7U6A4588.jpg" style="width: 100%; height: 300px; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-                                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.7)); color: white; padding: 15px; text-align: center;">
-                                    <i class="fa fa-camera" style="color: #2196f3;"></i> Khoảnh khắc 06
+                            <div class="gallery-item picture-item masonry-item" style="position: relative; overflow: hidden; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); cursor: pointer; transition: all 0.4s ease; opacity: 0; transform: translateY(20px);" onclick="openLightbox('img/picture/7U6A2490.jpg')" data-index="5">
+                                <img src="img/picture/7U6A2490.jpg" style="width: 100%; height: 258px; object-fit: cover; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" loading="lazy">
+                                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 20px; text-align: center;">
+                                    <i class="fa fa-images" style="color: #2196f3; margin-right: 8px;"></i> 
+                                    <span style="font-weight: 600;">Picture 06</span>
+                                </div>
+                                <div class="image-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(33, 150, 243, 0); transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fa fa-search-plus" style="color: transparent; font-size: 30px; transition: all 0.3s ease;"></i>
+                                </div>
+                            </div>
+                            <div class="gallery-item picture-item masonry-item" style="position: relative; overflow: hidden; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); cursor: pointer; transition: all 0.4s ease; opacity: 0; transform: translateY(20px);" onclick="openLightbox('img/picture/7U6A2511.jpg')" data-index="6">
+                                <img src="img/picture/7U6A2511.jpg" style="width: 100%; height: 308px; object-fit: cover; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" loading="lazy">
+                                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 20px; text-align: center;">
+                                    <i class="fa fa-images" style="color: #2196f3; margin-right: 8px;"></i> 
+                                    <span style="font-weight: 600;">Picture 07</span>
+                                </div>
+                                <div class="image-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(33, 150, 243, 0); transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fa fa-search-plus" style="color: transparent; font-size: 30px; transition: all 0.3s ease;"></i>
+                                </div>
+                            </div>
+                            <div class="gallery-item picture-item masonry-item" style="position: relative; overflow: hidden; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); cursor: pointer; transition: all 0.4s ease; opacity: 0; transform: translateY(20px);" onclick="openLightbox('img/picture/7U6A2642.jpg')" data-index="7">
+                                <img src="img/picture/7U6A2642.jpg" style="width: 100%; height: 253px; object-fit: cover; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" loading="lazy">
+                                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 20px; text-align: center;">
+                                    <i class="fa fa-images" style="color: #2196f3; margin-right: 8px;"></i> 
+                                    <span style="font-weight: 600;">Picture 08</span>
+                                </div>
+                                <div class="image-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(33, 150, 243, 0); transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fa fa-search-plus" style="color: transparent; font-size: 30px; transition: all 0.3s ease;"></i>
+                                </div>
+                            </div>
+                            <div class="gallery-item picture-item masonry-item" style="position: relative; overflow: hidden; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); cursor: pointer; transition: all 0.4s ease; opacity: 0; transform: translateY(20px);" onclick="openLightbox('img/picture/7U6A2767.jpg')" data-index="8">
+                                <img src="img/picture/7U6A2767.jpg" style="width: 100%; height: 281px; object-fit: cover; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" loading="lazy">
+                                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 20px; text-align: center;">
+                                    <i class="fa fa-images" style="color: #2196f3; margin-right: 8px;"></i> 
+                                    <span style="font-weight: 600;">Picture 09</span>
+                                </div>
+                                <div class="image-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(33, 150, 243, 0); transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fa fa-search-plus" style="color: transparent; font-size: 30px; transition: all 0.3s ease;"></i>
+                                </div>
+                            </div>
+                            <div class="gallery-item picture-item masonry-item" style="position: relative; overflow: hidden; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); cursor: pointer; transition: all 0.4s ease; opacity: 0; transform: translateY(20px);" onclick="openLightbox('img/picture/7U6A2809.jpg')" data-index="9">
+                                <img src="img/picture/7U6A2809.jpg" style="width: 100%; height: 315px; object-fit: cover; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" loading="lazy">
+                                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 20px; text-align: center;">
+                                    <i class="fa fa-images" style="color: #2196f3; margin-right: 8px;"></i> 
+                                    <span style="font-weight: 600;">Picture 10</span>
+                                </div>
+                                <div class="image-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(33, 150, 243, 0); transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fa fa-search-plus" style="color: transparent; font-size: 30px; transition: all 0.3s ease;"></i>
+                                </div>
+                            </div>
+                            <div class="gallery-item picture-item masonry-item" style="position: relative; overflow: hidden; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); cursor: pointer; transition: all 0.4s ease; opacity: 0; transform: translateY(20px);" onclick="openLightbox('img/picture/7U6A2842.jpg')" data-index="10">
+                                <img src="img/picture/7U6A2842.jpg" style="width: 100%; height: 315px; object-fit: cover; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" loading="lazy">
+                                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 20px; text-align: center;">
+                                    <i class="fa fa-images" style="color: #2196f3; margin-right: 8px;"></i> 
+                                    <span style="font-weight: 600;">Picture 11</span>
+                                </div>
+                                <div class="image-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(33, 150, 243, 0); transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fa fa-search-plus" style="color: transparent; font-size: 30px; transition: all 0.3s ease;"></i>
+                                </div>
+                            </div>
+                            <div class="gallery-item picture-item masonry-item" style="position: relative; overflow: hidden; border-radius: 15px; box-shadow: 0 8px 25px rgba(0,0,0,0.15); cursor: pointer; transition: all 0.4s ease; opacity: 0; transform: translateY(20px);" onclick="openLightbox('img/picture/7U6A2988.jpg')" data-index="11">
+                                <img src="img/picture/7U6A2988.jpg" style="width: 100%; height: 271px; object-fit: cover; transition: transform 0.4s ease;" onmouseover="this.style.transform='scale(1.08)'" onmouseout="this.style.transform='scale(1)'" loading="lazy">
+                                <div style="position: absolute; bottom: 0; left: 0; right: 0; background: linear-gradient(transparent, rgba(0,0,0,0.8)); color: white; padding: 20px; text-align: center;">
+                                    <i class="fa fa-images" style="color: #2196f3; margin-right: 8px;"></i> 
+                                    <span style="font-weight: 600;">Picture 12</span>
+                                </div>
+                                <div class="image-overlay" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(33, 150, 243, 0); transition: all 0.3s ease; display: flex; align-items: center; justify-content: center;">
+                                    <i class="fa fa-search-plus" style="color: transparent; font-size: 30px; transition: all 0.3s ease;"></i>
+                                </div>
+                            </div>
+                            </div>
+                            
+                            <!-- Pagination -->
+                            <div class="pagination-container" style="text-align: center; margin-top: 40px;">
+                                <button id="load-more-pictures" style="background: linear-gradient(135deg, #2196f3, #1976d2); color: white; border: none; padding: 15px 40px; border-radius: 30px; font-weight: 600; cursor: pointer; transition: all 0.3s ease; box-shadow: 0 6px 20px rgba(33, 150, 243, 0.4); font-size: 16px;">
+                                    <i class="fa fa-plus" style="margin-right: 10px;"></i>Xem thêm ảnh
+                                </button>
+                                <div id="picture-counter" style="margin-top: 15px; color: #666; font-size: 14px;">
+                                    Hiển thị 12 / 40 ảnh
                                 </div>
                             </div>
                         </div>
@@ -4014,6 +4110,7 @@
         initCountdownTimer();
         initCommentFiltering();
         initSmoothScroll();
+        initPictureGallery();
         
         // Start real-time sync after messages are loaded
         setTimeout(() => {
@@ -4075,10 +4172,10 @@
                 tabButtons.forEach(btn => {
                     btn.style.background = 'rgba(255,255,255,0.9)';
                     btn.style.color = btn.getAttribute('data-tab') === 'album' ? '#e8ca6f' : 
-                                    btn.getAttribute('data-tab') === 'moments' ? '#2196f3' : 
+                                    btn.getAttribute('data-tab') === 'picture' ? '#2196f3' : 
                                     btn.getAttribute('data-tab') === 'special' ? '#e91e63' : '#e8ca6f';
                     btn.style.border = btn.getAttribute('data-tab') === 'album' ? '2px solid #e8ca6f' : 
-                                     btn.getAttribute('data-tab') === 'moments' ? '2px solid #2196f3' : 
+                                     btn.getAttribute('data-tab') === 'picture' ? '2px solid #2196f3' : 
                                      btn.getAttribute('data-tab') === 'special' ? '2px solid #e91e63' : '2px solid #e8ca6f';
                     btn.style.boxShadow = 'none';
                 });
@@ -4391,6 +4488,83 @@
         
         // Initialize button visibility
         showImage(currentIndex);
+    }
+    
+    // Initialize Picture Gallery with pagination and animations
+    function initPictureGallery() {
+        // Hide all masonry items initially (except first 12)
+        const masonryItems = document.querySelectorAll('.masonry-item');
+        masonryItems.forEach((item, index) => {
+            if (index >= 12) {
+                item.style.display = 'none';
+            }
+        });
+        
+        // Animate visible items
+        setTimeout(() => {
+            masonryItems.forEach((item, index) => {
+                if (index < 12) {
+                    setTimeout(() => {
+                        item.style.opacity = '1';
+                        item.style.transform = 'translateY(0)';
+                    }, index * 100);
+                }
+            });
+        }, 300);
+        
+        // Add hover effects
+        masonryItems.forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                const overlay = this.querySelector('.image-overlay');
+                const icon = this.querySelector('.fa-search-plus');
+                if (overlay && icon) {
+                    overlay.style.background = 'rgba(33, 150, 243, 0.3)';
+                    icon.style.color = 'white';
+                }
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                const overlay = this.querySelector('.image-overlay');
+                const icon = this.querySelector('.fa-search-plus');
+                if (overlay && icon) {
+                    overlay.style.background = 'rgba(33, 150, 243, 0)';
+                    icon.style.color = 'transparent';
+                }
+            });
+        });
+        
+        // Load more pictures functionality
+        const loadMoreBtn = document.getElementById('load-more-pictures');
+        const counter = document.getElementById('picture-counter');
+        let currentVisible = 12;
+        const totalImages = masonryItems.length;
+        
+        if (loadMoreBtn && counter) {
+            loadMoreBtn.addEventListener('click', function() {
+                const nextBatch = Math.min(12, totalImages - currentVisible);
+                
+                // Show next batch with animation
+                for (let i = currentVisible; i < currentVisible + nextBatch; i++) {
+                    if (masonryItems[i]) {
+                        masonryItems[i].style.display = 'block';
+                        setTimeout(() => {
+                            masonryItems[i].style.opacity = '1';
+                            masonryItems[i].style.transform = 'translateY(0)';
+                        }, (i - currentVisible) * 100);
+                    }
+                }
+                
+                currentVisible += nextBatch;
+                
+                // Update counter
+                counter.textContent = `Hiển thị ${currentVisible} / ${totalImages} ảnh`;
+                
+                // Hide button if all images are shown
+                if (currentVisible >= totalImages) {
+                    loadMoreBtn.style.display = 'none';
+                }
+            });
+        }
     }
 </script>
 
