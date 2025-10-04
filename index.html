@@ -4106,9 +4106,36 @@
     // Enhanced Lightbox functionality with navigation
     function openLightbox(imageSrc) {
         // Get all images in current tab
-        const currentTab = document.querySelector('.tab-content.active');
+        const currentTab = document.querySelector('.tab-content.active') || document.querySelector('.tab-content[style*="grid"]');
         const allImages = Array.from(currentTab.querySelectorAll('.gallery-item img'));
-        const currentIndex = allImages.findIndex(img => img.src.includes(imageSrc.split('/').pop()));
+        const imageName = imageSrc.split('/').pop();
+        let currentIndex = allImages.findIndex(img => img.src.includes(imageName));
+        
+        // Fallback: if not found, try to find by onclick attribute
+        if (currentIndex === -1) {
+            const galleryItems = Array.from(currentTab.querySelectorAll('.gallery-item'));
+            currentIndex = galleryItems.findIndex(item => {
+                const onclick = item.getAttribute('onclick');
+                return onclick && onclick.includes(imageName);
+            });
+        }
+        
+        // Another fallback: try to find by exact src match
+        if (currentIndex === -1) {
+            currentIndex = allImages.findIndex(img => img.src.endsWith(imageName));
+        }
+        
+        // Ensure we have a valid index
+        if (currentIndex === -1) currentIndex = 0;
+        
+        // Debug logging
+        console.log('Lightbox Debug:', {
+            imageSrc: imageSrc,
+            imageName: imageName,
+            currentIndex: currentIndex,
+            totalImages: allImages.length,
+            allImageSrcs: allImages.map(img => img.src)
+        });
         
         // Create lightbox overlay
         const lightbox = document.createElement('div');
@@ -4176,44 +4203,48 @@
         prevBtn.innerHTML = '‹';
         prevBtn.style.cssText = `
             position: absolute;
-            left: -60px;
+            left: 10px;
             top: 50%;
             transform: translateY(-50%);
             color: white;
-            font-size: 50px;
+            font-size: 40px;
             font-weight: bold;
             cursor: pointer;
             z-index: 10001;
-            background: rgba(0, 0, 0, 0.7);
-            width: 60px;
-            height: 60px;
+            background: rgba(0, 0, 0, 0.8);
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
+            user-select: none;
+            touch-action: manipulation;
         `;
         
         const nextBtn = document.createElement('div');
         nextBtn.innerHTML = '›';
         nextBtn.style.cssText = `
             position: absolute;
-            right: -60px;
+            right: 10px;
             top: 50%;
             transform: translateY(-50%);
             color: white;
-            font-size: 50px;
+            font-size: 40px;
             font-weight: bold;
             cursor: pointer;
             z-index: 10001;
-            background: rgba(0, 0, 0, 0.7);
-            width: 60px;
-            height: 60px;
+            background: rgba(0, 0, 0, 0.8);
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
-            transition: background 0.3s ease;
+            transition: all 0.3s ease;
+            user-select: none;
+            touch-action: manipulation;
         `;
         
         // Create image counter
@@ -4302,6 +4333,34 @@
             e.stopPropagation();
             nextImage();
         });
+        
+        // Touch events for mobile
+        let touchStartX = 0;
+        let touchEndX = 0;
+        
+        lightbox.addEventListener('touchstart', function(e) {
+            touchStartX = e.changedTouches[0].screenX;
+        });
+        
+        lightbox.addEventListener('touchend', function(e) {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+        });
+        
+        function handleSwipe() {
+            const swipeThreshold = 50;
+            const diff = touchStartX - touchEndX;
+            
+            if (Math.abs(diff) > swipeThreshold) {
+                if (diff > 0) {
+                    // Swipe left - next image
+                    nextImage();
+                } else {
+                    // Swipe right - previous image
+                    prevImage();
+                }
+            }
+        }
         
         // Keyboard navigation
         function handleKeyPress(e) {
