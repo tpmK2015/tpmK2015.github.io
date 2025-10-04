@@ -2186,10 +2186,20 @@
                    min-height: 100vh !important;
                }
                
-               /* Alternative: Use different positioning for mobile */
+               /* Mobile optimization: Use contain to preserve image details */
+               @media (max-width: 768px) {
+                   .hero {
+                       background-size: contain !important;
+                       background-position: center center !important;
+                       background-color: #f8f8f8 !important; /* Fallback background */
+                   }
+               }
+               
+               /* Small mobile: Keep contain but adjust position */
                @media (max-width: 480px) {
                    .hero {
-                       background-position: center 20% !important;
+                       background-size: contain !important;
+                       background-position: center 30% !important;
                    }
                }
                
