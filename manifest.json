@@ -1,19 +1,19 @@
 {
-    "name": "Trung & Thư - Về chung một nhà",
-    "short_name": "Trung & Thư",
+    "name": "Đức Trung & Thanh Thư - Về chung một nhà",
+    "short_name": "Đức Trung & Thanh Thư",
     "icons": [
         {
-            "src": "android-chrome-192x192.png",
+            "src": "Assest/SubLogo.png",
             "sizes": "192x192",
             "type": "image/png"
         },
         {
-            "src": "android-chrome-256x256.png",
+            "src": "Assest/SubLogo.png",
             "sizes": "256x256",
             "type": "image/png"
         }
     ],
-    "theme_color": "#e91e63",
+    "theme_color": "#e8ca6f",
     "background_color": "#ffffff",
     "display": "standalone"
 }
