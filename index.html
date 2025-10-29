@@ -80,7 +80,7 @@
     </div>
 </div>
 
-<section class="hero" style="min-height: 100vh !important; background: url('img/picture/7U6A3695.jpg') center center !important; background-size: cover !important; background-repeat: no-repeat !important; position: relative !important; z-index: 1 !important;">
+<section class="hero" style="min-height: 100vh !important; background: url('img/picture/7U6A3320.jpg') center center !important; background-size: cover !important; background-repeat: no-repeat !important; position: relative !important; z-index: 1 !important;">
     <section class="navigation" style="position: relative !important; z-index: 10 !important;">
         <header>
             <div class="header-content">
@@ -246,126 +246,212 @@
 
 
 <!-- Sự Kiện Cưới -->
-<section class="events section-padding" id="events">
-    <div class="container">
+<section class="events section-padding" id="events" style="position: relative; overflow: hidden;">
+    <!-- Background Pattern -->
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; opacity: 0.03; background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23e8ca6f\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E'); z-index: 0;"></div>
+    
+    <div class="container" style="position: relative; z-index: 1;">
         <div class="row">
             <div class="col-md-12 text-center">
-                <h3 class="header" style="margin-bottom: 8px;">Sự Kiện Cưới</h3>
-                <p style="color: #666; font-size: 12px; margin-bottom: 15px;">Cảm ơn bạn rất nhiều vì đã gửi những lời chúc mừng tốt đẹp nhất đến đám cưới của chúng mình!</p>
+                <h3 class="header" style="margin-bottom: 12px; font-size: 32px; color: #333; font-weight: 700;">
+                    <i class="fa fa-calendar" style="color: #e8ca6f; margin-right: 10px;"></i>
+                    Sự Kiện Cưới
+                </h3>
+                <p style="color: #666; font-size: 14px; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; line-height: 1.6;">
+                    Cảm ơn bạn rất nhiều vì đã gửi những lời chúc mừng tốt đẹp nhất đến đám cưới của chúng mình!
+                </p>
             </div>
         </div>
         
-        <!-- Events Grid Layout -->
-        <div class="row">
+        <!-- Events Timeline Layout -->
+        <div class="row" style="position: relative;">
             <!-- TIỆC CƯỚI NHÀ NỮ -->
-            <div class="col-md-4 col-sm-12" style="margin-bottom: 20px;">
-                <div style="background: linear-gradient(135deg, #fff8e1 0%, #fffbf0 100%); padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(232, 202, 111, 0.2); height: 100%; display: flex; flex-direction: column;">
-                    <div style="background: #e8ca6f; color: white; padding: 6px 12px; border-radius: 15px; display: inline-block; margin-bottom: 12px; font-weight: 600; font-size: 12px; text-align: center; width: 100%;">
-                        TIỆC CƯỚI NHÀ NỮ
+            <div class="col-md-4 col-sm-12" style="margin-bottom: 30px;">
+                <div class="event-card" style="background: linear-gradient(135deg, #fff8e1 0%, #fffbf0 100%); padding: 25px; border-radius: 20px; box-shadow: 0 8px 25px rgba(232, 202, 111, 0.25); height: 100%; display: flex; flex-direction: column; position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: 2px solid rgba(232, 202, 111, 0.2);" 
+                     onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 15px 35px rgba(232, 202, 111, 0.4)'; this.style.borderColor='#e8ca6f';" 
+                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(232, 202, 111, 0.25)'; this.style.borderColor='rgba(232, 202, 111, 0.2)';">
+                    
+                    <!-- Event Icon -->
+                    <div style="position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; background: rgba(232, 202, 111, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <i class="fa fa-heart" style="font-size: 40px; color: rgba(232, 202, 111, 0.3); transform: rotate(-15deg);"></i>
                     </div>
                     
-                    <h4 style="color: #333; font-size: 20px; font-weight: 700; margin-bottom: 8px; text-align: center;">
-                        16:30 19/12/2025
-                    </h4>
+                    <!-- Timeline Dot -->
+                    <div style="position: absolute; left: -15px; top: 50%; width: 30px; height: 30px; background: #e8ca6f; border-radius: 50%; border: 4px solid white; box-shadow: 0 3px 10px rgba(232, 202, 111, 0.5); z-index: 2;"></div>
                     
-                    <p style="color: #666; line-height: 1.5; margin-bottom: 12px; font-size: 14px; text-align: center;">
-                        Tam Xuân 2, Núi Thành, Quảng Nam
-                    </p>
+                    <div style="background: linear-gradient(135deg, #e8ca6f 0%, #d4af37 100%); color: white; padding: 8px 15px; border-radius: 20px; display: inline-block; margin-bottom: 15px; font-weight: 700; font-size: 11px; text-align: center; width: fit-content; box-shadow: 0 3px 8px rgba(232, 202, 111, 0.3); letter-spacing: 0.5px;">
+                        <i class="fa fa-female" style="margin-right: 5px;"></i> TIỆC CƯỚI NHÀ NỮ
+                    </div>
                     
-                    <!-- Thông tin liên hệ -->
-                    <div style="background: rgba(232, 202, 111, 0.1); padding: 8px; border-radius: 8px; margin-bottom: 15px;">
-                        <h6 style="color: #e8ca6f; font-size: 11px; font-weight: 600; margin-bottom: 3px; text-align: center;">
-                            <i class="fa fa-female" style="margin-right: 4px;"></i> Liên hệ: Cô dâu Thư
-                        </h6>
-                        <p style="margin: 0; color: #666; font-size: 10px; text-align: center;">
-                            <i class="fa fa-phone" style="color: #e8ca6f; margin-right: 4px;"></i>
-                            <a href="tel:+84778947439" style="color: #e8ca6f; text-decoration: none; font-weight: 600;">+84 778947439</a>
+                    <!-- Date & Time with icon -->
+                    <div style="background: white; padding: 15px; border-radius: 12px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                            <i class="fa fa-clock-o" style="font-size: 24px; color: #e8ca6f;"></i>
+                            <div>
+                                <h4 style="color: #333; font-size: 22px; font-weight: 700; margin: 0; line-height: 1.2;">
+                                    16:30
+                                </h4>
+                                <p style="color: #666; font-size: 13px; margin: 0; font-weight: 600;">
+                                    19/12/2025
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Location -->
+                    <div style="display: flex; align-items: start; gap: 10px; margin-bottom: 15px; padding: 12px; background: rgba(232, 202, 111, 0.08); border-radius: 10px;">
+                        <i class="fa fa-map-marker" style="font-size: 18px; color: #e8ca6f; margin-top: 2px;"></i>
+                        <p style="color: #555; line-height: 1.5; margin: 0; font-size: 13px; flex: 1;">
+                            Tam Xuân 2, Núi Thành, Quảng Nam
                         </p>
                     </div>
                     
-                    <!-- Buttons -->
-                    <div style="display: flex; flex-direction: column; gap: 8px; margin-top: auto;">
-                        <a href="https://maps.app.goo.gl/u2QLQifjDMWNPcY67" target="_blank" class="btn btn-primary" style="background: #e8ca6f; border: 1px solid #e8ca6f; color: white; padding: 8px 12px; border-radius: 12px; text-decoration: none; font-weight: 600; display: inline-block; font-size: 11px; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.background='white'; this.style.color='#e8ca6f';" onmouseout="this.style.background='#e8ca6f'; this.style.color='white';">
-                            <i class="fa fa-map-marker" style="margin-right: 4px;"></i> Xem bản đồ
+                    <!-- Contact Info -->
+                    <div style="background: rgba(232, 202, 111, 0.12); padding: 10px 15px; border-radius: 10px; margin-bottom: 15px; border-left: 3px solid #e8ca6f;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <i class="fa fa-female" style="color: #e8ca6f; font-size: 16px;"></i>
+                            <span style="color: #666; font-size: 12px; font-weight: 600;">Cô dâu Thư:</span>
+                            <a href="tel:+84778947439" style="color: #e8ca6f; text-decoration: none; font-weight: 700; font-size: 12px;">
+                                <i class="fa fa-phone" style="margin-right: 4px;"></i>+84 778947439
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div style="display: flex; flex-direction: column; gap: 10px; margin-top: auto;">
+                        <a href="https://maps.app.goo.gl/u2QLQifjDMWNPcY67" target="_blank" class="btn btn-primary" style="background: linear-gradient(135deg, #e8ca6f 0%, #d4af37 100%); border: none; color: white; padding: 12px 20px; border-radius: 12px; text-decoration: none; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; text-align: center; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(232, 202, 111, 0.3);" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 20px rgba(232, 202, 111, 0.5)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 12px rgba(232, 202, 111, 0.3)';">
+                            <i class="fa fa-map-marker" style="font-size: 16px;"></i> Xem bản đồ
                         </a>
-                        <button class="btn btn-secondary" style="background: white; border: 1px solid #e8ca6f; color: #e8ca6f; padding: 8px 12px; border-radius: 12px; text-decoration: none; font-weight: 600; display: inline-block; font-size: 11px; cursor: pointer; width: 100%;" onclick="addToCalendar('TIỆC CƯỚI NHÀ NỮ', '2025-12-19', '16:30', 'Tam Xuân 2, Núi Thành, Quảng Nam')">
-                            <i class="fa fa-calendar-plus-o" style="margin-right: 4px;"></i> Thêm vào lịch
+                        <button class="btn btn-secondary" style="background: white; border: 2px solid #e8ca6f; color: #e8ca6f; padding: 12px 20px; border-radius: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; cursor: pointer; transition: all 0.3s ease;" onclick="addToCalendar('TIỆC CƯỚI NHÀ NỮ', '2025-12-19', '16:30', 'Tam Xuân 2, Núi Thành, Quảng Nam')" onmouseover="this.style.background='#e8ca6f'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='#e8ca6f';">
+                            <i class="fa fa-calendar-plus-o" style="font-size: 16px;"></i> Thêm vào lịch
                         </button>
                     </div>
                 </div>
             </div>
             
             <!-- LỄ THÀNH HÔN -->
-            <div class="col-md-4 col-sm-12" style="margin-bottom: 20px;">
-                <div style="background: linear-gradient(135deg, #e3f2fd 0%, #f0f8ff 100%); padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(33, 150, 243, 0.2); height: 100%; display: flex; flex-direction: column;">
-                    <div style="background: #2196f3; color: white; padding: 6px 12px; border-radius: 15px; display: inline-block; margin-bottom: 12px; font-weight: 600; font-size: 12px; text-align: center; width: 100%;">
-                        LỄ THÀNH HÔN
+            <div class="col-md-4 col-sm-12" style="margin-bottom: 30px;">
+                <div class="event-card" style="background: linear-gradient(135deg, #e3f2fd 0%, #f0f8ff 100%); padding: 25px; border-radius: 20px; box-shadow: 0 8px 25px rgba(33, 150, 243, 0.25); height: 100%; display: flex; flex-direction: column; position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: 2px solid rgba(33, 150, 243, 0.2);" 
+                     onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 15px 35px rgba(33, 150, 243, 0.4)'; this.style.borderColor='#2196f3';" 
+                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(33, 150, 243, 0.25)'; this.style.borderColor='rgba(33, 150, 243, 0.2)';">
+                    
+                    <!-- Event Icon -->
+                    <div style="position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; background: rgba(33, 150, 243, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <span style="font-size: 50px; transform: rotate(15deg);">💍</span>
                     </div>
                     
-                    <h4 style="color: #333; font-size: 20px; font-weight: 700; margin-bottom: 8px; text-align: center;">
-                        09:00 21/12/2025
-                    </h4>
+                    <!-- Timeline Dot -->
+                    <div style="position: absolute; left: -15px; top: 50%; width: 30px; height: 30px; background: #2196f3; border-radius: 50%; border: 4px solid white; box-shadow: 0 3px 10px rgba(33, 150, 243, 0.5); z-index: 2;"></div>
                     
-                    <p style="color: #666; line-height: 1.5; margin-bottom: 12px; font-size: 14px; text-align: center;">
-                        Tam Anh Nam, Núi Thành, Quảng Nam
-                    </p>
+                    <div style="background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%); color: white; padding: 8px 15px; border-radius: 20px; display: inline-block; margin-bottom: 15px; font-weight: 700; font-size: 11px; text-align: center; width: fit-content; box-shadow: 0 3px 8px rgba(33, 150, 243, 0.3); letter-spacing: 0.5px;">
+                        <i class="fa fa-heart" style="margin-right: 5px;"></i> LỄ THÀNH HÔN
+                    </div>
                     
-                    <!-- Thông tin liên hệ -->
-                    <div style="background: rgba(33, 150, 243, 0.1); padding: 8px; border-radius: 8px; margin-bottom: 15px;">
-                        <h6 style="color: #2196f3; font-size: 11px; font-weight: 600; margin-bottom: 3px; text-align: center;">
-                            <i class="fa fa-male" style="margin-right: 4px;"></i> Liên hệ: Chú rể Trung
-                        </h6>
-                        <p style="margin: 0; color: #666; font-size: 10px; text-align: center;">
-                            <i class="fa fa-phone" style="color: #2196f3; margin-right: 4px;"></i>
-                            <a href="tel:+84384101606" style="color: #2196f3; text-decoration: none; font-weight: 600;">+84 384 101 606</a>
+                    <!-- Date & Time with icon -->
+                    <div style="background: white; padding: 15px; border-radius: 12px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                            <i class="fa fa-clock-o" style="font-size: 24px; color: #2196f3;"></i>
+                            <div>
+                                <h4 style="color: #333; font-size: 22px; font-weight: 700; margin: 0; line-height: 1.2;">
+                                    09:00
+                                </h4>
+                                <p style="color: #666; font-size: 13px; margin: 0; font-weight: 600;">
+                                    21/12/2025
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Location -->
+                    <div style="display: flex; align-items: start; gap: 10px; margin-bottom: 15px; padding: 12px; background: rgba(33, 150, 243, 0.08); border-radius: 10px;">
+                        <i class="fa fa-map-marker" style="font-size: 18px; color: #2196f3; margin-top: 2px;"></i>
+                        <p style="color: #555; line-height: 1.5; margin: 0; font-size: 13px; flex: 1;">
+                            Tam Anh Nam, Núi Thành, Quảng Nam
                         </p>
                     </div>
                     
-                    <!-- Buttons -->
-                    <div style="display: flex; flex-direction: column; gap: 8px; margin-top: auto;">
-                        <a href="https://maps.app.goo.gl/YWJTd7Gv1GSjnLhs9" target="_blank" class="btn btn-primary" style="background: #2196f3; border: 1px solid #2196f3; color: white; padding: 8px 12px; border-radius: 12px; text-decoration: none; font-weight: 600; display: inline-block; font-size: 11px; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.background='white'; this.style.color='#2196f3';" onmouseout="this.style.background='#2196f3'; this.style.color='white';">
-                            <i class="fa fa-map-marker" style="margin-right: 4px;"></i> Xem bản đồ
+                    <!-- Contact Info -->
+                    <div style="background: rgba(33, 150, 243, 0.12); padding: 10px 15px; border-radius: 10px; margin-bottom: 15px; border-left: 3px solid #2196f3;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <i class="fa fa-male" style="color: #2196f3; font-size: 16px;"></i>
+                            <span style="color: #666; font-size: 12px; font-weight: 600;">Chú rể Trung:</span>
+                            <a href="tel:+84384101606" style="color: #2196f3; text-decoration: none; font-weight: 700; font-size: 12px;">
+                                <i class="fa fa-phone" style="margin-right: 4px;"></i>+84 384 101 606
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div style="display: flex; flex-direction: column; gap: 10px; margin-top: auto;">
+                        <a href="https://maps.app.goo.gl/YWJTd7Gv1GSjnLhs9" target="_blank" class="btn btn-primary" style="background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%); border: none; color: white; padding: 12px 20px; border-radius: 12px; text-decoration: none; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; text-align: center; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(33, 150, 243, 0.3);" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 20px rgba(33, 150, 243, 0.5)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 12px rgba(33, 150, 243, 0.3)';">
+                            <i class="fa fa-map-marker" style="font-size: 16px;"></i> Xem bản đồ
                         </a>
-                        <button class="btn btn-secondary" style="background: white; border: 1px solid #2196f3; color: #2196f3; padding: 8px 12px; border-radius: 12px; text-decoration: none; font-weight: 600; display: inline-block; font-size: 11px; cursor: pointer; width: 100%;" onclick="addToCalendar('LỄ THÀNH HÔN', '2025-12-21', '09:00', 'Tam Anh Nam, Núi Thành, Quảng Nam')">
-                            <i class="fa fa-calendar-plus-o" style="margin-right: 4px;"></i> Thêm vào lịch
+                        <button class="btn btn-secondary" style="background: white; border: 2px solid #2196f3; color: #2196f3; padding: 12px 20px; border-radius: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; cursor: pointer; transition: all 0.3s ease;" onclick="addToCalendar('LỄ THÀNH HÔN', '2025-12-21', '09:00', 'Tam Anh Nam, Núi Thành, Quảng Nam')" onmouseover="this.style.background='#2196f3'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='#2196f3';">
+                            <i class="fa fa-calendar-plus-o" style="font-size: 16px;"></i> Thêm vào lịch
                         </button>
                     </div>
                 </div>
             </div>
             
             <!-- TIỆC CƯỚI NHÀ NAM -->
-            <div class="col-md-4 col-sm-12" style="margin-bottom: 20px;">
-                <div style="background: linear-gradient(135deg, #f3e5f5 0%, #fce4ec 100%); padding: 20px; border-radius: 15px; box-shadow: 0 5px 15px rgba(156, 39, 176, 0.2); height: 100%; display: flex; flex-direction: column;">
-                    <div style="background: #9c27b0; color: white; padding: 6px 12px; border-radius: 15px; display: inline-block; margin-bottom: 12px; font-weight: 600; font-size: 12px; text-align: center; width: 100%;">
-                        TIỆC CƯỚI NHÀ NAM
+            <div class="col-md-4 col-sm-12" style="margin-bottom: 30px;">
+                <div class="event-card" style="background: linear-gradient(135deg, #f3e5f5 0%, #fce4ec 100%); padding: 25px; border-radius: 20px; box-shadow: 0 8px 25px rgba(156, 39, 176, 0.25); height: 100%; display: flex; flex-direction: column; position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: 2px solid rgba(156, 39, 176, 0.2);" 
+                     onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 15px 35px rgba(156, 39, 176, 0.4)'; this.style.borderColor='#9c27b0';" 
+                     onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(156, 39, 176, 0.25)'; this.style.borderColor='rgba(156, 39, 176, 0.2)';">
+                    
+                    <!-- Event Icon -->
+                    <div style="position: absolute; top: -20px; right: -20px; width: 100px; height: 100px; background: rgba(156, 39, 176, 0.1); border-radius: 50%; display: flex; align-items: center; justify-content: center;">
+                        <span style="font-size: 50px; transform: rotate(-15deg);">🥂</span>
                     </div>
                     
-                    <h4 style="color: #333; font-size: 20px; font-weight: 700; margin-bottom: 8px; text-align: center;">
-                        10:00 21/12/2025
-                    </h4>
+                    <!-- Timeline Dot -->
+                    <div style="position: absolute; left: -15px; top: 50%; width: 30px; height: 30px; background: #9c27b0; border-radius: 50%; border: 4px solid white; box-shadow: 0 3px 10px rgba(156, 39, 176, 0.5); z-index: 2;"></div>
                     
-                    <p style="color: #666; line-height: 1.5; margin-bottom: 12px; font-size: 14px; text-align: center;">
-                        Nhà Văn Hoá Thôn Nam Định, Tam Anh Nam, Núi Thành, Quảng Nam
-                    </p>
+                    <div style="background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%); color: white; padding: 8px 15px; border-radius: 20px; display: inline-block; margin-bottom: 15px; font-weight: 700; font-size: 11px; text-align: center; width: fit-content; box-shadow: 0 3px 8px rgba(156, 39, 176, 0.3); letter-spacing: 0.5px;">
+                        <i class="fa fa-male" style="margin-right: 5px;"></i> TIỆC CƯỚI NHÀ NAM
+                    </div>
                     
-                    <!-- Thông tin liên hệ -->
-                    <div style="background: rgba(156, 39, 176, 0.1); padding: 8px; border-radius: 8px; margin-bottom: 15px;">
-                        <h6 style="color: #9c27b0; font-size: 11px; font-weight: 600; margin-bottom: 3px; text-align: center;">
-                            <i class="fa fa-male" style="margin-right: 4px;"></i> Liên hệ: Chú rể Trung
-                        </h6>
-                        <p style="margin: 0; color: #666; font-size: 10px; text-align: center;">
-                            <i class="fa fa-phone" style="color: #9c27b0; margin-right: 4px;"></i>
-                            <a href="tel:+84384101606" style="color: #9c27b0; text-decoration: none; font-weight: 600;">+84 384 101 606</a>
+                    <!-- Date & Time with icon -->
+                    <div style="background: white; padding: 15px; border-radius: 12px; margin-bottom: 15px; box-shadow: 0 2px 8px rgba(0,0,0,0.05);">
+                        <div style="display: flex; align-items: center; justify-content: center; gap: 10px;">
+                            <i class="fa fa-clock-o" style="font-size: 24px; color: #9c27b0;"></i>
+                            <div>
+                                <h4 style="color: #333; font-size: 22px; font-weight: 700; margin: 0; line-height: 1.2;">
+                                    10:00
+                                </h4>
+                                <p style="color: #666; font-size: 13px; margin: 0; font-weight: 600;">
+                                    21/12/2025
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Location -->
+                    <div style="display: flex; align-items: start; gap: 10px; margin-bottom: 15px; padding: 12px; background: rgba(156, 39, 176, 0.08); border-radius: 10px;">
+                        <i class="fa fa-map-marker" style="font-size: 18px; color: #9c27b0; margin-top: 2px;"></i>
+                        <p style="color: #555; line-height: 1.5; margin: 0; font-size: 13px; flex: 1;">
+                            Nhà Văn Hoá Thôn Nam Định, Tam Anh Nam, Núi Thành, Quảng Nam
                         </p>
                     </div>
                     
-                    <!-- Buttons -->
-                    <div style="display: flex; flex-direction: column; gap: 8px; margin-top: auto;">
-                        <a href="https://maps.app.goo.gl/YWJTd7Gv1GSjnLhs9" target="_blank" class="btn btn-primary" style="background: #9c27b0; border: 1px solid #9c27b0; color: white; padding: 8px 12px; border-radius: 12px; text-decoration: none; font-weight: 600; display: inline-block; font-size: 11px; text-align: center; transition: all 0.3s ease;" onmouseover="this.style.background='white'; this.style.color='#9c27b0';" onmouseout="this.style.background='#9c27b0'; this.style.color='white';">
-                            <i class="fa fa-map-marker" style="margin-right: 4px;"></i> Xem bản đồ
+                    <!-- Contact Info -->
+                    <div style="background: rgba(156, 39, 176, 0.12); padding: 10px 15px; border-radius: 10px; margin-bottom: 15px; border-left: 3px solid #9c27b0;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <i class="fa fa-male" style="color: #9c27b0; font-size: 16px;"></i>
+                            <span style="color: #666; font-size: 12px; font-weight: 600;">Chú rể Trung:</span>
+                            <a href="tel:+84384101606" style="color: #9c27b0; text-decoration: none; font-weight: 700; font-size: 12px;">
+                                <i class="fa fa-phone" style="margin-right: 4px;"></i>+84 384 101 606
+                            </a>
+                        </div>
+                    </div>
+                    
+                    <!-- Action Buttons -->
+                    <div style="display: flex; flex-direction: column; gap: 10px; margin-top: auto;">
+                        <a href="https://maps.app.goo.gl/YWJTd7Gv1GSjnLhs9" target="_blank" class="btn btn-primary" style="background: linear-gradient(135deg, #9c27b0 0%, #7b1fa2 100%); border: none; color: white; padding: 12px 20px; border-radius: 12px; text-decoration: none; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; text-align: center; transition: all 0.3s ease; box-shadow: 0 4px 12px rgba(156, 39, 176, 0.3);" onmouseover="this.style.transform='scale(1.05)'; this.style.boxShadow='0 6px 20px rgba(156, 39, 176, 0.5)';" onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='0 4px 12px rgba(156, 39, 176, 0.3)';">
+                            <i class="fa fa-map-marker" style="font-size: 16px;"></i> Xem bản đồ
                         </a>
-                        <button class="btn btn-secondary" style="background: white; border: 1px solid #9c27b0; color: #9c27b0; padding: 8px 12px; border-radius: 12px; text-decoration: none; font-weight: 600; display: inline-block; font-size: 11px; cursor: pointer; width: 100%;" onclick="addToCalendar('TIỆC CƯỚI NHÀ NAM', '2025-12-21', '10:00', 'Nhà Văn Hoá Thôn Nam Định, Tam Anh Nam, Núi Thành, Quảng Nam')">
-                            <i class="fa fa-calendar-plus-o" style="margin-right: 4px;"></i> Thêm vào lịch
+                        <button class="btn btn-secondary" style="background: white; border: 2px solid #9c27b0; color: #9c27b0; padding: 12px 20px; border-radius: 12px; font-weight: 600; display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; cursor: pointer; transition: all 0.3s ease;" onclick="addToCalendar('TIỆC CƯỚI NHÀ NAM', '2025-12-21', '10:00', 'Nhà Văn Hoá Thôn Nam Định, Tam Anh Nam, Núi Thành, Quảng Nam')" onmouseover="this.style.background='#9c27b0'; this.style.color='white';" onmouseout="this.style.background='white'; this.style.color='#9c27b0';">
+                            <i class="fa fa-calendar-plus-o" style="font-size: 16px;"></i> Thêm vào lịch
                         </button>
                     </div>
                 </div>
@@ -1466,6 +1552,30 @@
         <div class="row">
             <div class="col-sm-12 text-center content">
                 <span class="to-top-wrapper"><a href="#top" class="to-top"><i class="fa fa-angle-up"></i></a></span>
+                
+                <!-- Dropdown Menu -->
+                <div class="dropdown-menu-wrapper">
+                    <button class="dropdown-toggle" id="dropdownToggle">
+                        <i class="fa fa-bars"></i>
+                    </button>
+                    <div class="dropdown-menu" id="dropdownMenu">
+                        <button class="dropdown-item" onclick="scrollToWishes()">
+                            <span class="dropdown-item-text">Gửi lời chúc</span>
+                            <i class="fa fa-comment"></i>
+                        </button>
+                        <button class="dropdown-item" onclick="scrollToRSVP()">
+                            <span class="dropdown-item-text">Xác nhận tham dự</span>
+                            <i class="fa fa-check-circle"></i>
+                        </button>
+                        <button class="dropdown-item" onclick="scrollToGift()">
+                            <span class="dropdown-item-text">Mừng cưới</span>
+                            <i class="fa fa-money"></i>
+                        </button>
+                        <button class="dropdown-item close-item" onclick="closeDropdown()">
+                            <i class="fa fa-times"></i>
+                        </button>
+                    </div>
+                </div>
                 <p>Tạo bởi Đức Trung với thật nhiều <span class="fa fa-heart pulse2"></span> cho Thanh Thư</p>
             </div>
         </div>
@@ -1519,28 +1629,72 @@
     
     // Function to add event to calendar
     function addToCalendar(eventName, date, time, location) {
-        // Create calendar event data
-        const eventData = {
-            name: eventName + " (Đám cưới Đức Trung và Thanh Thư)",
-            description: "Cảm ơn bạn đã dành thời gian tham dự đám cưới của chúng tôi!. Thông tin chi tiết xem tại website: http://trungthuwedding.com",
-            startDate: date,
-            endDate: date,
-            startTime: time,
-            endTime: time,
-            location: location,
-            options: ["Apple", "Google", "iCal", "Microsoft365", "MicrosoftTeams", "Outlook.com", "Yahoo"],
-            timeZone: "Asia/Ho_Chi_Minh",
-            iCalFileName: "Reminder-Event",
-            listStyle: "modal",
-            label: "Thêm vào lịch",
-            trigger: "click"
-        };
-        
-        // Use AddEvent.com service
-        const addEventUrl = `https://www.addevent.com/event/${encodeURIComponent(JSON.stringify(eventData))}`;
-        
-        // Open calendar modal or redirect
-        window.open(addEventUrl, '_blank', 'width=600,height=400');
+        try {
+            // Parse date and time
+            const [year, month, day] = date.split('-');
+            const [hours, minutes] = time.split(':');
+            
+            // Create start date
+            const startDate = new Date(year, month - 1, day, hours, minutes);
+            
+            // End time is 3 hours after start
+            const endDate = new Date(startDate.getTime() + (3 * 60 * 60 * 1000));
+            
+            // Format dates for iCalendar (YYYYMMDDTHHMMSS)
+            const formatDate = (d) => {
+                const pad = (n) => n.toString().padStart(2, '0');
+                return `${d.getFullYear()}${pad(d.getMonth() + 1)}${pad(d.getDate())}T${pad(d.getHours())}${pad(d.getMinutes())}00`;
+            };
+            
+            const dtStart = formatDate(startDate);
+            const dtEnd = formatDate(endDate);
+            
+            // Create .ics file content
+            const icsContent = [
+                'BEGIN:VCALENDAR',
+                'VERSION:2.0',
+                'PRODID:-//Đám cưới Trung & Thư//Wedding Event//EN',
+                'CALSCALE:GREGORIAN',
+                'METHOD:PUBLISH',
+                'X-WR-CALNAME:Đám cưới Đức Trung & Thanh Thư',
+                'X-WR-TIMEZONE:Asia/Ho_Chi_Minh',
+                'BEGIN:VEVENT',
+                `DTSTART:${dtStart}`,
+                `DTEND:${dtEnd}`,
+                `DTSTAMP:${formatDate(new Date())}`,
+                `UID:${Date.now()}@trungthuwedding.com`,
+                `SUMMARY:${eventName} - Đám cưới Đức Trung & Thanh Thư`,
+                `DESCRIPTION:Cảm ơn bạn đã dành thời gian tham dự đám cưới của chúng mình!\\nThông tin chi tiết: http://trungthuwedding.com`,
+                `LOCATION:${location}`,
+                'STATUS:CONFIRMED',
+                'SEQUENCE:0',
+                'BEGIN:VALARM',
+                'TRIGGER:-PT1H',
+                'DESCRIPTION:Nhắc nhở: 1 giờ trước sự kiện',
+                'ACTION:DISPLAY',
+                'END:VALARM',
+                'END:VEVENT',
+                'END:VCALENDAR'
+            ].join('\r\n');
+            
+            // Create blob and download
+            const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+            const url = window.URL.createObjectURL(blob);
+            const link = document.createElement('a');
+            link.href = url;
+            link.setAttribute('download', `dam-cuoi-trung-thu-${eventName.toLowerCase().replace(/\s/g, '-')}.ics`);
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+            window.URL.revokeObjectURL(url);
+            
+            // Show success message
+            alert('✅ File lịch đã được tải xuống!\n\nVui lòng mở file để thêm vào lịch của bạn (Apple Calendar, Google Calendar, Outlook...)');
+            
+        } catch (error) {
+            console.error('Error adding to calendar:', error);
+            alert('❌ Có lỗi xảy ra khi tạo file lịch. Vui lòng thử lại!');
+        }
     }
     
     // Function to copy account information
@@ -2473,6 +2627,185 @@
            .col-sm-12.text-center.content {
                position: relative;
                z-index: 1;
+           }
+           
+           /* Dropdown Menu Styling */
+           .dropdown-menu-wrapper {
+               position: fixed !important;
+               bottom: 30px !important;
+               right: 30px !important;
+               z-index: 10001 !important;
+           }
+           
+           .dropdown-toggle {
+               width: 60px !important;
+               height: 60px !important;
+               background: linear-gradient(135deg, #c85a6e 0%, #b24d5e 100%) !important;
+               border-radius: 50% !important;
+               display: flex !important;
+               align-items: center !important;
+               justify-content: center !important;
+               color: white !important;
+               border: 3px solid white !important;
+               box-shadow: 0 4px 15px rgba(200, 90, 110, 0.5) !important;
+               transition: all 0.3s ease !important;
+               cursor: pointer !important;
+               outline: none !important;
+           }
+           
+           .dropdown-toggle:hover {
+               transform: scale(1.05) !important;
+               box-shadow: 0 6px 20px rgba(200, 90, 110, 0.7) !important;
+           }
+           
+           .dropdown-toggle i {
+               font-size: 22px;
+               transition: transform 0.3s ease;
+           }
+           
+           .dropdown-menu {
+               display: none;
+               position: fixed;
+               bottom: 102px;
+               right: 30px;
+               flex-direction: column-reverse;
+               align-items: flex-end;
+               gap: 12px;
+               z-index: 10002;
+           }
+           
+           .dropdown-menu.active {
+               display: flex !important;
+           }
+           
+           .dropdown-item {
+               display: inline-flex !important;
+               align-items: center !important;
+               justify-content: flex-start !important;
+               background: linear-gradient(135deg, #c85a6e 0%, #b24d5e 100%) !important;
+               color: white !important;
+               border: none !important;
+               border-radius: 25px !important;
+               padding: 10px 12px 10px 18px !important;
+               cursor: pointer !important;
+               transition: all 0.3s ease !important;
+               box-shadow: 0 4px 12px rgba(200, 90, 110, 0.4) !important;
+               white-space: nowrap !important;
+               min-height: 44px !important;
+               width: auto !important;
+               max-width: fit-content !important;
+               opacity: 0;
+               transform: translateY(15px);
+               animation: dropdownSlideUp 0.35s ease forwards;
+           }
+           
+           .dropdown-item:nth-child(4) { animation-delay: 0.05s; }
+           .dropdown-item:nth-child(3) { animation-delay: 0.1s; }
+           .dropdown-item:nth-child(2) { animation-delay: 0.15s; }
+           .dropdown-item:nth-child(1) { animation-delay: 0.2s; }
+           
+           .dropdown-item:hover {
+               transform: translateX(-5px) !important;
+               box-shadow: 0 6px 18px rgba(200, 90, 110, 0.6) !important;
+               background: linear-gradient(135deg, #b24d5e 0%, #c85a6e 100%) !important;
+           }
+           
+           .dropdown-item-text {
+               font-size: 14px;
+               font-weight: 600;
+               letter-spacing: 0.2px;
+               text-align: left;
+           }
+           
+           .dropdown-item i {
+               font-size: 15px;
+               background: white;
+               color: #c85a6e;
+               width: 36px;
+               height: 36px;
+               border-radius: 50%;
+               display: flex;
+               align-items: center;
+               justify-content: center;
+               flex-shrink: 0;
+               box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+               margin-left: 12px;
+           }
+           
+           .dropdown-item.close-item {
+               background: rgba(200, 90, 110, 0.85) !important;
+               padding: 10px !important;
+               width: 52px;
+               min-height: 44px !important;
+               justify-content: center !important;
+           }
+           
+           .dropdown-item.close-item:hover {
+               background: rgba(178, 77, 94, 0.95) !important;
+               transform: rotate(90deg) !important;
+           }
+           
+           .dropdown-item.close-item .dropdown-item-text {
+               display: none;
+           }
+           
+           .dropdown-item.close-item i {
+               margin-left: 0;
+           }
+           
+           @keyframes dropdownSlideUp {
+               from {
+                   opacity: 0;
+                   transform: translateY(15px);
+               }
+               to {
+                   opacity: 1;
+                   transform: translateY(0);
+               }
+           }
+           
+           /* Mobile responsive */
+           @media (max-width: 768px) {
+               .dropdown-menu-wrapper {
+                   bottom: 25px !important;
+                   right: 15px !important;
+               }
+               
+               .dropdown-toggle {
+                   width: 55px !important;
+                   height: 55px !important;
+               }
+               
+               .dropdown-toggle i {
+                   font-size: 20px;
+               }
+               
+               .dropdown-menu {
+                   gap: 10px;
+                   bottom: 90px;
+                   right: 15px;
+               }
+               
+               .dropdown-item {
+                   padding: 12px 16px 12px 22px !important;
+                   min-height: 50px !important;
+               }
+               
+               .dropdown-item-text {
+                   font-size: 14px;
+               }
+               
+               .dropdown-item i {
+                   width: 38px;
+                   height: 38px;
+                   font-size: 15px;
+                   margin-left: 14px;
+               }
+               
+               .dropdown-item.close-item {
+                   width: 55px;
+                   min-height: 50px !important;
+               }
            }
            
            /* Pulse animation for heart */
@@ -4897,6 +5230,112 @@
             });
         }
     }
+    
+    // ==================== DROPDOWN MENU FUNCTIONALITY ====================
+    
+    // Toggle dropdown menu
+    document.addEventListener('DOMContentLoaded', function() {
+        const dropdownToggle = document.getElementById('dropdownToggle');
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        
+        if (dropdownToggle && dropdownMenu) {
+            dropdownToggle.addEventListener('click', function(e) {
+                e.preventDefault();
+                e.stopPropagation();
+                
+                // Toggle active class
+                dropdownMenu.classList.toggle('active');
+                
+                // Rotate icon
+                const icon = this.querySelector('i');
+                if (dropdownMenu.classList.contains('active')) {
+                    icon.style.transform = 'rotate(90deg)';
+                } else {
+                    icon.style.transform = 'rotate(0deg)';
+                }
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!e.target.closest('.dropdown-menu-wrapper')) {
+                    dropdownMenu.classList.remove('active');
+                    const icon = dropdownToggle.querySelector('i');
+                    if (icon) {
+                        icon.style.transform = 'rotate(0deg)';
+                    }
+                }
+            });
+        }
+    });
+    
+    // Scroll to Wishes/Guestbook section
+    function scrollToWishes() {
+        const guestbookSection = document.getElementById('guestbook');
+        if (guestbookSection) {
+            // Close dropdown
+            closeDropdown();
+            
+            // Smooth scroll to section
+            setTimeout(() => {
+                guestbookSection.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            }, 300);
+        }
+    }
+    
+    // Scroll to RSVP section
+    function scrollToRSVP() {
+        const rsvpSection = document.getElementById('rsvp');
+        if (rsvpSection) {
+            // Close dropdown
+            closeDropdown();
+            
+            // Smooth scroll to section
+            setTimeout(() => {
+                rsvpSection.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            }, 300);
+        }
+    }
+    
+    // Scroll to Gift section
+    function scrollToGift() {
+        const giftSection = document.getElementById('gift-box');
+        if (giftSection) {
+            // Close dropdown
+            closeDropdown();
+            
+            // Smooth scroll to section
+            setTimeout(() => {
+                giftSection.scrollIntoView({ 
+                    behavior: 'smooth', 
+                    block: 'start' 
+                });
+            }, 300);
+        }
+    }
+    
+    // Close dropdown menu
+    function closeDropdown() {
+        const dropdownMenu = document.getElementById('dropdownMenu');
+        const dropdownToggle = document.getElementById('dropdownToggle');
+        
+        if (dropdownMenu) {
+            dropdownMenu.classList.remove('active');
+        }
+        
+        if (dropdownToggle) {
+            const icon = dropdownToggle.querySelector('i');
+            if (icon) {
+                icon.style.transform = 'rotate(0deg)';
+            }
+        }
+    }
+    
 </script>
 
 </body>
