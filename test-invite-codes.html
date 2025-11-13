@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Mã Mời - Wedding Website</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        
+        .subtitle {
+            text-align: center;
+            color: #666;
+            margin-bottom: 40px;
+            font-size: 14px;
+        }
+        
+        .test-section {
+            background: #f8f9fa;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .test-section h2 {
+            color: #667eea;
+            font-size: 20px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .test-section.bride {
+            border-left-color: #e8ca6f;
+        }
+        
+        .test-section.bride h2 {
+            color: #e8ca6f;
+        }
+        
+        .test-section.groom {
+            border-left-color: #2196f3;
+        }
+        
+        .test-section.groom h2 {
+            color: #2196f3;
+        }
+        
+        .info {
+            background: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .info-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .icon {
+            font-size: 20px;
+        }
+        
+        .link-box {
+            background: #e3f2fd;
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            word-break: break-all;
+            font-family: 'Courier New', monospace;
+            font-size: 13px;
+            color: #1976d2;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+        }
+        
+        .btn-bride {
+            background: linear-gradient(135deg, #e8ca6f 0%, #d4af37 100%);
+        }
+        
+        .btn-bride:hover {
+            box-shadow: 0 5px 20px rgba(232, 202, 111, 0.4);
+        }
+        
+        .btn-groom {
+            background: linear-gradient(135deg, #2196f3 0%, #1976d2 100%);
+        }
+        
+        .btn-groom:hover {
+            box-shadow: 0 5px 20px rgba(33, 150, 243, 0.4);
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .note {
+            background: #fff3cd;
+            border-left: 4px solid #ffc107;
+            padding: 15px;
+            border-radius: 5px;
+            margin-top: 30px;
+            font-size: 13px;
+            line-height: 1.6;
+        }
+        
+        .note strong {
+            color: #856404;
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 25px;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+            
+            .button-group {
+                flex-direction: column;
+            }
+            
+            .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎫 Test Hệ Thống Mã Mời</h1>
+        <p class="subtitle">Click vào các nút bên dưới để test các mã mời khác nhau</p>
+        
+        <!-- BRIDE19 -->
+        <div class="test-section bride">
+            <h2>👰 Mã Mời: BRIDE19</h2>
+            <div class="info">
+                <div class="info-item">
+                    <span class="icon">📅</span>
+                    <span><strong>Sự kiện:</strong> Tiệc Cưới Nhà Nữ</span>
+                </div>
+                <div class="info-item">
+                    <span class="icon">🕐</span>
+                    <span><strong>Thời gian:</strong> Thứ Sáu, 19/12/2025 - 16:30</span>
+                </div>
+                <div class="info-item">
+                    <span class="icon">📍</span>
+                    <span><strong>Địa điểm:</strong> Tam Xuân 2, Núi Thành</span>
+                </div>
+            </div>
+            <div class="link-box">
+                ?invite=BRIDE19
+            </div>
+            <div class="button-group">
+                <a href="index.html?invite=BRIDE19" class="btn btn-bride" target="_blank">
+                    🔗 Mở Link BRIDE19
+                </a>
+                <button class="btn btn-bride" onclick="copyLink('BRIDE19')">
+                    📋 Copy Link
+                </button>
+            </div>
+        </div>
+        
+        <!-- GROOM21 -->
+        <div class="test-section groom">
+            <h2>🤵 Mã Mời: GROOM21</h2>
+            <div class="info">
+                <div class="info-item">
+                    <span class="icon">📅</span>
+                    <span><strong>Sự kiện:</strong> Lễ Thành Hôn + Tiệc Cưới Nhà Nam</span>
+                </div>
+                <div class="info-item">
+                    <span class="icon">🕐</span>
+                    <span><strong>Thời gian:</strong> Chủ Nhật, 21/12/2025 - 09:00 & 10:00</span>
+                </div>
+                <div class="info-item">
+                    <span class="icon">📍</span>
+                    <span><strong>Địa điểm:</strong> Tam Anh Nam, Núi Thành</span>
+                </div>
+            </div>
+            <div class="link-box">
+                ?invite=GROOM21
+            </div>
+            <div class="button-group">
+                <a href="index.html?invite=GROOM21" class="btn btn-groom" target="_blank">
+                    🔗 Mở Link GROOM21
+                </a>
+                <button class="btn btn-groom" onclick="copyLink('GROOM21')">
+                    📋 Copy Link
+                </button>
+            </div>
+        </div>
+        
+        <!-- Default -->
+        <div class="test-section">
+            <h2>🌐 Mặc Định (Không Mã)</h2>
+            <div class="info">
+                <div class="info-item">
+                    <span class="icon">ℹ️</span>
+                    <span><strong>Hành vi:</strong> Tự động chuyển thành BRIDE19</span>
+                </div>
+            </div>
+            <div class="link-box">
+                (không có tham số)
+            </div>
+            <div class="button-group">
+                <a href="index.html" class="btn" target="_blank">
+                    🔗 Mở Link Mặc Định
+                </a>
+            </div>
+        </div>
+        
+        <div class="note">
+            <strong>📝 Lưu ý:</strong><br>
+            • Mỗi mã mời chỉ hiển thị sự kiện tương ứng<br>
+            • Countdown timer tự động đếm ngược đến sự kiện đúng<br>
+            • Event cards được highlight và center/resize tự động<br>
+            • Tabs chuyển đổi sự kiện sẽ bị ẩn khi chỉ có 1 sự kiện
+        </div>
+    </div>
+    
+    <script>
+        function copyLink(code) {
+            const baseUrl = window.location.origin + window.location.pathname.replace('test-invite-codes.html', 'index.html');
+            const fullUrl = baseUrl + '?invite=' + code;
+            
+            navigator.clipboard.writeText(fullUrl).then(() => {
+                alert('✅ Đã copy link: ' + fullUrl);
+            }).catch(() => {
+                alert('❌ Không thể copy. Link: ' + fullUrl);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -189,7 +189,7 @@
         <div class="row">
             <div class="col-md-12 text-center">
                 <h3 style="margin-bottom: 8px;">Chúng mình sắp cưới!</h3>
-                <p style="margin-bottom: 20px; font-size: 14px;">Vào ngày 19 & 21 tháng 12 năm 2025, chúng mình sẽ về chung một nhà và rất mong bạn sẽ đến chung vui.</p>
+                <p id="invitation-text" style="margin-bottom: 20px; font-size: 14px;">Vào ngày 19 & 21 tháng 12 năm 2025, chúng mình sẽ về chung một nhà và rất mong bạn sẽ đến chung vui.</p>
                 
                 <!-- Compact Countdown Timer -->
                 <div class="compact-countdown" style="background: linear-gradient(135deg, #fffbf0 0%, #fffef7 100%); border-radius: 15px; padding: 20px; margin: 30px auto; max-width: 600px; box-shadow: 0 5px 20px rgba(232, 202, 111, 0.15); border: 1px solid rgba(232, 202, 111, 0.2);">
@@ -264,9 +264,9 @@
         </div>
         
         <!-- Events Timeline Layout -->
-        <div class="row" style="position: relative;">
+        <div class="row" id="events-row" style="position: relative;">
             <!-- TIỆC CƯỚI NHÀ NỮ -->
-            <div class="col-md-4 col-sm-12" style="margin-bottom: 30px;">
+            <div class="col-md-4 col-sm-12 event-card-wrapper" data-event="BRIDE19" style="margin-bottom: 30px;">
                 <div class="event-card" style="background: linear-gradient(135deg, #fff8e1 0%, #fffbf0 100%); padding: 25px; border-radius: 20px; box-shadow: 0 8px 25px rgba(232, 202, 111, 0.25); height: 100%; display: flex; flex-direction: column; position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: 2px solid rgba(232, 202, 111, 0.2);" 
                      onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 15px 35px rgba(232, 202, 111, 0.4)'; this.style.borderColor='#e8ca6f';" 
                      onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(232, 202, 111, 0.25)'; this.style.borderColor='rgba(232, 202, 111, 0.2)';">
@@ -292,7 +292,7 @@
                                     16:30
                                 </h4>
                                 <p style="color: #666; font-size: 13px; margin: 0; font-weight: 600;">
-                                    19/12/2025
+                                    Thứ Sáu, 19/12/2025
                                 </p>
                             </div>
                         </div>
@@ -330,7 +330,7 @@
             </div>
             
             <!-- LỄ THÀNH HÔN -->
-            <div class="col-md-4 col-sm-12" style="margin-bottom: 30px;">
+            <div class="col-md-4 col-sm-12 event-card-wrapper" data-event="GROOM21" style="margin-bottom: 30px;">
                 <div class="event-card" style="background: linear-gradient(135deg, #e3f2fd 0%, #f0f8ff 100%); padding: 25px; border-radius: 20px; box-shadow: 0 8px 25px rgba(33, 150, 243, 0.25); height: 100%; display: flex; flex-direction: column; position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: 2px solid rgba(33, 150, 243, 0.2);" 
                      onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 15px 35px rgba(33, 150, 243, 0.4)'; this.style.borderColor='#2196f3';" 
                      onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(33, 150, 243, 0.25)'; this.style.borderColor='rgba(33, 150, 243, 0.2)';">
@@ -356,7 +356,7 @@
                                     09:00
                                 </h4>
                                 <p style="color: #666; font-size: 13px; margin: 0; font-weight: 600;">
-                                    21/12/2025
+                                    Chủ Nhật, 21/12/2025
                                 </p>
                             </div>
                         </div>
@@ -394,7 +394,7 @@
             </div>
             
             <!-- TIỆC CƯỚI NHÀ NAM -->
-            <div class="col-md-4 col-sm-12" style="margin-bottom: 30px;">
+            <div class="col-md-4 col-sm-12 event-card-wrapper" data-event="GROOM21" style="margin-bottom: 30px;">
                 <div class="event-card" style="background: linear-gradient(135deg, #f3e5f5 0%, #fce4ec 100%); padding: 25px; border-radius: 20px; box-shadow: 0 8px 25px rgba(156, 39, 176, 0.25); height: 100%; display: flex; flex-direction: column; position: relative; overflow: hidden; transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); border: 2px solid rgba(156, 39, 176, 0.2);" 
                      onmouseover="this.style.transform='translateY(-10px)'; this.style.boxShadow='0 15px 35px rgba(156, 39, 176, 0.4)'; this.style.borderColor='#9c27b0';" 
                      onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 8px 25px rgba(156, 39, 176, 0.25)'; this.style.borderColor='rgba(156, 39, 176, 0.2)';">
@@ -420,7 +420,7 @@
                                     10:00
                                 </h4>
                                 <p style="color: #666; font-size: 13px; margin: 0; font-weight: 600;">
-                                    21/12/2025
+                                    Chủ Nhật, 21/12/2025
                                 </p>
                             </div>
                         </div>
@@ -3746,17 +3746,28 @@
         const events = {
             'bride-party': {
                 title: 'Tiệc Nhà Gái',
-                date: '19 tháng 12, 2025 - 16:00',
+                date: 'Thứ Sáu, 19 tháng 12, 2025 - 16:30',
                 targetDate: new Date('Dec 19, 2025 16:30:00')
             },
             wedding: {
                 title: 'Lễ Thành Hôn',
-                date: '21 tháng 12, 2025 - 10:00',
-                targetDate: new Date('Dec 21, 2025 10:00:00')
+                date: 'Chủ Nhật, 21 tháng 12, 2025 - 09:00',
+                targetDate: new Date('Dec 21, 2025 09:00:00')
             }
         };
         
-        let currentEvent = 'bride-party';
+        // Get invite code from URL (default: BRIDE19)
+        const urlParams = new URLSearchParams(window.location.search);
+        const inviteCode = urlParams.get('invite') || 'BRIDE19';
+        
+        // Determine which event to show based on invite code
+        let currentEvent = 'bride-party'; // default
+        if (inviteCode.includes('GROOM21') || inviteCode.includes('21')) {
+            currentEvent = 'wedding';
+        }
+        
+        console.log('🎫 Invite code:', inviteCode, '| Event:', currentEvent);
+        
         let countdownInterval;
         
         // Tab switching functionality
@@ -3870,7 +3881,55 @@
         updateEventInfo(events[currentEvent]);
         startCountdown();
         
+        // Update invitation text based on invite code
+        updateInvitationText(inviteCode, currentEvent);
+        
+        // Hide/show tabs based on invite code
+        filterEventsByInviteCode(inviteCode);
+        
         console.log('🕐 Countdown timer initialized successfully!');
+    }
+    
+    // Update invitation text based on invite code
+    function updateInvitationText(inviteCode, currentEvent) {
+        const invitationText = document.getElementById('invitation-text');
+        if (!invitationText) return;
+        
+        if (inviteCode.includes('BRIDE19') || inviteCode.includes('19')) {
+            invitationText.innerHTML = 'Vào ngày <strong style="color: #e8ca6f;">Thứ Sáu, 19 tháng 12 năm 2025</strong>, chúng mình sẽ tổ chức tiệc cưới và rất mong bạn sẽ đến chung vui. 💕';
+        } else if (inviteCode.includes('GROOM21') || inviteCode.includes('21')) {
+            invitationText.innerHTML = 'Vào ngày <strong style="color: #2196f3;">Chủ Nhật, 21 tháng 12 năm 2025</strong>, chúng mình sẽ tổ chức lễ thành hôn và rất mong bạn sẽ đến chung vui. 💕';
+        } else {
+            // Show both dates for general invite
+            invitationText.innerHTML = 'Vào ngày 19 & 21 tháng 12 năm 2025, chúng mình sẽ về chung một nhà và rất mong bạn sẽ đến chung vui.';
+        }
+    }
+    
+    // Filter events based on invite code
+    function filterEventsByInviteCode(inviteCode) {
+        const tabs = document.querySelectorAll('.countdown-tab');
+        const countdownTabsContainer = document.querySelector('.countdown-tabs');
+        
+        // If specific invite code, hide tabs and show only relevant event
+        if (inviteCode.includes('BRIDE19') || inviteCode.includes('19')) {
+            // Hide tabs completely for single event
+            if (countdownTabsContainer) {
+                countdownTabsContainer.style.display = 'none';
+            }
+            console.log('🎫 Showing only BRIDE19 event');
+        } else if (inviteCode.includes('GROOM21') || inviteCode.includes('21')) {
+            // Hide tabs completely for single event
+            if (countdownTabsContainer) {
+                countdownTabsContainer.style.display = 'none';
+            }
+            console.log('🎫 Showing only GROOM21 event');
+        } else {
+            // Show all tabs for general invite
+            if (countdownTabsContainer) {
+                countdownTabsContainer.style.display = 'flex';
+            }
+            console.log('🎫 Showing all events');
+        }
     }
     
     // Initialize like buttons functionality - OPTIMISTIC UI
@@ -4644,6 +4703,65 @@
     // Legacy function - replaced by sendLikeToServerBackground
     // function sendLikeToServer() - REMOVED
     
+    // Filter event cards based on invite code
+    function filterEventCards() {
+        const urlParams = new URLSearchParams(window.location.search);
+        const inviteCode = urlParams.get('invite') || 'BRIDE19';
+        
+        const eventCards = document.querySelectorAll('.event-card-wrapper');
+        const eventsRow = document.getElementById('events-row');
+        
+        console.log('🎫 Filtering event cards for invite:', inviteCode);
+        
+        if (inviteCode.includes('BRIDE19') || inviteCode.includes('19')) {
+            // Show only BRIDE19 event
+            eventCards.forEach(card => {
+                if (card.getAttribute('data-event') === 'BRIDE19') {
+                    card.style.display = 'block';
+                    // Center the single card
+                    card.className = 'col-md-6 col-md-offset-3 col-sm-12 event-card-wrapper';
+                    // Add highlight border
+                    const eventCard = card.querySelector('.event-card');
+                    if (eventCard) {
+                        eventCard.style.border = '3px solid #e8ca6f';
+                        eventCard.style.boxShadow = '0 10px 30px rgba(232, 202, 111, 0.4)';
+                    }
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        } else if (inviteCode.includes('GROOM21') || inviteCode.includes('21')) {
+            // Show only GROOM21 events (both wedding ceremony and party)
+            eventCards.forEach(card => {
+                if (card.getAttribute('data-event') === 'GROOM21') {
+                    card.style.display = 'block';
+                    // Make cards wider when showing 2
+                    card.className = 'col-md-6 col-sm-12 event-card-wrapper';
+                    // Add highlight border
+                    const eventCard = card.querySelector('.event-card');
+                    if (eventCard) {
+                        const isCeremony = eventCard.querySelector('.fa-heart');
+                        if (isCeremony) {
+                            eventCard.style.border = '3px solid #2196f3';
+                            eventCard.style.boxShadow = '0 10px 30px rgba(33, 150, 243, 0.4)';
+                        } else {
+                            eventCard.style.border = '3px solid #9c27b0';
+                            eventCard.style.boxShadow = '0 10px 30px rgba(156, 39, 176, 0.4)';
+                        }
+                    }
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        } else {
+            // Show all events for general invite
+            eventCards.forEach(card => {
+                card.style.display = 'block';
+                card.className = 'col-md-4 col-sm-12 event-card-wrapper';
+            });
+        }
+    }
+
     // Initialize when page loads
     document.addEventListener('DOMContentLoaded', function() {
         initRSVPButton();
@@ -4655,6 +4773,7 @@
         initCommentFiltering();
         initSmoothScroll();
         initPictureGallery();
+        filterEventCards(); // Filter events based on invite code
         
         // Start real-time sync after messages are loaded
         setTimeout(() => {
