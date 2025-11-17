@@ -80,7 +80,7 @@
     </div>
 </div>
 
-<section class="hero" style="min-height: 100vh !important; background: url('img/picture/7U6A3320.jpg') center center !important; background-size: cover !important; background-repeat: no-repeat !important; position: relative !important; z-index: 1 !important;">
+<section class="hero" style="min-height: 100vh !important; background: url('img/picture/7U6A3530.jpg') center center !important; background-size: cover !important; background-repeat: no-repeat !important; position: relative !important; z-index: 1 !important;">
     <section class="navigation" style="position: relative !important; z-index: 10 !important;">
         <header>
             <div class="header-content">
@@ -2818,6 +2818,34 @@
                50% { transform: scale(1.2); }
                100% { transform: scale(1); }
            }
+           
+           /* Lightbox responsive styles */
+           @media (max-width: 768px) {
+               /* Smaller navigation buttons on mobile */
+               .lightbox-nav-btn {
+                   width: 45px !important;
+                   height: 45px !important;
+                   font-size: 20px !important;
+               }
+               
+               /* Position buttons inside the image area on mobile */
+               .lightbox-prev-btn {
+                   left: 10px !important;
+               }
+               
+               .lightbox-next-btn {
+                   right: 10px !important;
+               }
+           }
+           
+           @media (max-width: 480px) {
+               /* Even smaller on very small screens */
+               .lightbox-nav-btn {
+                   width: 40px !important;
+                   height: 40px !important;
+                   font-size: 18px !important;
+               }
+           }
        </style>
 
 <!-- Inline JavaScript for QR Code functionality -->
@@ -4971,34 +4999,43 @@
         initMobileCarousel();
     });
     
+    // Cache images globally to avoid re-querying
+    let cachedGalleryImages = null;
+    
+    function getCachedImages() {
+        if (!cachedGalleryImages) {
+            cachedGalleryImages = [];
+            
+            // Add images from simple gallery (desktop)
+            document.querySelectorAll('.simple-gallery .gallery-item img').forEach(img => {
+                cachedGalleryImages.push({
+                    src: img.src,
+                    alt: img.alt || ''
+                });
+            });
+            
+            // Add images from picture gallery
+            document.querySelectorAll('.picture-item img').forEach(img => {
+                cachedGalleryImages.push({
+                    src: img.src,
+                    alt: img.alt || ''
+                });
+            });
+            
+            // Add images from album gallery
+            document.querySelectorAll('.album-item img').forEach(img => {
+                cachedGalleryImages.push({
+                    src: img.src,
+                    alt: img.alt || ''
+                });
+            });
+        }
+        return cachedGalleryImages;
+    }
+    
     // Open Lightbox function
     function openLightbox(imageSrc) {
-        // Get all images from the gallery
-        const allImages = [];
-        
-        // Add images from simple gallery (desktop)
-        document.querySelectorAll('.simple-gallery .gallery-item img').forEach(img => {
-            allImages.push({
-                src: img.src,
-                alt: img.alt || ''
-            });
-        });
-        
-        // Add images from picture gallery
-        document.querySelectorAll('.picture-item img').forEach(img => {
-            allImages.push({
-                src: img.src,
-                alt: img.alt || ''
-            });
-        });
-        
-        // Add images from album gallery
-        document.querySelectorAll('.album-item img').forEach(img => {
-            allImages.push({
-                src: img.src,
-                alt: img.alt || ''
-            });
-        });
+        const allImages = getCachedImages();
         
         // Find the current image index
         let currentIndex = allImages.findIndex(img => img.src.includes(imageSrc));
@@ -5031,16 +5068,53 @@
             align-items: center;
         `;
         
+        // Create loading indicator
+        const loadingIndicator = document.createElement('div');
+        loadingIndicator.innerHTML = '<i class="fa fa-spinner fa-spin"></i>';
+        loadingIndicator.style.cssText = `
+            position: absolute;
+            color: white;
+            font-size: 40px;
+            z-index: 1;
+        `;
+        
         // Create image
         const img = document.createElement('img');
-        img.src = allImages[currentIndex].src;
         img.style.cssText = `
             max-width: 100%;
             max-height: 90vh;
             object-fit: contain;
             border-radius: 10px;
             box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5);
+            transition: opacity 0.2s ease;
         `;
+        
+        // Preload images cache
+        const preloadedImages = {};
+        
+        function preloadImage(index) {
+            if (index >= 0 && index < allImages.length && !preloadedImages[index]) {
+                const preloadImg = new Image();
+                preloadImg.src = allImages[index].src;
+                preloadedImages[index] = preloadImg;
+            }
+        }
+        
+        // Load initial image
+        img.onload = function() {
+            loadingIndicator.style.display = 'none';
+            img.style.opacity = '1';
+        };
+        img.onerror = function() {
+            loadingIndicator.style.display = 'none';
+            img.style.opacity = '1';
+        };
+        img.src = allImages[currentIndex].src;
+        img.style.opacity = '0';
+        
+        // Preload adjacent images
+        preloadImage(currentIndex - 1);
+        preloadImage(currentIndex + 1);
         
         // Create close button
         const closeBtn = document.createElement('div');
@@ -5062,52 +5136,59 @@
             justify-content: center;
             align-items: center;
             transition: all 0.3s ease;
+            opacity: 0.7;
         `;
         
-        // Create prev button
+        // Create prev button with better icon (hidden by default)
         const prevBtn = document.createElement('div');
-        prevBtn.innerHTML = '‹';
+        prevBtn.className = 'lightbox-nav-btn lightbox-prev-btn';
+        prevBtn.innerHTML = '<i class="fa fa-chevron-left"></i>';
         prevBtn.style.cssText = `
             position: absolute;
-            left: -60px;
+            left: 20px;
             top: 50%;
             transform: translateY(-50%);
             color: white;
-            font-size: 40px;
-            font-weight: bold;
+            font-size: 28px;
             cursor: pointer;
             z-index: 10001;
-            background: rgba(0, 0, 0, 0.7);
-            width: 50px;
-            height: 50px;
+            background: rgba(232, 202, 111, 0.9);
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            pointer-events: none;
         `;
         
-        // Create next button
+        // Create next button with better icon (hidden by default)
         const nextBtn = document.createElement('div');
-        nextBtn.innerHTML = '›';
+        nextBtn.className = 'lightbox-nav-btn lightbox-next-btn';
+        nextBtn.innerHTML = '<i class="fa fa-chevron-right"></i>';
         nextBtn.style.cssText = `
             position: absolute;
-            right: -60px;
+            right: 20px;
             top: 50%;
             transform: translateY(-50%);
             color: white;
-            font-size: 40px;
-            font-weight: bold;
+            font-size: 28px;
             cursor: pointer;
             z-index: 10001;
-            background: rgba(0, 0, 0, 0.7);
-            width: 50px;
-            height: 50px;
+            background: rgba(232, 202, 111, 0.9);
+            width: 60px;
+            height: 60px;
             border-radius: 50%;
             display: flex;
             justify-content: center;
             align-items: center;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+            opacity: 0;
+            pointer-events: none;
         `;
         
         // Create counter
@@ -5123,18 +5204,50 @@
             background: rgba(0, 0, 0, 0.7);
             padding: 8px 16px;
             border-radius: 20px;
+            transition: opacity 0.3s ease;
+            opacity: 0.7;
         `;
         
         // Navigation functions
         function showImage(index) {
             if (index >= 0 && index < allImages.length) {
                 currentIndex = index;
-                img.src = allImages[index].src;
+                
+                // Show loading
+                loadingIndicator.style.display = 'block';
+                img.style.opacity = '0';
+                
+                // Use preloaded image if available
+                if (preloadedImages[index] && preloadedImages[index].complete) {
+                    img.src = allImages[index].src;
+                    loadingIndicator.style.display = 'none';
+                    img.style.opacity = '1';
+                } else {
+                    img.onload = function() {
+                        loadingIndicator.style.display = 'none';
+                        img.style.opacity = '1';
+                    };
+                    img.src = allImages[index].src;
+                }
+                
                 counter.innerHTML = `${index + 1} / ${allImages.length}`;
                 
-                // Update button visibility
-                prevBtn.style.display = index > 0 ? 'flex' : 'none';
-                nextBtn.style.display = index < allImages.length - 1 ? 'flex' : 'none';
+                // Update button visibility based on current index
+                if (index > 0) {
+                    prevBtn.style.display = 'flex';
+                } else {
+                    prevBtn.style.display = 'none';
+                }
+                
+                if (index < allImages.length - 1) {
+                    nextBtn.style.display = 'flex';
+                } else {
+                    nextBtn.style.display = 'none';
+                }
+                
+                // Preload adjacent images
+                preloadImage(index - 1);
+                preloadImage(index + 1);
             }
         }
         
@@ -5158,18 +5271,61 @@
             this.style.background = 'rgba(0, 0, 0, 0.7)';
         });
         
+        // Show/hide buttons on hover
+        let hideButtonsTimeout;
+        
+        function showButtons() {
+            if (currentIndex > 0) {
+                prevBtn.style.opacity = '1';
+                prevBtn.style.pointerEvents = 'auto';
+            }
+            if (currentIndex < allImages.length - 1) {
+                nextBtn.style.opacity = '1';
+                nextBtn.style.pointerEvents = 'auto';
+            }
+            closeBtn.style.opacity = '1';
+            counter.style.opacity = '1';
+        }
+        
+        function hideButtons() {
+            prevBtn.style.opacity = '0';
+            prevBtn.style.pointerEvents = 'none';
+            nextBtn.style.opacity = '0';
+            nextBtn.style.pointerEvents = 'none';
+            closeBtn.style.opacity = '0.7';
+            counter.style.opacity = '0.7';
+        }
+        
+        // Show buttons on mouse move
+        lightbox.addEventListener('mousemove', function() {
+            showButtons();
+            clearTimeout(hideButtonsTimeout);
+            hideButtonsTimeout = setTimeout(hideButtons, 1000);
+        });
+        
+        // Show buttons on touch (mobile)
+        lightbox.addEventListener('touchstart', function() {
+            showButtons();
+            clearTimeout(hideButtonsTimeout);
+            hideButtonsTimeout = setTimeout(hideButtons, 1500);
+        });
+        
         prevBtn.addEventListener('mouseover', function() {
-            this.style.background = 'rgba(0, 0, 0, 0.9)';
+            this.style.background = '#e8ca6f';
+            this.style.transform = 'translateY(-50%) scale(1.1)';
         });
         prevBtn.addEventListener('mouseout', function() {
-            this.style.background = 'rgba(0, 0, 0, 0.7)';
+            this.style.background = 'rgba(232, 202, 111, 0.9)';
+            this.style.transform = 'translateY(-50%) scale(1)';
         });
         
         nextBtn.addEventListener('mouseover', function() {
-            this.style.background = 'rgba(0, 0, 0, 0.9)';
+            this.style.background = '#e8ca6f';
+            this.style.transform = 'translateY(-50%) scale(1.1)';
         });
         nextBtn.addEventListener('mouseout', function() {
-            this.style.background = 'rgba(0, 0, 0, 0.7)';
+            this.style.background = 'rgba(232, 202, 111, 0.9)';
+            this.style.transform = 'translateY(-50%) scale(1)';
         });
         
         // Click events
@@ -5239,6 +5395,7 @@
         document.addEventListener('keydown', handleKeyPress);
         
         // Add elements
+        imgContainer.appendChild(loadingIndicator);
         imgContainer.appendChild(img);
         imgContainer.appendChild(closeBtn);
         imgContainer.appendChild(prevBtn);
