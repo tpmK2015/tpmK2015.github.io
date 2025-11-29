@@ -2948,7 +2948,7 @@
         var maxRetries = 3;
         
         function attemptSubmission() {
-        fetch('https://script.google.com/macros/s/AKfycbxbT20wJlX3fgzm1A384zn44zp3D22WNYzlei03MhE4g5i6Qit3m8eOgUDp6Dmhuir9Tg/exec', {
+        fetch('https://script.google.com/macros/s/AKfycbwOGUeChHEtAgUPZm5nzJiTpz7hJZW9BoUwCi5lwCb5F9CZsZYSmJeUBNYEk_DDgxsbPQ/exec', {
             method: 'POST',
             body: data
         })
@@ -3032,7 +3032,9 @@
                 }
                 
                 var form = document.getElementById('rsvp-form');
+                console.log('RSVP form found:', form);
                 if (form) {
+                    console.log('Processing RSVP form...');
                     
                     // Get form data with null checks
                     var attendanceStatusEl = document.getElementById('attendance_status');
@@ -3113,6 +3115,16 @@
                     }
                     
                     // Submit to Google Apps Script
+                    console.log('Form data before submit:', {
+                        name: name,
+                        email: '',
+                        attendance_status: attendanceStatus,
+                        extras: extras,
+                        invite_code: inviteCode,
+                        transport_seats: transportSeats,
+                        transport_phone: transportPhone,
+                        guest_message: guestMessage
+                    });
                     submitForm({
                         name: name,
                         email: '', // Không quan trọng
@@ -3228,7 +3240,7 @@
                     source: 'guestbook_form'
                 });
                 
-                fetch('https://script.google.com/macros/s/AKfycbxbT20wJlX3fgzm1A384zn44zp3D22WNYzlei03MhE4g5i6Qit3m8eOgUDp6Dmhuir9Tg/exec', {
+                fetch('https://script.google.com/macros/s/AKfycbwOGUeChHEtAgUPZm5nzJiTpz7hJZW9BoUwCi5lwCb5F9CZsZYSmJeUBNYEk_DDgxsbPQ/exec', {
                     method: 'POST',
                     body: formData
                 })
@@ -3266,7 +3278,7 @@
         
         // ALWAYS fetch from server first for latest data
         console.log('Fetching guestbook messages from Google Apps Script...');
-        fetch('https://script.google.com/macros/s/AKfycbxbT20wJlX3fgzm1A384zn44zp3D22WNYzlei03MhE4g5i6Qit3m8eOgUDp6Dmhuir9Tg/exec?action=get_messages')
+        fetch('https://script.google.com/macros/s/AKfycbwOGUeChHEtAgUPZm5nzJiTpz7hJZW9BoUwCi5lwCb5F9CZsZYSmJeUBNYEk_DDgxsbPQ/exec?action=get_messages')
             .then(response => {
                 console.log('Response status:', response.status);
                 if (!response.ok) {
@@ -4115,7 +4127,7 @@
         
         console.log('📤 Processing like request:', request.messageId, request.isLiked);
         
-        fetch('https://script.google.com/macros/s/AKfycbxbT20wJlX3fgzm1A384zn44zp3D22WNYzlei03MhE4g5i6Qit3m8eOgUDp6Dmhuir9Tg/exec', {
+        fetch('https://script.google.com/macros/s/AKfycbwOGUeChHEtAgUPZm5nzJiTpz7hJZW9BoUwCi5lwCb5F9CZsZYSmJeUBNYEk_DDgxsbPQ/exec', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded',
@@ -4251,7 +4263,7 @@
         }
         
         // Fetch current like counts from server
-        fetch('https://script.google.com/macros/s/AKfycbxbT20wJlX3fgzm1A384zn44zp3D22WNYzlei03MhE4g5i6Qit3m8eOgUDp6Dmhuir9Tg/exec?action=get_messages')
+        fetch('https://script.google.com/macros/s/AKfycbwOGUeChHEtAgUPZm5nzJiTpz7hJZW9BoUwCi5lwCb5F9CZsZYSmJeUBNYEk_DDgxsbPQ/exec?action=get_messages')
         .then(response => response.text())
         .then(text => {
             try {
